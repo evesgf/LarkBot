@@ -35,7 +35,7 @@ namespace Lark.Bot.CQA.MahuaEvents
                 string key = context.Message.Remove(0, 4);
 
                 //使用CoolQApi将信息回发给发送者
-                _mahuaApi.SendGroupMessage(context.FromDiscuss, RequestHandler.GetBitPrice(key));
+                _mahuaApi.SendDiscussMessage(context.FromDiscuss, RequestHandler.GetBitPrice(key));
             }
 
             // 不要忘记在MahuaModule中注册

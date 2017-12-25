@@ -2,7 +2,7 @@
 -------------
 
 > 关于我，欢迎关注  
-  博客：[一旬一题](http://greens1995.com)  掘金：[https://juejin.im/user/57ff552d5bbb50005b4e9ef9](https://juejin.im/user/57ff552d5bbb50005b4e9ef9)   
+  知乎：[杨定](https://www.zhihu.com/people/yang-ding-peng/activities)
   
   就是个基于酷Q和网络爬虫的聊天机器人，就酱~
 
