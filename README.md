@@ -2,7 +2,7 @@
 -------------
 
 > 关于我，欢迎关注  
-  知乎：[杨定](https://www.zhihu.com/people/yang-ding-peng/activities)
+  知乎：[杨定鹏](https://www.zhihu.com/people/yang-ding-peng/activities)
   
   就是个基于酷Q和网络爬虫的聊天机器人，就酱~
 
