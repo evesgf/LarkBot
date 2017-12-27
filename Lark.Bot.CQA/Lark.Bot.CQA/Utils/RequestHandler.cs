@@ -85,5 +85,57 @@ public static class RequestHandler
             return e.ToString() + "\n锅咩呐~咱的灵魂程序猿又写了个Bug，等我召唤主人来修复吧~";
         }
     }
+
+    public static string GetBitPrice2(string key)
+    {
+        string re = "哎哟？这是什么稀奇玩意？老铁们快来看看能炒一波不";
+
+        try
+        {
+            string typeBcURL = "http://api.lb.mytoken.org/currency/filterlist";
+
+            string data = "keyword=" + key + "&market_id=1303&timestamp=1514259573450&code=7c976da9f6797a8a85a73bf30562c6f6&platform=m&";
+
+            var r = HttpUitls.Post(typeBcURL, data, "http://app.mytoken.io/");
+            var a = JsonHelper.DeserializeJsonToObject<MTSelectBit>(r);
+            var x = a.data.list.FirstOrDefault();
+
+            string listUrl = "http://api.lb.mytoken.org/ticker/currencyexchangelist?currency_id="+x.currency_id+"&page=1&timestamp=1514266516737&code=d690c07d97539898d1387f7cf112d172&platform=m&";
+
+            var rex = HttpUitls.Get(listUrl);
+            var b = JsonHelper.DeserializeJsonToObject<MTSelectBit>(rex);
+            if (b != null && b.data.list!=null)
+            {
+
+                MTBit bithumb = b.data.list.Where(asx => asx.market_name.Equals("Bithumb")).FirstOrDefault();
+                MTBit coincheck = b.data.list.Where(asx => asx.market_name.Equals("Coincheck")).FirstOrDefault();
+                MTBit bitfinex = b.data.list.Where(asx => asx.market_name.Equals("Bitfinex")).FirstOrDefault();
+                MTBit gdax = b.data.list.Where(asx => asx.market_name.Equals("GDAX")).FirstOrDefault();
+                MTBit okex = b.data.list.Where(asx => asx.market_name.Equals("OKEx")).FirstOrDefault();
+                MTBit bitstamp = b.data.list.Where(asx => asx.market_name.Equals("Bitstamp")).FirstOrDefault();
+
+                re = key;
+                re += "\nBithumb: " + FormartMTBit(bithumb) + " | Coincheck: " + FormartMTBit(coincheck) + " | Bitfinex: " + FormartMTBit(bitfinex);
+                re+= "\nGDAX: " + FormartMTBit(gdax) + " | OKEx: " + FormartMTBit(okex) + " | Bitstamp: " + FormartMTBit(bitstamp);
+
+                return re;
+            };
+
+            return "没数据啊";
+        }
+        catch (Exception e)
+        {
+            return e.ToString() + "\n锅咩呐~咱的灵魂程序猿又写了个Bug，等我召唤主人来修复吧~";
+        }
+    }
+
+    public static string FormartMTBit(MTBit bit)
+    {
+        if (bit == null)
+        {
+            return "咱不卖";
+        }
+        return bit.price_usd.ToString("f4")+"$ ";
+    }
     #endregion
 }

@@ -53,6 +53,14 @@ namespace Lark.Bot.CQA.MahuaEvents
                 _mahuaApi.SendGroupMessage(context.FromGroup, RequestHandler.GetBitPrice(key));
             }
 
+            if (context.Message.Length > 4 && context.Message.Substring(0, 4).Equals("看币价 "))
+            {
+                string key = context.Message.Remove(0, 4);
+
+                //使用CoolQApi将信息回发给发送者
+                _mahuaApi.SendGroupMessage(context.FromGroup, RequestHandler.GetBitPrice2(key));
+            }
+
             // 不要忘记在MahuaModule中注册
         }
     }

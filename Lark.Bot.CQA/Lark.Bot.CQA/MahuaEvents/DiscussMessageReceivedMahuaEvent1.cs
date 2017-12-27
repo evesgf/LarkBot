@@ -25,7 +25,7 @@ namespace Lark.Bot.CQA.MahuaEvents
             if (context.Message.Equals("币圈消息"))
             {
                 //查询币圈
-                var reMsg = RequestHandler.RequestBiQuanApi() + "\n" + RequestHandler.GetBitPrice("btc_usdt")+"\n"+ context.FromDiscuss;
+                var reMsg = RequestHandler.RequestBiQuanApi() + "\n" + RequestHandler.GetBitPrice2("btc")+"\n"+ context.FromDiscuss;
                 //回发
                 _mahuaApi.SendDiscussMessage(context.FromDiscuss, reMsg);
             }
@@ -36,6 +36,14 @@ namespace Lark.Bot.CQA.MahuaEvents
 
                 //使用CoolQApi将信息回发给发送者
                 _mahuaApi.SendDiscussMessage(context.FromDiscuss, RequestHandler.GetBitPrice(key));
+            }
+
+            if (context.Message.Length > 4 && context.Message.Substring(0, 4).Equals("看币价 "))
+            {
+                string key = context.Message.Remove(0, 4);
+
+                //使用CoolQApi将信息回发给发送者
+                _mahuaApi.SendDiscussMessage(context.FromDiscuss, RequestHandler.GetBitPrice2(key));
             }
 
             // 不要忘记在MahuaModule中注册

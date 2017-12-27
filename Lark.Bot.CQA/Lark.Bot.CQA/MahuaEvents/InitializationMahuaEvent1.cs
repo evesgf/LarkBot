@@ -40,20 +40,34 @@ namespace Lark.Bot.CQA.MahuaEvents
             var msg = RequestHandler.RequestBiQuanApi();
             string[] msgs = msg.Split('\n');
 
+            string msg1 = null;
             if (lastMsg1 != msgs[0])
             {
                 lastMsg1 = msgs[0];
+                msg1 = msgs[0] + "\n";
+            }
+            else
+            {
+                msg1 = null;
             }
 
+            string msg2 = null;
             if (lastMsg2 != msgs[1])
             {
                 lastMsg2 = msgs[1];
+                msg2 = msgs[1] + "\n";
+            }
+            else
+            {
+                msg2 = null;
             }
 
-            string reMsg = lastMsg1 + "\n" + lastMsg2 + "\n" + RequestHandler.GetBitPrice("btc_usdt");
-
-            _mahuaApi.SendDiscussMessage("1740540992", reMsg + "\n第" + sendCount + "次主动推送消息");
-            sendCount++;
+            if (msg1 != null || msg2 != null)
+            {
+                string reMsg = msg1 + msg2;
+                _mahuaApi.SendDiscussMessage("1740540992", reMsg + "\n第" + sendCount + "次主动推送消息");
+                sendCount++;
+            }
         }
     }
 }
