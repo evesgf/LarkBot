@@ -6,3 +6,6 @@
 /BotChan/Temp
 /BotChan/Library
 /Lark.Bot.CQA/HttpTest/bin
+/BotChan/output
+/BotChan/*.csproj
+/BotChan/*.sln
