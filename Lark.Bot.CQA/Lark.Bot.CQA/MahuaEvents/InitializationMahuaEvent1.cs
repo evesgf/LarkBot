@@ -33,6 +33,7 @@ namespace Lark.Bot.CQA.MahuaEvents
         private int sendCount = 0;
         private static string lastMsg1 = null;
         private static string lastMsg2 = null;
+        private static string lastMsg3 = null;
         public void SendBiMessage(object source, System.Timers.ElapsedEventArgs e)
         {
 
@@ -62,9 +63,20 @@ namespace Lark.Bot.CQA.MahuaEvents
                 msg2 = null;
             }
 
-            if (msg1 != null || msg2 != null)
+            string msg3 = null;
+            if (lastMsg3 != msgs[2])
             {
-                string reMsg = msg1 + msg2;
+                lastMsg3 = msgs[2];
+                msg3 = msgs[2] + "\n";
+            }
+            else
+            {
+                msg3 = null;
+            }
+
+            if (msg1 != null || msg2 != null || msg3 != null)
+            {
+                string reMsg = msg1 + msg2 + msg3 + RequestHandler.OffSitePrice()+"\n"+RequestHandler.GetBitPrice2("btc");
                 _mahuaApi.SendDiscussMessage("1740540992", reMsg + "\n第" + sendCount + "次主动推送消息");
                 sendCount++;
             }

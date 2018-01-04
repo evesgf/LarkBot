@@ -137,5 +137,27 @@ public static class RequestHandler
         }
         return bit.price_usd.ToString("f4")+"$ ";
     }
+
+    /// <summary>
+    /// 场外币价
+    /// </summary>
+    /// <returns></returns>
+    public static string OffSitePrice()
+    {
+
+        string re = "哎哟？这是什么稀奇玩意？老铁们快来看看能炒一波不";
+
+        try
+        {
+            string typeBcURL = "http://newsserver.evesgf.com/api/BitNews/GetOffSitePrice";
+
+            re= HttpUitls.Get(typeBcURL);
+            return re;
+        }
+        catch (Exception e)
+        {
+            return e.ToString() + "\n锅咩呐~咱的灵魂程序猿又写了个Bug，等我召唤主人来修复吧~";
+        }
+    }
     #endregion
 }

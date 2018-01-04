@@ -46,6 +46,15 @@ namespace Lark.Bot.CQA.MahuaEvents
                 _mahuaApi.SendDiscussMessage(context.FromDiscuss, RequestHandler.GetBitPrice2(key));
             }
 
+            // todo 填充处理逻辑
+            if (context.Message.Equals("场外币价"))
+            {
+                //查询场外币价
+                var reMsg = RequestHandler.OffSitePrice();
+                //回发
+                _mahuaApi.SendDiscussMessage(context.FromDiscuss, reMsg);
+            }
+
             // 不要忘记在MahuaModule中注册
         }
     }
