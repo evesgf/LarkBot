@@ -1,0 +1,10 @@
+E:\Dev\QRFrameworkCore2\DEV\Test\bin\Debug\netcoreapp2.0\TestAPI.deps.json
+E:\Dev\QRFrameworkCore2\DEV\Test\bin\Debug\netcoreapp2.0\TestAPI.runtimeconfig.json
+E:\Dev\QRFrameworkCore2\DEV\Test\bin\Debug\netcoreapp2.0\TestAPI.runtimeconfig.dev.json
+E:\Dev\QRFrameworkCore2\DEV\Test\bin\Debug\netcoreapp2.0\TestAPI.dll
+E:\Dev\QRFrameworkCore2\DEV\Test\bin\Debug\netcoreapp2.0\TestAPI.pdb
+E:\Dev\QRFrameworkCore2\DEV\Test\obj\Debug\netcoreapp2.0\TestAPI.csproj.CoreCompileInputs.cache
+E:\Dev\QRFrameworkCore2\DEV\Test\obj\Debug\netcoreapp2.0\TestAPI.AssemblyInfoInputs.cache
+E:\Dev\QRFrameworkCore2\DEV\Test\obj\Debug\netcoreapp2.0\TestAPI.AssemblyInfo.cs
+E:\Dev\QRFrameworkCore2\DEV\Test\obj\Debug\netcoreapp2.0\TestAPI.dll
+E:\Dev\QRFrameworkCore2\DEV\Test\obj\Debug\netcoreapp2.0\TestAPI.pdb

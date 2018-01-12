@@ -7,3 +7,5 @@
 /BotChan/output
 /BotChan/*.csproj
 /BotChan/*.sln
+/coolQ_Bot/data
+/coolQ_Bot/logs

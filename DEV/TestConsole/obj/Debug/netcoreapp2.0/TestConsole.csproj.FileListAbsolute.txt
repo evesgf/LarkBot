@@ -1,0 +1,10 @@
+E:\Dev\QRFrameworkCore2\DEV\TestConsole\bin\Debug\netcoreapp2.0\TestConsole.deps.json
+E:\Dev\QRFrameworkCore2\DEV\TestConsole\bin\Debug\netcoreapp2.0\TestConsole.runtimeconfig.json
+E:\Dev\QRFrameworkCore2\DEV\TestConsole\bin\Debug\netcoreapp2.0\TestConsole.runtimeconfig.dev.json
+E:\Dev\QRFrameworkCore2\DEV\TestConsole\bin\Debug\netcoreapp2.0\TestConsole.dll
+E:\Dev\QRFrameworkCore2\DEV\TestConsole\bin\Debug\netcoreapp2.0\TestConsole.pdb
+E:\Dev\QRFrameworkCore2\DEV\TestConsole\obj\Debug\netcoreapp2.0\TestConsole.csproj.CoreCompileInputs.cache
+E:\Dev\QRFrameworkCore2\DEV\TestConsole\obj\Debug\netcoreapp2.0\TestConsole.AssemblyInfoInputs.cache
+E:\Dev\QRFrameworkCore2\DEV\TestConsole\obj\Debug\netcoreapp2.0\TestConsole.AssemblyInfo.cs
+E:\Dev\QRFrameworkCore2\DEV\TestConsole\obj\Debug\netcoreapp2.0\TestConsole.dll
+E:\Dev\QRFrameworkCore2\DEV\TestConsole\obj\Debug\netcoreapp2.0\TestConsole.pdb

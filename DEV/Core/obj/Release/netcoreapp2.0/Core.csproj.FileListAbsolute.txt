@@ -1,0 +1,15 @@
+E:\Dev\LarkBot\DEV\Core\bin\Release\netcoreapp2.0\Core.deps.json
+E:\Dev\LarkBot\DEV\Core\bin\Release\netcoreapp2.0\Core.dll
+E:\Dev\LarkBot\DEV\Core\bin\Release\netcoreapp2.0\Core.pdb
+E:\Dev\LarkBot\DEV\Core\bin\Release\netcoreapp2.0\Business.dll
+E:\Dev\LarkBot\DEV\Core\bin\Release\netcoreapp2.0\Data.dll
+E:\Dev\LarkBot\DEV\Core\bin\Release\netcoreapp2.0\Infrastructure.dll
+E:\Dev\LarkBot\DEV\Core\bin\Release\netcoreapp2.0\Business.pdb
+E:\Dev\LarkBot\DEV\Core\bin\Release\netcoreapp2.0\Data.pdb
+E:\Dev\LarkBot\DEV\Core\bin\Release\netcoreapp2.0\Infrastructure.pdb
+E:\Dev\LarkBot\DEV\Core\obj\Release\netcoreapp2.0\Core.csprojResolveAssemblyReference.cache
+E:\Dev\LarkBot\DEV\Core\obj\Release\netcoreapp2.0\Core.csproj.CoreCompileInputs.cache
+E:\Dev\LarkBot\DEV\Core\obj\Release\netcoreapp2.0\Core.AssemblyInfoInputs.cache
+E:\Dev\LarkBot\DEV\Core\obj\Release\netcoreapp2.0\Core.AssemblyInfo.cs
+E:\Dev\LarkBot\DEV\Core\obj\Release\netcoreapp2.0\Core.dll
+E:\Dev\LarkBot\DEV\Core\obj\Release\netcoreapp2.0\Core.pdb

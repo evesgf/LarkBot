@@ -1,0 +1,17 @@
+E:\Dev\LarkBot\DEV\Business\bin\Release\netcoreapp2.0\Business.deps.json
+E:\Dev\LarkBot\DEV\Business\bin\Release\netcoreapp2.0\Business.dll
+E:\Dev\LarkBot\DEV\Business\bin\Release\netcoreapp2.0\Business.pdb
+E:\Dev\LarkBot\DEV\Business\bin\Release\netcoreapp2.0\Data.dll
+E:\Dev\LarkBot\DEV\Business\bin\Release\netcoreapp2.0\Infrastructure.dll
+E:\Dev\LarkBot\DEV\Business\bin\Release\netcoreapp2.0\Microsoft.AspNetCore.Hosting.Abstractions.dll
+E:\Dev\LarkBot\DEV\Business\bin\Release\netcoreapp2.0\Microsoft.AspNetCore.Http.Abstractions.dll
+E:\Dev\LarkBot\DEV\Business\bin\Release\netcoreapp2.0\Data.pdb
+E:\Dev\LarkBot\DEV\Business\bin\Release\netcoreapp2.0\Infrastructure.pdb
+E:\Dev\LarkBot\DEV\Business\bin\Release\netcoreapp2.0\Microsoft.AspNetCore.Hosting.Abstractions.xml
+E:\Dev\LarkBot\DEV\Business\bin\Release\netcoreapp2.0\Microsoft.AspNetCore.Http.Abstractions.xml
+E:\Dev\LarkBot\DEV\Business\obj\Release\netcoreapp2.0\Business.csprojResolveAssemblyReference.cache
+E:\Dev\LarkBot\DEV\Business\obj\Release\netcoreapp2.0\Business.csproj.CoreCompileInputs.cache
+E:\Dev\LarkBot\DEV\Business\obj\Release\netcoreapp2.0\Business.AssemblyInfoInputs.cache
+E:\Dev\LarkBot\DEV\Business\obj\Release\netcoreapp2.0\Business.AssemblyInfo.cs
+E:\Dev\LarkBot\DEV\Business\obj\Release\netcoreapp2.0\Business.dll
+E:\Dev\LarkBot\DEV\Business\obj\Release\netcoreapp2.0\Business.pdb
