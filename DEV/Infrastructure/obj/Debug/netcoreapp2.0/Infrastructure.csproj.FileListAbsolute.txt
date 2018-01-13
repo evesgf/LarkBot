@@ -22,7 +22,6 @@ E:\Dev\LarkBot\DEV\Infrastructure\bin\Debug\netcoreapp2.0\Microsoft.Extensions.D
 E:\Dev\LarkBot\DEV\Infrastructure\bin\Debug\netcoreapp2.0\Microsoft.AspNetCore.Hosting.Abstractions.xml
 E:\Dev\LarkBot\DEV\Infrastructure\bin\Debug\netcoreapp2.0\Microsoft.AspNetCore.Http.Abstractions.xml
 E:\Dev\LarkBot\DEV\Infrastructure\bin\Debug\netcoreapp2.0\Microsoft.Extensions.DependencyInjection.Abstractions.xml
-E:\Dev\LarkBot\DEV\Infrastructure\obj\Debug\netcoreapp2.0\Infrastructure.csprojResolveAssemblyReference.cache
 E:\Dev\LarkBot\DEV\Infrastructure\obj\Debug\netcoreapp2.0\Infrastructure.csproj.CoreCompileInputs.cache
 E:\Dev\LarkBot\DEV\Infrastructure\obj\Debug\netcoreapp2.0\Infrastructure.AssemblyInfoInputs.cache
 E:\Dev\LarkBot\DEV\Infrastructure\obj\Debug\netcoreapp2.0\Infrastructure.AssemblyInfo.cs

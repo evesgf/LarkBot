@@ -10,5 +10,11 @@ namespace Business.CrawlNewsService.CoinNewsService
         /// </summary>
         /// <returns></returns>
         Task<CrawlerResult<CrawlNews>> UpdatePushNewsFlash();
+
+        /// <summary>
+        /// 获取最新一条快讯
+        /// </summary>
+        /// <returns></returns>
+        Task<CrawlNews> GetLatestNewsFlash();
     }
 }

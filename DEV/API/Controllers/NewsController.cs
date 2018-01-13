@@ -1,4 +1,5 @@
-﻿using Business.CrawlNewsService.CoinNewsService;
+﻿using Business.CrawlNewsService;
+using Business.CrawlNewsService.CoinNewsService;
 using DTO;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
@@ -13,12 +14,52 @@ namespace API.Controllers
     {
         private readonly IJinseService _jinseService;
         private readonly IBshijieService _bshijieService;
+        private readonly IBitcoinService _bitcoinService;
 
         public NewsController(IJinseService jinseService,
-            IBshijieService bshijieService)
+            IBshijieService bshijieService,
+            IBitcoinService bitcoinService)
         {
             _jinseService = jinseService;
             _bshijieService = bshijieService;
+            _bitcoinService = bitcoinService;
+        }
+
+        #region 金色财经
+        /// <summary>
+        /// 获取金色财经最新一条快讯
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public async Task<ResultModel<NewsModel>> GetJinseLatestNewsFlash()
+        {
+            var reModel = new ResultModel<NewsModel>();
+
+            var news = await _jinseService.GetLatestNewsFlash();
+
+            if (news == null)
+            {
+                reModel.Success = false;
+                reModel.Msg = "查询结果为空";
+
+                return reModel;
+            }
+
+            var data = new NewsModel();
+
+            data.Title = news.Title;
+            data.Content = news.Content;
+            data.PushTime = news.PushTime;
+            data.Tag = news.Tag;
+            data.From = news.From;
+            data.ImportantLevel = news.ImportantLevel;
+            data.PushLevel = news.PushLevel;
+            data.AddTime = news.AddTime;
+
+            reModel.Success = true;
+            reModel.Data = data;
+
+            return reModel;
         }
 
         /// <summary>
@@ -26,20 +67,69 @@ namespace API.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public async Task<NewsModel> UpdateJinseNews()
+        public async Task<ResultModel<NewsModel>> UpdateJinseNews()
         {
-            var reModel = new NewsModel();
+            var reModel = new ResultModel<NewsModel>();
 
             var news = await _jinseService.UpdatePushNewsFlash();
 
-            reModel.Title = news.Result.Title;
-            reModel.Content = news.Result.Content;
-            reModel.PushTime = news.Result.PushTime;
-            reModel.Tag = news.Result.Tag;
-            reModel.From = news.Result.From;
-            reModel.ImportantLevel = news.Result.ImportantLevel;
-            reModel.PushLevel = news.Result.PushLevel;
-            reModel.AddTime = news.Result.AddTime;
+            if (!news.Success)
+            {
+                reModel.Success = false;
+                reModel.Msg = news.Msg;
+
+                return reModel;
+            }
+
+            var data = new NewsModel();
+
+            data.Title = news.Result.Title;
+            data.Content = news.Result.Content;
+            data.PushTime = news.Result.PushTime;
+            data.Tag = news.Result.Tag;
+            data.From = news.Result.From;
+            data.ImportantLevel = news.Result.ImportantLevel;
+            data.PushLevel = news.Result.PushLevel;
+            data.AddTime = news.Result.AddTime;
+
+            reModel.Success = true;
+            reModel.Data = data;
+
+            return reModel;
+        }
+        #endregion
+
+        #region 币世界
+        /// <summary>
+        /// 获取币世界最新一条快讯
+        /// </summary>
+        /// <returns></returns>
+        public async Task<ResultModel<NewsModel>> GetBishijieLatestNewsFlash()
+        {
+            var reModel = new ResultModel<NewsModel>();
+
+            var news = await _bshijieService.GetLatestNewsFlash();
+
+            if (news == null)
+            {
+                reModel.Success = false;
+                reModel.Msg = "查询结果为空";
+
+                return reModel;
+            }
+
+            var data = new NewsModel();
+            data.Title = news.Title;
+            data.Content = news.Content;
+            data.PushTime = news.PushTime;
+            data.Tag = news.Tag;
+            data.From = news.From;
+            data.ImportantLevel = news.ImportantLevel;
+            data.PushLevel = news.PushLevel;
+            data.AddTime = news.AddTime;
+
+            reModel.Success = true;
+            reModel.Data = data;
 
             return reModel;
         }
@@ -49,22 +139,108 @@ namespace API.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public async Task<NewsModel> UpdateBishijieNews()
+        public async Task<ResultModel<NewsModel>> UpdateBishijieNews()
         {
-            var reModel = new NewsModel();
+            var reModel = new ResultModel<NewsModel>();
 
             var news = await _bshijieService.UpdatePushNewsFlash();
 
-            reModel.Title = news.Result.Title;
-            reModel.Content = news.Result.Content;
-            reModel.PushTime = news.Result.PushTime;
-            reModel.Tag = news.Result.Tag;
-            reModel.From = news.Result.From;
-            reModel.ImportantLevel = news.Result.ImportantLevel;
-            reModel.PushLevel = news.Result.PushLevel;
-            reModel.AddTime = news.Result.AddTime;
+            if (!news.Success)
+            {
+                reModel.Success = false;
+                reModel.Msg = news.Msg;
+
+                return reModel;
+            }
+
+            var data = new NewsModel();
+
+            data.Title = news.Result.Title;
+            data.Content = news.Result.Content;
+            data.PushTime = news.Result.PushTime;
+            data.Tag = news.Result.Tag;
+            data.From = news.Result.From;
+            data.ImportantLevel = news.Result.ImportantLevel;
+            data.PushLevel = news.Result.PushLevel;
+            data.AddTime = news.Result.AddTime;
+
+            reModel.Success = true;
+            reModel.Data = data;
 
             return reModel;
         }
+        #endregion
+
+        #region BitCoin
+        /// <summary>
+        /// 获取bitcoin最新一条快讯
+        /// </summary>
+        /// <returns></returns>
+        public async Task<ResultModel<NewsModel>> GetBitcoinLatestNewsFlash()
+        {
+            var reModel = new ResultModel<NewsModel>();
+
+            var news = await _bitcoinService.GetLatestNewsFlash();
+
+            if (news == null)
+            {
+                reModel.Success = false;
+                reModel.Msg = "查询结果为空";
+
+                return reModel;
+            }
+
+            var data = new NewsModel();
+            data.Title = news.Title;
+            data.Content = news.Content;
+            data.PushTime = news.PushTime;
+            data.Tag = news.Tag;
+            data.From = news.From;
+            data.ImportantLevel = news.ImportantLevel;
+            data.PushLevel = news.PushLevel;
+            data.AddTime = news.AddTime;
+
+            reModel.Success = true;
+            reModel.Data = data;
+
+            return reModel;
+        }
+
+        /// <summary>
+        /// 更新bitcoin消息
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public async Task<ResultModel<NewsModel>> UpdateBitcoinNews()
+        {
+            var reModel = new ResultModel<NewsModel>();
+
+            var news = await _bitcoinService.UpdatePushNewsFlash();
+
+            if (!news.Success)
+            {
+                reModel.Success = false;
+                reModel.Msg = news.Msg;
+
+                return reModel;
+            }
+
+            var data = new NewsModel();
+
+            data.Title = news.Result.Title;
+            data.Content = news.Result.Content;
+            data.PushTime = news.Result.PushTime;
+            data.Tag = news.Result.Tag;
+            data.From = news.Result.From;
+            data.ImportantLevel = news.Result.ImportantLevel;
+            data.PushLevel = news.Result.PushLevel;
+            data.AddTime = news.Result.AddTime;
+
+            reModel.Success = true;
+            reModel.Data = data;
+
+            return reModel;
+        }
+        #endregion
     }
 }

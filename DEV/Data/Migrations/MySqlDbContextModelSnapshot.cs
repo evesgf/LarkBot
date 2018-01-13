@@ -30,7 +30,6 @@ namespace Data.Migrations
                         .HasMaxLength(50);
 
                     b.Property<string>("Content")
-                        .IsRequired()
                         .HasMaxLength(512);
 
                     b.Property<string>("From")
@@ -38,7 +37,6 @@ namespace Data.Migrations
                         .HasMaxLength(50);
 
                     b.Property<string>("FromUrl")
-                        .IsRequired()
                         .HasMaxLength(512);
 
                     b.Property<int>("ImportantLevel");
@@ -50,7 +48,6 @@ namespace Data.Migrations
                         .HasMaxLength(50);
 
                     b.Property<string>("Tag")
-                        .IsRequired()
                         .HasMaxLength(50);
 
                     b.Property<string>("Title")

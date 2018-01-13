@@ -1,6 +1,8 @@
 ﻿using Autofac;
 using Lark.Bot.CQA.Common;
 using Lark.Bot.CQA.MahuaEvents;
+using Lark.Bot.CQA.Modules;
+using Lark.Bot.CQA.Modules.Coin;
 using Newbe.Mahua;
 using Newbe.Mahua.MahuaEvents;
 using System;
@@ -53,14 +55,17 @@ namespace Lark.Bot.CQA
                 // 将需要监听的事件注册，若缺少此注册，则不会调用相关的实现类
 
                 //Lark Register
-                builder.RegisterType<PrivateMessageFromFriendReceivedMahuaEvent1>().As<IPrivateMessageFromDiscussReceivedMahuaEvent>();
+                builder.RegisterType<PrivateMessageFromFriendReceivedMahuaEvent1>().As<IPrivateMessageFromFriendReceivedMahuaEvent>();
                 builder.RegisterType<GroupMessageReceivedMahuaEvent1>().As<IGroupMessageReceivedMahuaEvent>();
                 builder.RegisterType<DiscussMessageReceivedMahuaEvent1>().As<IDiscussMessageReceivedMahuaEvent>();
 
                 //主动推艹币群
                 builder.RegisterType<InitializationMahuaEvent1>().As<IInitializationMahuaEvent>();
 
-                //自动注入
+                //builder.RegisterType<CoinHandler>().As<IMsgHandler>();
+                //builder.RegisterType<CoinService>().As<ICoinService>();
+
+                ////自动注入
                 var baseType = typeof(IDependency);
                 var assemblys = AppDomain.CurrentDomain.GetAssemblies().ToList();
                 var allService = assemblys.SelectMany(s => s.GetTypes()).Where(p => baseType.IsAssignableFrom(p) && p != baseType);

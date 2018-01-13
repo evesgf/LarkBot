@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lark.Bot.CQA.Modules.Coin
 {
-    public class CoinHandler
+    public class CoinHandler: IMsgHandler
     {
         private readonly ICoinService _coinService;
 

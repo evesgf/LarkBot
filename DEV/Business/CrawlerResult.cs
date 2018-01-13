@@ -17,7 +17,7 @@ namespace Business
         public T Result { get; set; }
 
         /// <summary>
-        /// 
+        /// 说明
         /// </summary>
         public string Msg { get; set; }
     }

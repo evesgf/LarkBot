@@ -8,3 +8,14 @@ E:\Dev\QRFrameworkCore2\DEV\TestConsole\obj\Debug\netcoreapp2.0\TestConsole.Asse
 E:\Dev\QRFrameworkCore2\DEV\TestConsole\obj\Debug\netcoreapp2.0\TestConsole.AssemblyInfo.cs
 E:\Dev\QRFrameworkCore2\DEV\TestConsole\obj\Debug\netcoreapp2.0\TestConsole.dll
 E:\Dev\QRFrameworkCore2\DEV\TestConsole\obj\Debug\netcoreapp2.0\TestConsole.pdb
+E:\Dev\LarkBot\DEV\TestConsole\bin\Debug\netcoreapp2.0\TestConsole.deps.json
+E:\Dev\LarkBot\DEV\TestConsole\bin\Debug\netcoreapp2.0\TestConsole.runtimeconfig.json
+E:\Dev\LarkBot\DEV\TestConsole\bin\Debug\netcoreapp2.0\TestConsole.runtimeconfig.dev.json
+E:\Dev\LarkBot\DEV\TestConsole\bin\Debug\netcoreapp2.0\TestConsole.dll
+E:\Dev\LarkBot\DEV\TestConsole\bin\Debug\netcoreapp2.0\TestConsole.pdb
+E:\Dev\LarkBot\DEV\TestConsole\obj\Debug\netcoreapp2.0\TestConsole.csprojResolveAssemblyReference.cache
+E:\Dev\LarkBot\DEV\TestConsole\obj\Debug\netcoreapp2.0\TestConsole.csproj.CoreCompileInputs.cache
+E:\Dev\LarkBot\DEV\TestConsole\obj\Debug\netcoreapp2.0\TestConsole.AssemblyInfoInputs.cache
+E:\Dev\LarkBot\DEV\TestConsole\obj\Debug\netcoreapp2.0\TestConsole.AssemblyInfo.cs
+E:\Dev\LarkBot\DEV\TestConsole\obj\Debug\netcoreapp2.0\TestConsole.dll
+E:\Dev\LarkBot\DEV\TestConsole\obj\Debug\netcoreapp2.0\TestConsole.pdb

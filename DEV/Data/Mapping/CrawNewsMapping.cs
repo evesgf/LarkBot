@@ -16,10 +16,10 @@ namespace Data.Mapping
             entityBuilder.Property(x => x.Title).IsRequired().HasMaxLength(128);
             entityBuilder.Property(x => x.ImportantLevel).IsRequired();
             entityBuilder.Property(x => x.From).IsRequired().HasMaxLength(50);
-            entityBuilder.Property(x => x.FromUrl).IsRequired().HasMaxLength(512);
+            entityBuilder.Property(x => x.FromUrl).HasMaxLength(512);
             entityBuilder.Property(x => x.PushTime).IsRequired().HasMaxLength(50);
-            entityBuilder.Property(x => x.Content).IsRequired().HasMaxLength(512);
-            entityBuilder.Property(x => x.Tag).IsRequired().HasMaxLength(50);
+            entityBuilder.Property(x => x.Content).HasMaxLength(512);
+            entityBuilder.Property(x => x.Tag).HasMaxLength(50);
             entityBuilder.Property(x => x.PushLevel).IsRequired();
             entityBuilder.Property(x => x.AddTime).IsRequired().HasMaxLength(50);
         }

@@ -6,7 +6,11 @@ namespace Business.CrawlNewsService.CoinNewsService
 {
     public static class CrawlNewsFromDef
     {
+        //快讯
         public const string JinseFlashFrom= "金色财经-快讯";
         public const string BishijieFlashFrom = "币世界-快讯";
+
+        //新闻
+        public const string BitcoinNewsFrom = "BitCoinNews";
     }
 }

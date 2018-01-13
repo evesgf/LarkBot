@@ -66,7 +66,7 @@ namespace Business.CrawlNewsService.CoinNewsService
             try
             {
                 var unit = _unitOfWork.GetRepository<CrawlNews>();
-                var oldFirst = unit.GetFirstOrDefault();
+                var oldFirst =await unit.GetFirstOrDefaultAsync(x => x, x => x.From.Equals(CrawlNewsFromDef.JinseFlashFrom), x => x.OrderByDescending(p => p.AddTime));
 
                 if (oldFirst != null && oldFirst.PushTime == result.Result.PushTime)
                 {
@@ -158,6 +158,19 @@ namespace Business.CrawlNewsService.CoinNewsService
             };
 
             return reItem;
+        }
+
+        /// <summary>
+        /// 获取最新一条快讯
+        /// </summary>
+        /// <returns></returns>
+        public async Task<CrawlNews> GetLatestNewsFlash()
+        {
+            var reModel = new CrawlNews();
+
+            var unit = _unitOfWork.GetRepository<CrawlNews>();
+            reModel = await unit.GetFirstOrDefaultAsync(x => x, x => x.From.Equals(CrawlNewsFromDef.JinseFlashFrom), x => x.OrderByDescending(p => p.AddTime));
+            return reModel;
         }
     }
 }

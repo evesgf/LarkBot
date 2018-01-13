@@ -8,3 +8,14 @@ E:\Dev\QRFrameworkCore2\DEV\Test\obj\Debug\netcoreapp2.0\TestAPI.AssemblyInfoInp
 E:\Dev\QRFrameworkCore2\DEV\Test\obj\Debug\netcoreapp2.0\TestAPI.AssemblyInfo.cs
 E:\Dev\QRFrameworkCore2\DEV\Test\obj\Debug\netcoreapp2.0\TestAPI.dll
 E:\Dev\QRFrameworkCore2\DEV\Test\obj\Debug\netcoreapp2.0\TestAPI.pdb
+E:\Dev\LarkBot\DEV\Test\bin\Debug\netcoreapp2.0\TestAPI.deps.json
+E:\Dev\LarkBot\DEV\Test\bin\Debug\netcoreapp2.0\TestAPI.runtimeconfig.json
+E:\Dev\LarkBot\DEV\Test\bin\Debug\netcoreapp2.0\TestAPI.runtimeconfig.dev.json
+E:\Dev\LarkBot\DEV\Test\bin\Debug\netcoreapp2.0\TestAPI.dll
+E:\Dev\LarkBot\DEV\Test\bin\Debug\netcoreapp2.0\TestAPI.pdb
+E:\Dev\LarkBot\DEV\Test\obj\Debug\netcoreapp2.0\TestAPI.csprojResolveAssemblyReference.cache
+E:\Dev\LarkBot\DEV\Test\obj\Debug\netcoreapp2.0\TestAPI.csproj.CoreCompileInputs.cache
+E:\Dev\LarkBot\DEV\Test\obj\Debug\netcoreapp2.0\TestAPI.AssemblyInfoInputs.cache
+E:\Dev\LarkBot\DEV\Test\obj\Debug\netcoreapp2.0\TestAPI.AssemblyInfo.cs
+E:\Dev\LarkBot\DEV\Test\obj\Debug\netcoreapp2.0\TestAPI.dll
+E:\Dev\LarkBot\DEV\Test\obj\Debug\netcoreapp2.0\TestAPI.pdb
