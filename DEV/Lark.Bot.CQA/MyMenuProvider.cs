@@ -1,5 +1,5 @@
-﻿using Newbe.Mahua;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Newbe.Mahua;
 
 namespace Lark.Bot.CQA
 {

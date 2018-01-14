@@ -19,3 +19,14 @@ E:\Dev\LarkBot\DEV\TestConsole\obj\Debug\netcoreapp2.0\TestConsole.AssemblyInfoI
 E:\Dev\LarkBot\DEV\TestConsole\obj\Debug\netcoreapp2.0\TestConsole.AssemblyInfo.cs
 E:\Dev\LarkBot\DEV\TestConsole\obj\Debug\netcoreapp2.0\TestConsole.dll
 E:\Dev\LarkBot\DEV\TestConsole\obj\Debug\netcoreapp2.0\TestConsole.pdb
+E:\PEV\LarkBot\DEV\TestConsole\bin\Debug\netcoreapp2.0\TestConsole.deps.json
+E:\PEV\LarkBot\DEV\TestConsole\bin\Debug\netcoreapp2.0\TestConsole.runtimeconfig.json
+E:\PEV\LarkBot\DEV\TestConsole\bin\Debug\netcoreapp2.0\TestConsole.runtimeconfig.dev.json
+E:\PEV\LarkBot\DEV\TestConsole\bin\Debug\netcoreapp2.0\TestConsole.dll
+E:\PEV\LarkBot\DEV\TestConsole\bin\Debug\netcoreapp2.0\TestConsole.pdb
+E:\PEV\LarkBot\DEV\TestConsole\obj\Debug\netcoreapp2.0\TestConsole.csprojResolveAssemblyReference.cache
+E:\PEV\LarkBot\DEV\TestConsole\obj\Debug\netcoreapp2.0\TestConsole.csproj.CoreCompileInputs.cache
+E:\PEV\LarkBot\DEV\TestConsole\obj\Debug\netcoreapp2.0\TestConsole.AssemblyInfoInputs.cache
+E:\PEV\LarkBot\DEV\TestConsole\obj\Debug\netcoreapp2.0\TestConsole.AssemblyInfo.cs
+E:\PEV\LarkBot\DEV\TestConsole\obj\Debug\netcoreapp2.0\TestConsole.dll
+E:\PEV\LarkBot\DEV\TestConsole\obj\Debug\netcoreapp2.0\TestConsole.pdb

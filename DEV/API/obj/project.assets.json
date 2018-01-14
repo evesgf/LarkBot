@@ -5333,7 +5333,7 @@
       ]
     },
     "Microsoft.AspNetCore/2.0.1": {
-      "sha512": "nIuz0afPox0+l7kNsA+2i7j8pTnE9qeSv57nsw4A6hVT8Odl8R2jAtWdvIo21nA8aW8lPsHJWAqjTnuavQNsTg==",
+      "sha512": "12IBPqyTHIAEReaV/JhHsRImbpASKs4SokhHTl/yn5Q6+IHZQtCpOeEaPJrThVgjtnljReGqUlsnFXpx6IQK6g==",
       "type": "package",
       "path": "microsoft.aspnetcore/2.0.1",
       "files": [
@@ -5564,7 +5564,7 @@
       ]
     },
     "Microsoft.AspNetCore.Cors/2.0.1": {
-      "sha512": "8kZs27ovYLDfw8sbWKOFUkglbyp69aapuK3g888roXUnqzIatJLO59U+5AxeEAUZ8k3u9O4kQxmpuQpNRWn4hQ==",
+      "sha512": "9CkzhCVdqV4lYDuf6jNqjUfQQ0lbnxg1npGIu8Wl7G9xsghSERgfrj7ddCmzparqZ1igD16gcTY3KyjwZczXEQ==",
       "type": "package",
       "path": "microsoft.aspnetcore.cors/2.0.1",
       "files": [
@@ -5839,7 +5839,7 @@
       ]
     },
     "Microsoft.AspNetCore.Mvc/2.0.1": {
-      "sha512": "kenpfe37Yp6aIfjBwBCZ3++f2fUQaZiZuPucxPm58/Uklzzk0bvcutg92flYxdgB2IjDGdPfU52RDFJpc+6p9g==",
+      "sha512": "NyREVR8T77lyf5pn6FqMZky7qG/dLTbSas1EO3Cy+zLDsKhD6OrtgDJtzMDfRIfBysCoFo4bFcC38MTzKEdmtA==",
       "type": "package",
       "path": "microsoft.aspnetcore.mvc/2.0.1",
       "files": [
@@ -6233,7 +6233,7 @@
       ]
     },
     "Microsoft.AspNetCore.StaticFiles/2.0.1": {
-      "sha512": "985FEO5vmIN5XWg6MGUnHPGBBJK+rvdWEwXR/PL+NJ+/iIE94g4hti+ejHg4ztfv9n4fnU+yYll9tj2HZm1sBg==",
+      "sha512": "F5qVFsyKsVWKS2tgnJ8MVXkc4FNt6NMybRl7gsZw90G7rhscu4M9k2rW0sEtaUS2ZyKu0ObMU2BVu8OjPCUZjQ==",
       "type": "package",
       "path": "microsoft.aspnetcore.staticfiles/2.0.1",
       "files": [
@@ -6598,7 +6598,7 @@
       ]
     },
     "Microsoft.EntityFrameworkCore/2.0.1": {
-      "sha512": "3vF049zkcSOKGqrMcjP38GiY+7uAxGznrFTl/9j1ZsMu2Z2wBjfdMlPU1kkYF0GQBKFM3m6DvOIVHIFIlfAoRw==",
+      "sha512": "RlwInZHfIUWwFgQJCpUMKrLeE8QJ64MA/GxD881oTMFa9j7iiGKCtI0xK4J1NNgRKvgVDPJbh9CIGJiu0KEdeA==",
       "type": "package",
       "path": "microsoft.entityframeworkcore/2.0.1",
       "files": [
@@ -6620,7 +6620,7 @@
       ]
     },
     "Microsoft.EntityFrameworkCore.Design/2.0.1": {
-      "sha512": "HRbPVWUhjsVV4EbHHE9lWiMxo2tx95I292dsqVaSUclpz3wjrI/4AZTjTd+7dshbYaYOSpwTDwr2S/LnCMpDfg==",
+      "sha512": "gEdT/YSI/buO15X/UN+gQY6D7qeozRYU80WuesZCj33jJBw4wCHHn8SYcp38k2BPOBDC4I2AfsOFH6Vaf8CeLQ==",
       "type": "package",
       "path": "microsoft.entityframeworkcore.design/2.0.1",
       "files": [
@@ -6688,7 +6688,7 @@
       ]
     },
     "Microsoft.EntityFrameworkCore.SqlServer/2.0.1": {
-      "sha512": "E+aQcnu1hYtcM0XO41DLZStipC8RzjkQM9HpaA8RxoULMid5oUKxdJ0gCyef2YYdXBWZQMySbQsnJpfHWqHH/Q==",
+      "sha512": "+UnKJpkVpuNWRjF3BWSzbkQLL7gxY18Hnh5uXmlagO4Ua8BstqWIJaIUV+Ps2rw/2n62UPTQQV9RQWggV7OH9Q==",
       "type": "package",
       "path": "microsoft.entityframeworkcore.sqlserver/2.0.1",
       "files": [
@@ -6699,7 +6699,7 @@
       ]
     },
     "Microsoft.EntityFrameworkCore.Tools/2.0.1": {
-      "sha512": "Iq04ynylthyVY/zCTAxgq/ytUh8YWqryBWPEaxAN2yrJFUiomDSUIBiCKMjsGXWu+i377j5IXdNRw+YtAEduiQ==",
+      "sha512": "/z1xawAD0oL5AyFd3vn9E7L6mE2UfEU91KwMDWEp8o0+AOrP4ZocJS5Kot5VYJMfDUeAzDBBZPmJs+r6/YUEiA==",
       "type": "package",
       "path": "microsoft.entityframeworkcore.tools/2.0.1",
       "files": [
@@ -7113,7 +7113,7 @@
       ]
     },
     "Microsoft.Extensions.Logging.Debug/2.0.0": {
-      "sha512": "rQgsZ74QnoYWKZnPHlGLU0u3VNLYOH76ald3AL7Ng6OWEgehoqXGOn2zOt1Yd9sYxdznH6IvLAEa9T/1bgDU6w==",
+      "sha512": "29Zn5m9yb4NEP+qbeLl+7F2lDskDfrs8NbrM8eJ+k/pYE8JksRUEFxHp1bcpGSfGP9w0pMQMOKrVcwD3u5sPog==",
       "type": "package",
       "path": "microsoft.extensions.logging.debug/2.0.0",
       "files": [
@@ -7883,7 +7883,7 @@
       ]
     },
     "Microsoft.VisualStudio.Web.BrowserLink/2.0.1": {
-      "sha512": "XanEPPEvPEKC9nqa33Z3/cXa5tZkkXDQVk0rqR+d2Ba1jtFfk0Rq037WrPPREX7Kk4YQpqcJrXvHboDm9+vqGw==",
+      "sha512": "StbHXXY9tIPdcr6VbZRtn3nyZaBSMZnOVqJqjrXcTYjn3jdjLkgK+I67jNm4yREoKpjK+j71XQOS8sc8+tN8hQ==",
       "type": "package",
       "path": "microsoft.visualstudio.web.browserlink/2.0.1",
       "files": [
@@ -13271,7 +13271,7 @@
       ]
     },
     "System.Xml.XmlDocument/4.3.0": {
-      "sha512": "hzK5HeV8yv44AoIJnjxiCBCXo2GbFcjez5Jw2Z1wZI+k10vso+Y73EAUNL+MaUgmzCV+Dt8ylueIA/IqK29uZw==",
+      "sha512": "lJ8AxvkX7GQxpC6GFCeBj8ThYVyQczx2+f/cWHJU8tjS7YfI6Cv6bon70jVEgs2CiFbmmM8b9j1oZVx0dSI2Ww==",
       "type": "package",
       "path": "system.xml.xmldocument/4.3.0",
       "files": [
@@ -13510,7 +13510,8 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Administrator\\.nuget\\packages\\": {},
+    "C:\\Users\\82111\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
@@ -13519,18 +13520,20 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "E:\\Dev\\LarkBot\\DEV\\API\\API.csproj",
+      "projectUniqueName": "E:\\PEV\\LarkBot\\DEV\\API\\API.csproj",
       "projectName": "API",
-      "projectPath": "E:\\Dev\\LarkBot\\DEV\\API\\API.csproj",
-      "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-      "outputPath": "E:\\Dev\\LarkBot\\DEV\\API\\obj\\",
+      "projectPath": "E:\\PEV\\LarkBot\\DEV\\API\\API.csproj",
+      "packagesPath": "C:\\Users\\82111\\.nuget\\packages\\",
+      "outputPath": "E:\\PEV\\LarkBot\\DEV\\API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\82111\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.Fallback.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.0"
@@ -13542,17 +13545,17 @@
       "frameworks": {
         "netcoreapp2.0": {
           "projectReferences": {
-            "E:\\Dev\\LarkBot\\DEV\\Business\\Business.csproj": {
-              "projectPath": "E:\\Dev\\LarkBot\\DEV\\Business\\Business.csproj"
+            "E:\\PEV\\LarkBot\\DEV\\DTO\\DTO.csproj": {
+              "projectPath": "E:\\PEV\\LarkBot\\DEV\\DTO\\DTO.csproj"
             },
-            "E:\\Dev\\LarkBot\\DEV\\DTO\\DTO.csproj": {
-              "projectPath": "E:\\Dev\\LarkBot\\DEV\\DTO\\DTO.csproj"
+            "E:\\PEV\\LarkBot\\DEV\\Infrastructure\\Infrastructure.csproj": {
+              "projectPath": "E:\\PEV\\LarkBot\\DEV\\Infrastructure\\Infrastructure.csproj"
             },
-            "E:\\Dev\\LarkBot\\DEV\\Core\\Core.csproj": {
-              "projectPath": "E:\\Dev\\LarkBot\\DEV\\Core\\Core.csproj"
+            "E:\\PEV\\LarkBot\\DEV\\Core\\Core.csproj": {
+              "projectPath": "E:\\PEV\\LarkBot\\DEV\\Core\\Core.csproj"
             },
-            "E:\\Dev\\LarkBot\\DEV\\Infrastructure\\Infrastructure.csproj": {
-              "projectPath": "E:\\Dev\\LarkBot\\DEV\\Infrastructure\\Infrastructure.csproj"
+            "E:\\PEV\\LarkBot\\DEV\\Business\\Business.csproj": {
+              "projectPath": "E:\\PEV\\LarkBot\\DEV\\Business\\Business.csproj"
             }
           }
         }
@@ -13566,18 +13569,18 @@
     "frameworks": {
       "netcoreapp2.0": {
         "dependencies": {
-          "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+          "Microsoft.AspNetCore.All": {
             "target": "Package",
-            "version": "2.0.0"
+            "version": "[2.0.3, )"
           },
           "Microsoft.NETCore.App": {
             "target": "Package",
-            "version": "2.0",
+            "version": "[2.0.0, )",
             "autoReferenced": true
           },
-          "Microsoft.AspNetCore.All": {
+          "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
             "target": "Package",
-            "version": "2.0.3"
+            "version": "[2.0.0, )"
           }
         },
         "imports": [

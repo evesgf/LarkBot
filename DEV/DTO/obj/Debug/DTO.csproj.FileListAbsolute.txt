@@ -4,3 +4,9 @@ E:\Dev\LarkBot\DEV\DTO\obj\Debug\DTO.csproj.CoreCompileInputs.cache
 E:\Dev\LarkBot\DEV\DTO\obj\Debug\DTO.dll
 E:\Dev\LarkBot\DEV\DTO\obj\Debug\DTO.pdb
 E:\Dev\LarkBot\DEV\DTO\obj\Debug\DTO.csprojResolveAssemblyReference.cache
+E:\PEV\LarkBot\DEV\DTO\bin\Debug\DTO.dll
+E:\PEV\LarkBot\DEV\DTO\bin\Debug\DTO.pdb
+E:\PEV\LarkBot\DEV\DTO\obj\Debug\DTO.csprojResolveAssemblyReference.cache
+E:\PEV\LarkBot\DEV\DTO\obj\Debug\DTO.csproj.CoreCompileInputs.cache
+E:\PEV\LarkBot\DEV\DTO\obj\Debug\DTO.dll
+E:\PEV\LarkBot\DEV\DTO\obj\Debug\DTO.pdb

@@ -2132,7 +2132,7 @@
       ]
     },
     "Microsoft.EntityFrameworkCore/2.0.1": {
-      "sha512": "3vF049zkcSOKGqrMcjP38GiY+7uAxGznrFTl/9j1ZsMu2Z2wBjfdMlPU1kkYF0GQBKFM3m6DvOIVHIFIlfAoRw==",
+      "sha512": "RlwInZHfIUWwFgQJCpUMKrLeE8QJ64MA/GxD881oTMFa9j7iiGKCtI0xK4J1NNgRKvgVDPJbh9CIGJiu0KEdeA==",
       "type": "package",
       "path": "microsoft.entityframeworkcore/2.0.1",
       "files": [
@@ -2154,7 +2154,7 @@
       ]
     },
     "Microsoft.EntityFrameworkCore.Design/2.0.1": {
-      "sha512": "HRbPVWUhjsVV4EbHHE9lWiMxo2tx95I292dsqVaSUclpz3wjrI/4AZTjTd+7dshbYaYOSpwTDwr2S/LnCMpDfg==",
+      "sha512": "gEdT/YSI/buO15X/UN+gQY6D7qeozRYU80WuesZCj33jJBw4wCHHn8SYcp38k2BPOBDC4I2AfsOFH6Vaf8CeLQ==",
       "type": "package",
       "path": "microsoft.entityframeworkcore.design/2.0.1",
       "files": [
@@ -6623,7 +6623,7 @@
       ]
     },
     "System.Xml.XmlDocument/4.3.0": {
-      "sha512": "hzK5HeV8yv44AoIJnjxiCBCXo2GbFcjez5Jw2Z1wZI+k10vso+Y73EAUNL+MaUgmzCV+Dt8ylueIA/IqK29uZw==",
+      "sha512": "lJ8AxvkX7GQxpC6GFCeBj8ThYVyQczx2+f/cWHJU8tjS7YfI6Cv6bon70jVEgs2CiFbmmM8b9j1oZVx0dSI2Ww==",
       "type": "package",
       "path": "system.xml.xmldocument/4.3.0",
       "files": [
@@ -6675,7 +6675,8 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Administrator\\.nuget\\packages\\": {},
+    "C:\\Users\\82111\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
@@ -6684,18 +6685,20 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "E:\\Dev\\LarkBot\\DEV\\Data\\Data.csproj",
+      "projectUniqueName": "E:\\PEV\\LarkBot\\DEV\\Data\\Data.csproj",
       "projectName": "Data",
-      "projectPath": "E:\\Dev\\LarkBot\\DEV\\Data\\Data.csproj",
-      "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-      "outputPath": "E:\\Dev\\LarkBot\\DEV\\Data\\obj\\",
+      "projectPath": "E:\\PEV\\LarkBot\\DEV\\Data\\Data.csproj",
+      "packagesPath": "C:\\Users\\82111\\.nuget\\packages\\",
+      "outputPath": "E:\\PEV\\LarkBot\\DEV\\Data\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\82111\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.Fallback.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.0"
@@ -6707,8 +6710,8 @@
       "frameworks": {
         "netcoreapp2.0": {
           "projectReferences": {
-            "E:\\Dev\\LarkBot\\DEV\\Infrastructure\\Infrastructure.csproj": {
-              "projectPath": "E:\\Dev\\LarkBot\\DEV\\Infrastructure\\Infrastructure.csproj"
+            "E:\\PEV\\LarkBot\\DEV\\Infrastructure\\Infrastructure.csproj": {
+              "projectPath": "E:\\PEV\\LarkBot\\DEV\\Infrastructure\\Infrastructure.csproj"
             }
           }
         }
@@ -6722,23 +6725,23 @@
     "frameworks": {
       "netcoreapp2.0": {
         "dependencies": {
-          "Pomelo.EntityFrameworkCore.MySql": {
+          "Microsoft.EntityFrameworkCore.UnitOfWork": {
             "target": "Package",
-            "version": "2.0.1"
+            "version": "[2.0.3, )"
           },
           "Microsoft.NETCore.App": {
             "suppressParent": "All",
             "target": "Package",
-            "version": "2.0",
+            "version": "[2.0.0, )",
             "autoReferenced": true
+          },
+          "Pomelo.EntityFrameworkCore.MySql": {
+            "target": "Package",
+            "version": "[2.0.1, )"
           },
           "Pomelo.EntityFrameworkCore.MySql.Design": {
             "target": "Package",
-            "version": "1.1.2"
-          },
-          "Microsoft.EntityFrameworkCore.UnitOfWork": {
-            "target": "Package",
-            "version": "2.0.3"
+            "version": "[1.1.2, )"
           }
         },
         "imports": [

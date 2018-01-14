@@ -1,7 +1,6 @@
-﻿using Lark.Bot.CQA.Modules;
-using Newbe.Mahua;
-using Newbe.Mahua.MahuaEvents;
+﻿using Newbe.Mahua.MahuaEvents;
 using System;
+using Newbe.Mahua;
 
 namespace Lark.Bot.CQA.MahuaEvents
 {
@@ -12,27 +11,18 @@ namespace Lark.Bot.CQA.MahuaEvents
         : IPrivateMessageFromFriendReceivedMahuaEvent
     {
         private readonly IMahuaApi _mahuaApi;
-        private readonly IMsgHandler _msgHandler;
 
         public PrivateMessageFromFriendReceivedMahuaEvent1(
-            IMahuaApi mahuaApi, IMsgHandler msgHandler)
+            IMahuaApi mahuaApi)
         {
             _mahuaApi = mahuaApi;
-            _msgHandler = msgHandler;
         }
 
         public void ProcessFriendMessage(PrivateMessageFromFriendReceivedContext context)
         {
             // todo 填充处理逻辑
-            // 不要忘记在MahuaModule中注册
 
-            //币圈消息处理
-            var reCoin = _msgHandler.CheckKeyWords(context.Message);
-            if (reCoin.HasKeyWord)
-            {
-                _mahuaApi.SendPrivateMessage(context.FromQq , reCoin.ResultMsg);
-                return;
-            }
+            // 不要忘记在MahuaModule中注册
         }
     }
 }

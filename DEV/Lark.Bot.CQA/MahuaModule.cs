@@ -1,12 +1,13 @@
 ﻿using Autofac;
-using Lark.Bot.CQA.Common;
+using Lark.Bot.CQA.Business;
+using Lark.Bot.CQA.Handler;
+using Lark.Bot.CQA.Handler.ExceptionHandler;
+using Lark.Bot.CQA.Handler.GroupMessageHandler;
+using Lark.Bot.CQA.Handler.InitHandler;
+using Lark.Bot.CQA.Handler.PrivateMessageHandler;
 using Lark.Bot.CQA.MahuaEvents;
-using Lark.Bot.CQA.Modules;
-using Lark.Bot.CQA.Modules.Coin;
 using Newbe.Mahua;
 using Newbe.Mahua.MahuaEvents;
-using System;
-using System.Linq;
 
 namespace Lark.Bot.CQA
 {
@@ -22,6 +23,7 @@ namespace Lark.Bot.CQA
             {
                 new PluginModule(),
                 new MahuaEventsModule(),
+                new BusinessModule(),
             };
         }
 
@@ -54,22 +56,39 @@ namespace Lark.Bot.CQA
                 base.Load(builder);
                 // 将需要监听的事件注册，若缺少此注册，则不会调用相关的实现类
 
-                //Lark Register
-                builder.RegisterType<PrivateMessageFromFriendReceivedMahuaEvent1>().As<IPrivateMessageFromFriendReceivedMahuaEvent>();
-                builder.RegisterType<GroupMessageReceivedMahuaEvent1>().As<IGroupMessageReceivedMahuaEvent>();
-                builder.RegisterType<DiscussMessageReceivedMahuaEvent1>().As<IDiscussMessageReceivedMahuaEvent>();
+                //异常处理
+                builder.RegisterType<ExceptionOccuredMahuaEvent1>().As<IExceptionOccuredMahuaEvent>();
+                builder.RegisterType<ExceptionHandler>().As<IHandler>();
 
-                //主动推艹币群
+                //初始化
                 builder.RegisterType<InitializationMahuaEvent1>().As<IInitializationMahuaEvent>();
+                builder.RegisterType<InitHandler>().As<IHandler>();
 
-                //builder.RegisterType<CoinHandler>().As<IMsgHandler>();
-                //builder.RegisterType<CoinService>().As<ICoinService>();
+                //群消息
+                builder.RegisterType<GroupMessageReceivedMahuaEvent1>().As<IGroupMessageReceivedMahuaEvent>();
+                builder.RegisterType<GroupMessageHandler>().As<IHandler>();
 
-                ////自动注入
-                var baseType = typeof(IDependency);
-                var assemblys = AppDomain.CurrentDomain.GetAssemblies().ToList();
-                var allService = assemblys.SelectMany(s => s.GetTypes()).Where(p => baseType.IsAssignableFrom(p) && p != baseType);
-                builder.RegisterAssemblyTypes(assemblys.ToArray()).Where(t => baseType.IsAssignableFrom(t) && t != baseType).AsImplementedInterfaces().InstancePerLifetimeScope();
+                //私聊消息
+                builder.RegisterType<PrivateMessageFromFriendReceivedMahuaEvent1>().As<IPrivateMessageFromFriendReceivedMahuaEvent>();
+                builder.RegisterType<PrivateMessageHandler>().As<IHandler>();
+            }
+        }
+
+        /// <summary>
+        /// 业务处理模块
+        /// </summary>
+        private class BusinessModule : Module
+        {
+            protected override void Load(ContainerBuilder builder)
+            {
+                base.Load(builder);
+                // 将需要监听的事件注册，若缺少此注册，则不会调用相关的实现类
+
+                builder.RegisterType<CoinNewsService>()
+                    .As<ICoinNewsService>();
+
+                builder.RegisterType<CoinService>()
+                    .As<ICoinService>();
             }
         }
     }

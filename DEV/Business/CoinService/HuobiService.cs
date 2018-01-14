@@ -36,7 +36,7 @@ namespace Business.Coin
             };
 
             //启动爬虫
-            var reJson = crawler.Start(new Uri("https://api-otc.huobi.pro/v1/otc/trade/list/public?coinId="+ coinId + "&tradeType="+ tradeType + "&currentPage=1&payWay=&country=&merchant=0&online=1&range=0"), null);
+            var reJson =await crawler.StartAsync(new Uri("https://api-otc.huobi.pro/v1/otc/trade/list/public?coinId="+ coinId + "&tradeType="+ tradeType + "&currentPage=1&payWay=&country=&merchant=0&online=1&range=0"), null);
 
             if (!result.Success) return result;
 
