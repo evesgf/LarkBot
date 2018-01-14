@@ -1,6 +1,8 @@
-﻿using Newbe.Mahua;
+﻿using Lark.Bot.CQA.Modules.TrackCoin;
+using Newbe.Mahua;
 using Newbe.Mahua.MahuaEvents;
 using System;
+using System.Collections.Generic;
 
 namespace Lark.Bot.CQA.MahuaEvents
 {
@@ -18,7 +20,7 @@ namespace Lark.Bot.CQA.MahuaEvents
             _mahuaApi = mahuaApi;
         }
 
-        System.Timers.Timer t = new System.Timers.Timer(1000 * 60 * 5);
+        System.Timers.Timer t = new System.Timers.Timer(1000 * 10 * 3);
 
         public void Initialized(InitializedContext context)
         {
@@ -27,9 +29,18 @@ namespace Lark.Bot.CQA.MahuaEvents
             t.AutoReset = true;//设置是执行一次（false）还是一直执行(true)；
             t.Enabled = true;//是否执行System.Timers.Timer.Elapsed事件；
 
-            // 不要忘记在MahuaModule中注册
+            //币价追踪
+            Singleton<TrackManager>.Create();
+            Singleton<TrackManager>.Instance.Init(Send);
         }
 
+        public void Send(string from,string msg)
+        {
+            _mahuaApi.SendGroupMessage(from, msg);
+        }
+
+
+        #region 消息推送
         private int sendCount = 0;
         private static string lastMsg1 = null;
         private static string lastMsg2 = null;
@@ -38,8 +49,7 @@ namespace Lark.Bot.CQA.MahuaEvents
         {
 
             //查询币圈
-            var msg = RequestHandler.RequestBiQuanApi();
-            string[] msgs = msg.Split('\n');
+            var msgs = RequestHandler.RequestBiQuanApi();
 
             string msg1 = null;
             if (lastMsg1 != msgs[0])
@@ -76,10 +86,11 @@ namespace Lark.Bot.CQA.MahuaEvents
 
             if (msg1 != null || msg2 != null || msg3 != null)
             {
-                string reMsg = msg1 + msg2 + msg3 + RequestHandler.OffSitePrice()+"\n"+RequestHandler.GetBitPrice2("btc");
+                string reMsg = msg1 + msg2 + msg3 + RequestHandler.OTCPrice() + "\n" + RequestHandler.GetBitPrice2("btc");
                 _mahuaApi.SendGroupMessage("693739965", reMsg + "\n第" + sendCount + "次主动推送消息");
                 sendCount++;
             }
         }
+        #endregion
     }
 }

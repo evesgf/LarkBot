@@ -50,7 +50,7 @@ namespace Lark.Bot.CQA.MahuaEvents
             if (context.Message.Equals("场外币价"))
             {
                 //查询场外币价
-                var reMsg = RequestHandler.OffSitePrice();
+                var reMsg = RequestHandler.OTCPrice();
                 //回发
                 _mahuaApi.SendDiscussMessage(context.FromDiscuss, reMsg);
             }

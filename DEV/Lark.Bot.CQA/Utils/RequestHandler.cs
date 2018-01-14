@@ -48,9 +48,9 @@ public static class RequestHandler
     /// 从LarkNews获取币圈消息
     /// </summary>
     /// <returns></returns>
-    public static string RequestBiQuanApi()
+    public static string[] RequestBiQuanApi()
     {
-        var reStr = string.Empty;
+        string[] reStr;
 
         try
         {
@@ -58,16 +58,15 @@ public static class RequestHandler
             var bishijieLatestNewsFlash = JsonHelper.DeserializeJsonToObject<ResultModel<NewsModel>>(HttpUitls.Get(url + "/api/News/GetBishijieLatestNewsFlash"));
             var bitcoinLatestNewsFlash = JsonHelper.DeserializeJsonToObject<ResultModel<NewsModel>>(HttpUitls.Get(url + "/api/News/GetBitcoinLatestNewsFlash"));
 
-            reStr += jinseLatestNewsFlash.Data.Content;
-            reStr += "\n" + bishijieLatestNewsFlash.Data.Content;
-            reStr += "\n" + bitcoinLatestNewsFlash.Data.Content;
+            reStr = new string[] { jinseLatestNewsFlash.Data.Content, bishijieLatestNewsFlash.Data.Content, bitcoinLatestNewsFlash.Data.Content };
 
-            return reStr;
         }
         catch (Exception e)
         {
-            return e.ToString() + "\n席马达！程序BUG了，快召唤老铁来维修!";
+            reStr = new string[] { e.ToString() + "\n席马达！程序BUG了，快召唤老铁来维修!" };
         }
+
+        return reStr;
     }
 
     /// <summary>
@@ -154,7 +153,7 @@ public static class RequestHandler
     /// 场外币价
     /// </summary>
     /// <returns></returns>
-    public static string OffSitePrice()
+    public static string OTCPrice()
     {
         var re = "哎哟？这是什么稀奇玩意？老铁们快来看看能炒一波不";
 
@@ -162,7 +161,7 @@ public static class RequestHandler
         {
             string typeBcURL = "http://newsserver.evesgf.com/api/BitNews/GetOffSitePrice";
 
-            re= HttpUitls.Get(typeBcURL);
+            re= "场外币价："+HttpUitls.Get(typeBcURL);
 
             string typeBcUrl2 = "http://larkbot.evesgf.com/api/Coin/OTCPrice";
             re +=","+JsonHelper.DeserializeJsonToObject<OTCPrice>(HttpUitls.Get(typeBcUrl2)).Data[0];

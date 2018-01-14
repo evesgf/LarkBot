@@ -95,6 +95,10 @@
     <Compile Include="Modules\IMsgHandler.cs" />
     <Compile Include="Modules\News\NewsModel.cs" />
     <Compile Include="Modules\News\ResultModel.cs" />
+    <Compile Include="Modules\TrackCoin\OKTrickModel.cs" />
+    <Compile Include="Modules\TrackCoin\Singleton.cs" />
+    <Compile Include="Modules\TrackCoin\TrackInfoModel.cs" />
+    <Compile Include="Modules\TrackCoin\TrackManager.cs" />
     <Compile Include="MyMenuProvider.cs" />
     <Compile Include="PluginInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

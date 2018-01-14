@@ -39,5 +39,31 @@ namespace Lark.Bot.CQA.Modules.Coin
                 return e.ToString() + "\n锅咩呐~咱的灵魂程序猿又写了个Bug，等我召唤主人来修复吧~";
             }
         }
+
+        #region 币价告警
+
+
+        /// <summary>
+        /// 开启追踪
+        /// </summary>
+        /// <param name="exchange">交易所</param>
+        /// <param name="coinName">币名</param>
+        /// <param name="price">价格</param>
+        /// <param name="isUp">超过还是低于</param>
+        public void StartTrace(string exchange, string coinName, decimal price, bool isUp)
+        {
+
+        }
+
+        /// <summary>
+        /// 停止追踪
+        /// </summary>
+        /// <param name="exchange">交易所</param>
+        /// <param name="coinName">币名</param>
+        public void StopTrace(string exchange, string coinName)
+        {
+
+        }
+        #endregion
     }
 }
