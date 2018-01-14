@@ -11,15 +11,11 @@ namespace Business.Coin
     public interface IhuobiService:IDependencyRegister
     {
         /// <summary>
-        /// 法币买一
+        /// 法币价格查询
         /// </summary>
+        /// <param name="coinId">coin值1为btc,2为usdt</param>
+        /// <param name="tradeType">tradeType值1为买0为卖</param>
         /// <returns></returns>
-        Task<CrawlerResult<string>> LegalTenderBuy();
-
-        /// <summary>
-        /// 法币卖一
-        /// </summary>
-        /// <returns></returns>
-        Task<CrawlerResult<string>> LegalTenderSell();
+        Task<CrawlerResult<string>> LegalTender(int coinId, int tradeType);
     }
 }

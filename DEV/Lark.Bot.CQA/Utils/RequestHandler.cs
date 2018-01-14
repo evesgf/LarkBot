@@ -1,5 +1,6 @@
 ﻿using Lark.Bot.CQA.Models;
 using Lark.Bot.CQA.Modules.Coin;
+using Lark.Bot.CQA.Modules.News;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,8 @@ using System.Threading.Tasks;
 
 public static class RequestHandler
 {
+    private const string url = "http://larkbot.evesgf.com";
+
     #region 新闻
     /// <summary>
     /// 向LarkNews请求早报，这个数据源周末不干活
@@ -47,11 +50,19 @@ public static class RequestHandler
     /// <returns></returns>
     public static string RequestBiQuanApi()
     {
+        var reStr = string.Empty;
+
         try
         {
-            string typeBcURL = "http://newsserver.evesgf.com/api/BitNews/GetNewestPaper";
+            var jinseLatestNewsFlash = JsonHelper.DeserializeJsonToObject<ResultModel<NewsModel>>(HttpUitls.Get(url + "/api/News/GetJinseLatestNewsFlash"));
+            var bishijieLatestNewsFlash = JsonHelper.DeserializeJsonToObject<ResultModel<NewsModel>>(HttpUitls.Get(url + "/api/News/GetBishijieLatestNewsFlash"));
+            var bitcoinLatestNewsFlash = JsonHelper.DeserializeJsonToObject<ResultModel<NewsModel>>(HttpUitls.Get(url + "/api/News/GetBitcoinLatestNewsFlash"));
 
-            return HttpUitls.Get(typeBcURL);
+            reStr += jinseLatestNewsFlash.Data.Content;
+            reStr += "\n" + bishijieLatestNewsFlash.Data.Content;
+            reStr += "\n" + bitcoinLatestNewsFlash.Data.Content;
+
+            return reStr;
         }
         catch (Exception e)
         {

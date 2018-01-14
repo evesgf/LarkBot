@@ -1,6 +1,7 @@
 ﻿using Core.Business;
 using Core.Crawler;
 using Core.Data;
+using Core.TimeJob;
 using Infrastructure.Common;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -17,11 +18,14 @@ namespace Core
             Singleton<BusinessManager>.Create();
 
             Singleton<CrawlerManager>.Create();
+            Singleton<TimeJobManager>.Create();
 
             Singleton<DataManager>.Instance.ServiceCollection(services);
             Singleton<BusinessManager>.Instance.ServiceCollection(services);
 
             //Singleton<CrawlerManager>.Instance.ServiceCollection(services);
+
+            Singleton<TimeJobManager>.Instance.OpenTimeJob();
         }
 
         public static void UseQR(this IApplicationBuilder app, IHostingEnvironment env, IServiceProvider context)

@@ -24,7 +24,7 @@ namespace Core.Data
         /// <param name="services"></param>
         public void RegisterEFService(IServiceCollection services)
         {
-            var mySqlConnection = "Data Source=localhost;port=3306;Initial Catalog=LarkBotServer;uid=root;password=123456;Charset=utf8;SslMode=None;";
+            var mySqlConnection = "Data Source=localhost;port=3306;Initial Catalog=LarkBotServer;uid=root;password=LarkServerMysql1234;Charset=utf8;SslMode=None;";
 
             //增加EF服务
             services.AddDbContext<MySqlDbContext>(options => options.UseMySql(mySqlConnection));

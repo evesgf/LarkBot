@@ -2940,22 +2940,6 @@
           "lib/netstandard1.3/NuGet.Frameworks.dll": {}
         }
       },
-      "Pomelo.AspNetCore.TimedJob/2.0.0-rtm-10044": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.AspNetCore.Hosting": "2.0.0",
-          "Microsoft.EntityFrameworkCore": "2.0.0",
-          "Microsoft.Extensions.DependencyModel": "2.0.0",
-          "System.Threading": "4.3.0",
-          "System.Threading.Timer": "4.3.0"
-        },
-        "compile": {
-          "lib/netstandard2.0/Pomelo.AspNetCore.TimedJob.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/Pomelo.AspNetCore.TimedJob.dll": {}
-        }
-      },
       "Pomelo.EntityFrameworkCore.MySql/2.0.1": {
         "type": "package",
         "dependencies": {
@@ -5210,8 +5194,7 @@
           "Business": "1.0.0",
           "Data": "1.0.0",
           "Infrastructure": "1.0.0",
-          "Newtonsoft.Json": "11.0.1-beta3",
-          "Pomelo.AspNetCore.TimedJob": "2.0.0-rtm-10044"
+          "Newtonsoft.Json": "11.0.1-beta3"
         },
         "compile": {
           "bin/placeholder/Core.dll": {}
@@ -8306,16 +8289,6 @@
         "lib/netstandard1.3/NuGet.Frameworks.xml",
         "nuget.frameworks.4.0.0.nupkg.sha512",
         "nuget.frameworks.nuspec"
-      ]
-    },
-    "Pomelo.AspNetCore.TimedJob/2.0.0-rtm-10044": {
-      "sha512": "8M2tSp1dKpdjheDFYtwLmxE9aPIwjtJz67LYHJUIsgwdEr2G60r+b8B39T1RvlqOpHM053vDxe2JDOxtmQSCaA==",
-      "type": "package",
-      "path": "pomelo.aspnetcore.timedjob/2.0.0-rtm-10044",
-      "files": [
-        "lib/netstandard2.0/Pomelo.AspNetCore.TimedJob.dll",
-        "pomelo.aspnetcore.timedjob.2.0.0-rtm-10044.nupkg.sha512",
-        "pomelo.aspnetcore.timedjob.nuspec"
       ]
     },
     "Pomelo.EntityFrameworkCore.MySql/2.0.1": {

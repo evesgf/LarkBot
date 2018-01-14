@@ -40,8 +40,18 @@ namespace Business.CrawlNewsService.CoinNewsService
                 result.Msg = "爬虫抓取失败:" + ex;
             };
 
-            //启动爬虫
-            var rePageStr = await crawler.Start(new Uri("http://www.jinse.com/lives"), null);
+            var rePageStr = string.Empty;
+            try
+            {
+                //启动爬虫
+                rePageStr =await crawler.StartAsync(new Uri("http://www.jinse.com/lives"), null);
+            }
+            catch (Exception ex)
+            {
+                result.Success = false;
+                result.Msg = "爬虫异常:" + ex;
+                return result;
+            }
 
             if (!result.Success) return result;
 
@@ -118,9 +128,8 @@ namespace Business.CrawlNewsService.CoinNewsService
             var pushTime = DateTime.Now.ToString("yyyy-MM-dd");
             pushTime += " " + element.QuerySelector(".live-time").TextContent+":00";
 
-            //这里的内容填充的是原文链接，如果没有则为空，因为快讯没有标题，标题就是内容
-            var link = element.QuerySelector(".live-link").NodeValue;
-            var content = link;
+            //标题长度不够，内容再存一遍
+            var content = element.QuerySelector(".live-info").TextContent; ;
 
             //标签，暂时不填
             var tag = "";

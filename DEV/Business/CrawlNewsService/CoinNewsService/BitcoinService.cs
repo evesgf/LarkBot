@@ -56,7 +56,7 @@ namespace Business.CrawlNewsService.CoinNewsService
             };
 
             //启动爬虫
-            var rePageStr = await crawler.Start(new Uri("https://news.bitcoin.com/press-releases/"), null);
+            var rePageStr =await crawler.StartAsync(new Uri("https://news.bitcoin.com/press-releases/"), null);
 
             if (!result.Success) return result;
 

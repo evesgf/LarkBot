@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.0",
-    "signature": "8edf7b1517604b4aac742f920e2836a574ea0300"
+    "signature": "7631f04a5c5bb34e4b669314216f6084a6e5110c"
   },
   "compilationOptions": {
     "defines": [
@@ -2559,21 +2559,6 @@
           "lib/netstandard1.3/NuGet.Frameworks.dll": {}
         }
       },
-      "Pomelo.AspNetCore.TimedJob/2.0.0-rtm-10044": {
-        "dependencies": {
-          "Microsoft.AspNetCore.Hosting": "2.0.1",
-          "Microsoft.EntityFrameworkCore": "2.0.1",
-          "Microsoft.Extensions.DependencyModel": "2.0.3",
-          "System.Threading": "4.3.0",
-          "System.Threading.Timer": "4.3.0"
-        },
-        "runtime": {
-          "lib/netstandard2.0/Pomelo.AspNetCore.TimedJob.dll": {}
-        },
-        "compile": {
-          "lib/netstandard2.0/Pomelo.AspNetCore.TimedJob.dll": {}
-        }
-      },
       "Pomelo.EntityFrameworkCore.MySql/2.0.1": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Design": "2.0.1",
@@ -4231,8 +4216,7 @@
           "Business": "1.0.0",
           "Data": "1.0.0",
           "Infrastructure": "1.0.0",
-          "Newtonsoft.Json": "11.0.1-beta3",
-          "Pomelo.AspNetCore.TimedJob": "2.0.0-rtm-10044"
+          "Newtonsoft.Json": "11.0.1-beta3"
         },
         "runtime": {
           "Core.dll": {}
@@ -5870,13 +5854,6 @@
       "sha512": "sha512-WCkN68c8q+USG+Ot1MmBDH+9DUo5dk7UB0QDMiwCYhrH7ZoFLKFGGNzJ8C3LTR1DvB1LW9BOxKeznnZznKiCTA==",
       "path": "nuget.frameworks/4.0.0",
       "hashPath": "nuget.frameworks.4.0.0.nupkg.sha512"
-    },
-    "Pomelo.AspNetCore.TimedJob/2.0.0-rtm-10044": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-8M2tSp1dKpdjheDFYtwLmxE9aPIwjtJz67LYHJUIsgwdEr2G60r+b8B39T1RvlqOpHM053vDxe2JDOxtmQSCaA==",
-      "path": "pomelo.aspnetcore.timedjob/2.0.0-rtm-10044",
-      "hashPath": "pomelo.aspnetcore.timedjob.2.0.0-rtm-10044.nupkg.sha512"
     },
     "Pomelo.EntityFrameworkCore.MySql/2.0.1": {
       "type": "package",

@@ -45,7 +45,7 @@ namespace Business.CrawlNewsService.CoinNewsService
             //启动爬虫
             //http://www.bishijie.com/api/news/?size=1&timestamp=1515751702
             //前端爬不出来，直接读接口
-            var rePageStr = await crawler.Start(new Uri("http://www.bishijie.com/api/news/?size=1&timestamp=" + TimeHelper.ConvertToTimeStamp(DateTime.Now)), null);
+            var rePageStr = await crawler.StartAsync(new Uri("http://www.bishijie.com/api/news/?size=1&timestamp=" + TimeHelper.ConvertToTimeStamp(DateTime.Now)), null);
 
             if (!result.Success) return result;
 
@@ -118,8 +118,8 @@ namespace Business.CrawlNewsService.CoinNewsService
             var longTime = str.Split(new string[] { "\"issue_time\":", ",\"rank\"" }, StringSplitOptions.RemoveEmptyEntries)[1];
             pushTime += " " + TimeHelper.GetTime(long.Parse(longTime)).ToString("T");
 
-            //这里的内容填充的是原文链接，如果没有则为空，因为快讯没有标题，标题就是内容
-            var content = string.Empty;
+            //标题长度不够，内容再存一遍
+            var content = str.Split(new string[] { "\"content\":\"", ",\"source" }, StringSplitOptions.RemoveEmptyEntries)[1];
             var link = str.Split(new string[] { "\"link\":\"", "\",\"issue_time\"" }, StringSplitOptions.RemoveEmptyEntries)[1];
             if (string.IsNullOrEmpty(link))
             {

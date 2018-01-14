@@ -28,7 +28,7 @@ namespace Core.Business
 
             //程序集
             //TODO:IOC程序集加载不指定名字
-            var assemblies = new Assembly[] { Assembly.GetEntryAssembly(), Assembly.Load("Business") };
+            var assemblies = new Assembly[] { Assembly.GetEntryAssembly(), Assembly.Load("Business"), Assembly.Load("Data") };
             var serviceType = typeof(IDependencyRegister);
 
             //遍历子接口

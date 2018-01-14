@@ -1,5 +1,4 @@
-﻿using Business.CrawlNewsService;
-using Business.CrawlNewsService.CoinNewsService;
+﻿using Business.CrawlNewsService.CoinNewsService;
 using DTO;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
@@ -24,6 +23,24 @@ namespace API.Controllers
             _bshijieService = bshijieService;
             _bitcoinService = bitcoinService;
         }
+
+        #region Common
+        /// <summary>
+        /// 更新所有新闻
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public async Task<ResultModel<NewsModel>> UpdateAllNews()
+        {
+            var reModel = new ResultModel<NewsModel>();
+
+            var job1 = await _jinseService.UpdatePushNewsFlash();
+            var job2 = await _bshijieService.UpdatePushNewsFlash();
+            var job3 = await _bitcoinService.UpdatePushNewsFlash();
+
+            return reModel;
+        }
+        #endregion
 
         #region 金色财经
         /// <summary>
