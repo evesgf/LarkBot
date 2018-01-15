@@ -1,6 +1,0 @@
-E:\Dev\LarkBot\DEV\DTO\bin\Release\DTO.dll
-E:\Dev\LarkBot\DEV\DTO\bin\Release\DTO.pdb
-E:\Dev\LarkBot\DEV\DTO\obj\Release\DTO.csprojResolveAssemblyReference.cache
-E:\Dev\LarkBot\DEV\DTO\obj\Release\DTO.csproj.CoreCompileInputs.cache
-E:\Dev\LarkBot\DEV\DTO\obj\Release\DTO.dll
-E:\Dev\LarkBot\DEV\DTO\obj\Release\DTO.pdb

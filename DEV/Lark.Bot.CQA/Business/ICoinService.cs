@@ -16,6 +16,13 @@
         string GetOKEXCoinPrice(string key);
 
         /// <summary>
+        /// 获取火币币价
+        /// </summary>
+        /// <param name="key">btc_usdt</param>
+        /// <returns></returns>
+        string GetHuobiPrice(string key);
+
+        /// <summary>
         /// 获取MyToken币价
         /// </summary>
         /// <param name="key">btc</param>

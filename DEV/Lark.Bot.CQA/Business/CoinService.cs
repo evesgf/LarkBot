@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lark.Bot.CQA.Business
 {
-    public class CoinService: ICoinService
+    public class CoinService : ICoinService
     {
         /// <summary>
         /// 场外币价
@@ -42,7 +42,7 @@ namespace Lark.Bot.CQA.Business
 
                 if (market.date != null && market.ticker != null)
                 {
-                    re = "【"+key + "】买一:" + market.ticker.buy + " 最高:" + market.ticker.high + " 最新成交:" + market.ticker.last + " 最低:" + market.ticker.low + " 卖一:" + market.ticker.sell + " 24h成交:" + market.ticker.vol;
+                    re = "【" + key + "】买一:" + market.ticker.buy + " 最高:" + market.ticker.high + " 最新成交:" + market.ticker.last + " 最低:" + market.ticker.low + " 卖一:" + market.ticker.sell + " 24h成交:" + market.ticker.vol;
                 }
 
                 return re;
@@ -86,7 +86,7 @@ namespace Lark.Bot.CQA.Business
                     MTBit okex = b.data.list.Where(asx => asx.market_name.Equals("OKEx")).FirstOrDefault();
                     MTBit bitstamp = b.data.list.Where(asx => asx.market_name.Equals("Bitstamp")).FirstOrDefault();
 
-                    re = "【"+ key+"】";
+                    re = "【" + key + "】";
                     re += "\nBithumb: " + FormartMTBit(bithumb) + " | Coincheck: " + FormartMTBit(coincheck) + " | Bitfinex: " + FormartMTBit(bitfinex);
                     re += "\nGDAX: " + FormartMTBit(gdax) + " | OKEx: " + FormartMTBit(okex) + " | Bitstamp: " + FormartMTBit(bitstamp);
 
@@ -99,6 +99,30 @@ namespace Lark.Bot.CQA.Business
             {
                 return null;
             }
+        }
+
+        /// <summary>
+        /// 获取火币币价
+        /// </summary>
+        /// <param name="key">btc_usdt</param>
+        /// <returns></returns>
+        public string GetHuobiPrice(string key)
+        {
+            var reStr = string.Empty;
+
+            //火币形式为btcusdt
+            var newKey = key.Split('_');
+
+            if (newKey.Length != 2) return "key 错误，形式为btc_usdt";
+
+            var symbol = newKey[0] + newKey[1];
+            var url = "https://api.huobi.pro/market/trade?symbol=" + symbol;
+            var reModel = JsonHelper.DeserializeJsonToObject<HuobiResult>(HttpUitls.Get(url));
+
+            if (reModel == null) return "数据为空";
+
+            reStr =reModel.tick.data[0].price.ToString();
+            return reStr;
         }
 
         public string FormartMTBit(MTBit bit)
@@ -220,5 +244,54 @@ namespace Lark.Bot.CQA.Business
         public string percent_change_range { get; set; }
         public bool is_favorite { get; set; }
     }
+    #endregion
+
+    #region 火币
+
+    public class HuobiResult
+    {
+        public string status { get; set; }
+        public string ch { get; set; }
+        public long ts { get; set; }
+        public Tick tick { get; set; }
+    }
+
+    public class Tick
+    {
+        /// <summary>
+        /// 消息id
+        /// </summary>
+        public int id { get; set; }
+        /// <summary>
+        /// 最新成交时间
+        /// </summary>
+        public long ts { get; set; }
+        public Datum[] data { get; set; }
+    }
+
+    public class Datum
+    {
+        /// <summary>
+        /// 成交量
+        /// </summary>
+        public float amount { get; set; }
+        /// <summary>
+        /// 成交时间
+        /// </summary>
+        public long ts { get; set; }
+        /// <summary>
+        /// 成交id
+        /// </summary>
+        public long id { get; set; }
+        /// <summary>
+        /// 成交价钱,
+        /// </summary>
+        public decimal price { get; set; }
+        /// <summary>
+        /// 主动成交方向
+        /// </summary>
+        public string direction { get; set; }
+    }
+
     #endregion
 }
