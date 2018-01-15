@@ -1,8 +1,6 @@
-﻿using Newbe.Mahua.MahuaEvents;
-using System;
+﻿using Lark.Bot.CQA.Handler.TimeJobHandler;
 using Newbe.Mahua;
-using Lark.Bot.CQA.Business;
-using Lark.Bot.CQA.Handler.TimeJobHandler;
+using Newbe.Mahua.MahuaEvents;
 
 namespace Lark.Bot.CQA.MahuaEvents
 {
@@ -14,17 +12,22 @@ namespace Lark.Bot.CQA.MahuaEvents
     {
         private readonly IMahuaApi _mahuaApi;
         private readonly ITimeJobHandler _timeJobHandler;
+        private readonly ITrackHandler _trackHandler;
 
         public InitializationMahuaEvent1(
-            IMahuaApi mahuaApi,ITimeJobHandler timeJobHandler)
+            IMahuaApi mahuaApi,ITimeJobHandler timeJobHandler,ITrackHandler trackHandler)
         {
             _mahuaApi = mahuaApi;
             _timeJobHandler = timeJobHandler;
+            _trackHandler = trackHandler;
         }
 
         public void Initialized(InitializedContext context)
         {
+            //币圈消息推送
             _timeJobHandler.StartPushNews("693739965");
+
+            _trackHandler.StartLoop();
         }
     }
 }

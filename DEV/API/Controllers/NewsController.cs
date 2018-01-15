@@ -38,6 +38,10 @@ namespace API.Controllers
             var job2 = await _bshijieService.UpdatePushNewsFlash();
             var job3 = await _bitcoinService.UpdatePushNewsFlash();
 
+            reModel.Data.Title += " job1" + job1.Success;
+            reModel.Data.Title += " job2" + job2.Success;
+            reModel.Data.Title += " job3" + job3.Success;
+
             return reModel;
         }
         #endregion

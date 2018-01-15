@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Lark.Bot.CQA.Handler.TimeJobHandler
 {
+    /// <summary>
+    /// TODO:不能继承IHander,待处理BUG
+    /// </summary>
     public interface ITimeJobHandler
     {
         /// <summary>

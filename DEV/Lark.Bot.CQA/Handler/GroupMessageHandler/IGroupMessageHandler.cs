@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newbe.Mahua.MahuaEvents;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,6 @@ namespace Lark.Bot.CQA.Handler.GroupMessageHandler
         /// </summary>
         /// <param name="context"></param>
         /// <returns></returns>
-        HandlerResult CheckKeyWord(string context);
+        HandlerResult CheckKeyWord(GroupMessageReceivedContext context);
     }
 }

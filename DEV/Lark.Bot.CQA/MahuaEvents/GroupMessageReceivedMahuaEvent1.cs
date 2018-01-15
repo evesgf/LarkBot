@@ -27,7 +27,7 @@ namespace Lark.Bot.CQA.MahuaEvents
 
         public void ProcessGroupMessage(GroupMessageReceivedContext context)
         {
-            var result = _groupMessageHandler.CheckKeyWord(context.Message);
+            var result = _groupMessageHandler.CheckKeyWord(context);
 
             if (result.IsHit)
             {

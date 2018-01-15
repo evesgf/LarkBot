@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Lark.Bot.CQA.Business;
+﻿using Lark.Bot.CQA.Business;
 using Lark.Bot.CQA.Handler.TimeJobHandler;
+using Newbe.Mahua.MahuaEvents;
+using System;
+using System.Linq;
 
 namespace Lark.Bot.CQA.Handler.GroupMessageHandler
 {
@@ -12,19 +10,21 @@ namespace Lark.Bot.CQA.Handler.GroupMessageHandler
     {
         private readonly ICoinService _iCoinService;
         private readonly ICoinNewsService _iCoinNewsService;
+        private readonly ITrackHandler _trackHandler;
 
-        public GroupMessageHandler(ICoinService iCoinService, ICoinNewsService iCoinNewsService)
+        public GroupMessageHandler(ICoinService iCoinService, ICoinNewsService iCoinNewsService, ITrackHandler trackHandler)
         {
             _iCoinService = iCoinService;
             _iCoinNewsService = iCoinNewsService;
+            _trackHandler = trackHandler;
         }
 
-        public HandlerResult CheckKeyWord(string context)
+        public HandlerResult CheckKeyWord(GroupMessageReceivedContext context)
         {
             var result = new HandlerResult{IsHit = false};
 
             //场外币价
-            if (context.Equals("场外币价"))
+            if (context.Message.Equals("场外币价"))
             {
                 result.Msg = "【场外币价】";
 
@@ -39,9 +39,9 @@ namespace Lark.Bot.CQA.Handler.GroupMessageHandler
             }
 
             //查币价
-            if (context.Length > 4 && context.Substring(0, 4).Equals("查币价 "))
+            if (context.Message.Length > 4 && context.Message.Substring(0, 4).Equals("查币价 "))
             {
-                string key = context.Remove(0, 4);
+                string key = context.Message.Remove(0, 4);
 
                 var re = _iCoinService.GetOKEXCoinPrice(key);
 
@@ -51,9 +51,9 @@ namespace Lark.Bot.CQA.Handler.GroupMessageHandler
             }
 
             //看币价
-            if (context.Length > 4 && context.Substring(0, 4).Equals("看币价 "))
+            if (context.Message.Length > 4 && context.Message.Substring(0, 4).Equals("看币价 "))
             {
-                string key = context.Remove(0, 4);
+                string key = context.Message.Remove(0, 4);
 
                 var re = _iCoinService.GetMyTokenPrice(key);
 
@@ -63,7 +63,7 @@ namespace Lark.Bot.CQA.Handler.GroupMessageHandler
             }
 
             //币圈消息
-            if (context.Equals("币圈消息"))
+            if (context.Message.Equals("币圈消息"))
             {
                 var re = _iCoinNewsService.RequestBiQuanApi();
                 foreach (var str in re)
@@ -85,14 +85,73 @@ namespace Lark.Bot.CQA.Handler.GroupMessageHandler
                 result.IsHit = true;
             }
 
-            //if (context.Equals("开启币圈消息推送"))
-            //{
-            //    var re=_timeJobHandler.StartPushNews("");
+            //开启监听 okex btc_usdt > 1000
+            if (context.Message.Length > 4 && context.Message.Substring(0, 4).Equals("开启监听"))
+            {
+                string[] keys = context.Message.Split(' ');
+                if (keys.Count() != 5)
+                {
+                    result.Msg = "指令输入错误";
+                    return result;
+                }
 
-            //    //回发
-            //    result.IsHit = true;
-            //    result.Msg = re.ToString();
-            //}
+                var model = new TrackPriceModel
+                {
+                    //fromQQ = context.FromQq,
+                    fromGroup = context.FromGroup,
+                    msgType = Enum_MsgType.GroupMsg,
+                    exchange = keys[1],
+                    coin = keys[2],
+                    isUp = keys[3].Equals(">"),
+                    price = Convert.ToDecimal(keys[4])
+                };
+
+                if (_trackHandler.StartTrackCoinPrice( model))
+                {
+                    //回发
+                    result.IsHit = true;
+                    result.Msg = "监听开启！";
+                }
+                else
+                {
+                    //回发
+                    result.IsHit = true;
+                    result.Msg = "监听程序BUG了，快召唤程序猿~";
+                }
+            }
+
+            //关闭监听 okex btc_usdt
+            if (context.Message.Length > 4 && context.Message.Substring(0, 4).Equals("关闭监听"))
+            {
+                string[] keys = context.Message.Split(' ');
+                if (keys.Count() != 3)
+                {
+                    result.Msg = "指令输入错误";
+                    return result;
+                }
+
+                var model = new TrackPriceModel
+                {
+                    //fromQQ = context.FromQq,
+                    fromGroup = context.FromGroup,
+                    msgType = Enum_MsgType.GroupMsg,
+                    exchange = keys[1],
+                    coin = keys[2]
+                };
+
+                if (_trackHandler.StopTrackCoinPrice( model))
+                {
+                    //回发
+                    result.IsHit = true;
+                    result.Msg = "好累！终于不用盯着了";
+                }
+                else
+                {
+                    //回发
+                    result.IsHit = true;
+                    result.Msg = "监听程序BUG了，快召唤程序猿~";
+                }
+            }
 
             return result;
         }

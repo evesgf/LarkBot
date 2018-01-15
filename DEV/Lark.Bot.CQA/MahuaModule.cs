@@ -3,6 +3,7 @@ using Lark.Bot.CQA.Business;
 using Lark.Bot.CQA.Handler;
 using Lark.Bot.CQA.Handler.ExceptionHandler;
 using Lark.Bot.CQA.Handler.GroupMessageHandler;
+using Lark.Bot.CQA.Handler.GroupPrivateMsgHander;
 using Lark.Bot.CQA.Handler.InitHandler;
 using Lark.Bot.CQA.Handler.PrivateMessageHandler;
 using Lark.Bot.CQA.Handler.TimeJobHandler;
@@ -69,6 +70,10 @@ namespace Lark.Bot.CQA
                 builder.RegisterType<GroupMessageReceivedMahuaEvent1>().As<IGroupMessageReceivedMahuaEvent>();
                 builder.RegisterType<GroupMessageHandler>().As<IGroupMessageHandler>();
 
+                //群友私聊消息
+                builder.RegisterType<PrivateMessageFromGroupReceivedMahuaEvent1>().As<IPrivateMessageFromGroupReceivedMahuaEvent>();
+                //builder.RegisterType<GroupPrivateMsgHander>().As<IGroupPrivateMsgHander>();
+
                 //私聊消息
                 builder.RegisterType<PrivateMessageFromFriendReceivedMahuaEvent1>().As<IPrivateMessageFromFriendReceivedMahuaEvent>();
                 builder.RegisterType<PrivateMessageHandler>().As<IPrivateMessageHandler>();
@@ -92,6 +97,7 @@ namespace Lark.Bot.CQA
                     .As<ICoinService>();
 
                 builder.RegisterType<TimeJobHandler>().As<ITimeJobHandler>().SingleInstance();
+                builder.RegisterType<TrackHandler>().As<ITrackHandler>().SingleInstance();
             }
         }
     }

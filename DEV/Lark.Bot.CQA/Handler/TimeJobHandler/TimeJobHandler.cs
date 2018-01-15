@@ -23,8 +23,9 @@ namespace Lark.Bot.CQA.Handler.TimeJobHandler
             _coinService = coinService;
         }
 
+        #region 币圈消息推送
         public string fromQQ { get; set; }
-        Timer t = new Timer(1000 * 5 * 3);
+        Timer t = new Timer(1000 * 60 * 3);
         public bool StartPushNews(string groupQQ)
         {
             fromQQ = groupQQ;
@@ -95,5 +96,9 @@ namespace Lark.Bot.CQA.Handler.TimeJobHandler
                 sendCount++;
             }
         }
+        #endregion
+
     }
+
+    
 }
