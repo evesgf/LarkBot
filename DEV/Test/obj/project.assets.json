@@ -6213,7 +6213,7 @@
       ]
     },
     "Microsoft.EntityFrameworkCore/2.0.1": {
-      "sha512": "RlwInZHfIUWwFgQJCpUMKrLeE8QJ64MA/GxD881oTMFa9j7iiGKCtI0xK4J1NNgRKvgVDPJbh9CIGJiu0KEdeA==",
+      "sha512": "3vF049zkcSOKGqrMcjP38GiY+7uAxGznrFTl/9j1ZsMu2Z2wBjfdMlPU1kkYF0GQBKFM3m6DvOIVHIFIlfAoRw==",
       "type": "package",
       "path": "microsoft.entityframeworkcore/2.0.1",
       "files": [
@@ -6224,7 +6224,7 @@
       ]
     },
     "Microsoft.EntityFrameworkCore.Design/2.0.1": {
-      "sha512": "gEdT/YSI/buO15X/UN+gQY6D7qeozRYU80WuesZCj33jJBw4wCHHn8SYcp38k2BPOBDC4I2AfsOFH6Vaf8CeLQ==",
+      "sha512": "HRbPVWUhjsVV4EbHHE9lWiMxo2tx95I292dsqVaSUclpz3wjrI/4AZTjTd+7dshbYaYOSpwTDwr2S/LnCMpDfg==",
       "type": "package",
       "path": "microsoft.entityframeworkcore.design/2.0.1",
       "files": [
@@ -6706,7 +6706,7 @@
       ]
     },
     "Microsoft.Extensions.Logging.Debug/2.0.0": {
-      "sha512": "29Zn5m9yb4NEP+qbeLl+7F2lDskDfrs8NbrM8eJ+k/pYE8JksRUEFxHp1bcpGSfGP9w0pMQMOKrVcwD3u5sPog==",
+      "sha512": "rQgsZ74QnoYWKZnPHlGLU0u3VNLYOH76ald3AL7Ng6OWEgehoqXGOn2zOt1Yd9sYxdznH6IvLAEa9T/1bgDU6w==",
       "type": "package",
       "path": "microsoft.extensions.logging.debug/2.0.0",
       "files": [
@@ -12651,7 +12651,7 @@
       ]
     },
     "System.Xml.XmlDocument/4.3.0": {
-      "sha512": "lJ8AxvkX7GQxpC6GFCeBj8ThYVyQczx2+f/cWHJU8tjS7YfI6Cv6bon70jVEgs2CiFbmmM8b9j1oZVx0dSI2Ww==",
+      "sha512": "hzK5HeV8yv44AoIJnjxiCBCXo2GbFcjez5Jw2Z1wZI+k10vso+Y73EAUNL+MaUgmzCV+Dt8ylueIA/IqK29uZw==",
       "type": "package",
       "path": "system.xml.xmldocument/4.3.0",
       "files": [
@@ -12863,8 +12863,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\82111\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\": {},
+    "C:\\Users\\Administrator\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
@@ -12873,20 +12872,18 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "E:\\PEV\\LarkBot\\DEV\\Test\\TestAPI.csproj",
+      "projectUniqueName": "E:\\Dev\\LarkBot\\DEV\\Test\\TestAPI.csproj",
       "projectName": "TestAPI",
-      "projectPath": "E:\\PEV\\LarkBot\\DEV\\Test\\TestAPI.csproj",
-      "packagesPath": "C:\\Users\\82111\\.nuget\\packages\\",
-      "outputPath": "E:\\PEV\\LarkBot\\DEV\\Test\\obj\\",
+      "projectPath": "E:\\Dev\\LarkBot\\DEV\\Test\\TestAPI.csproj",
+      "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
+      "outputPath": "E:\\Dev\\LarkBot\\DEV\\Test\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\82111\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.Fallback.config"
+        "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.0"
@@ -12909,26 +12906,26 @@
     "frameworks": {
       "netcoreapp2.0": {
         "dependencies": {
-          "Microsoft.AspNetCore.All": {
+          "Pomelo.EntityFrameworkCore.MySql": {
             "target": "Package",
-            "version": "[2.0.0, )"
-          },
-          "Microsoft.NETCore.App": {
-            "target": "Package",
-            "version": "[2.0.0, )",
-            "autoReferenced": true
+            "version": "2.0.1"
           },
           "Pomelo.AspNetCore.TimedJob": {
             "target": "Package",
-            "version": "[2.0.0-rtm-10044, )"
+            "version": "2.0.0-rtm-10044"
           },
-          "Pomelo.EntityFrameworkCore.MySql": {
+          "Microsoft.NETCore.App": {
             "target": "Package",
-            "version": "[2.0.1, )"
+            "version": "2.0",
+            "autoReferenced": true
+          },
+          "Microsoft.AspNetCore.All": {
+            "target": "Package",
+            "version": "2.0.0"
           },
           "Pomelo.EntityFrameworkCore.MySql.Design": {
             "target": "Package",
-            "version": "[1.1.2, )"
+            "version": "1.1.2"
           }
         },
         "imports": [

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lark.Bot.CQA.Handler.PrivateMessageHandler
 {
-    public class PrivateMessageHandler:IHandler
+    public class PrivateMessageHandler: IPrivateMessageHandler
     {
         public HandlerResult CheckKeyWord(string context)
         {

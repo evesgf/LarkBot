@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lark.Bot.CQA.Handler.InitHandler
 {
-    public class InitHandler:IHandler
+    public class InitHandler: IInitHandler
     {
         public HandlerResult CheckKeyWord(string context)
         {

@@ -85,7 +85,7 @@ namespace Business.CrawlNewsService.CoinNewsService
                 var oldFirst = await unit.GetFirstOrDefaultAsync(x => x, x => x.From.Equals(CrawlNewsFromDef.BitcoinNewsFrom), x => x.OrderByDescending(p => p.AddTime));
 
                 //页面特殊性质，不能比较抓取时间
-                if (oldFirst != null && oldFirst.Title == result.Result.Title)
+                if (oldFirst != null && oldFirst.Title.Substring(0, 32) == result.Result.Title.Substring(0, 32))
                 {
                     result.Success = false;
                     result.Msg = "当前条目已经是最新";

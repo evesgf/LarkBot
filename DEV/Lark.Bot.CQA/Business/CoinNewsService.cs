@@ -20,7 +20,7 @@ namespace Lark.Bot.CQA.Business
                 var bishijieLatestNewsFlash = JsonHelper.DeserializeJsonToObject<ResultModel<NewsModel>>(HttpUitls.Get(url + "/api/News/GetBishijieLatestNewsFlash"));
                 var bitcoinLatestNewsFlash = JsonHelper.DeserializeJsonToObject<ResultModel<NewsModel>>(HttpUitls.Get(url + "/api/News/GetBitcoinLatestNewsFlash"));
 
-                reStr = new string[] { jinseLatestNewsFlash.Data.Content, bishijieLatestNewsFlash.Data.Content, bitcoinLatestNewsFlash.Data.Content };
+                reStr = new string[] { "【金色财经】"+jinseLatestNewsFlash.Data.Content, "【币世界】"+bishijieLatestNewsFlash.Data.Content, "【Bitcoin】"+bitcoinLatestNewsFlash.Data.Content };
 
             }
             catch (Exception e)

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lark.Bot.CQA.Handler.ExceptionHandler
 {
-    public class ExceptionHandler : IHandler
+    public class ExceptionHandler : IExceptionHandler
     {
         public HandlerResult CheckKeyWord(string context)
         {

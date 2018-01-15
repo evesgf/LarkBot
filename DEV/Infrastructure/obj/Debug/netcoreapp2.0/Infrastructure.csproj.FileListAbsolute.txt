@@ -27,7 +27,6 @@ E:\Dev\LarkBot\DEV\Infrastructure\obj\Debug\netcoreapp2.0\Infrastructure.Assembl
 E:\Dev\LarkBot\DEV\Infrastructure\obj\Debug\netcoreapp2.0\Infrastructure.AssemblyInfo.cs
 E:\Dev\LarkBot\DEV\Infrastructure\obj\Debug\netcoreapp2.0\Infrastructure.dll
 E:\Dev\LarkBot\DEV\Infrastructure\obj\Debug\netcoreapp2.0\Infrastructure.pdb
-E:\Dev\LarkBot\DEV\Infrastructure\obj\Debug\netcoreapp2.0\Infrastructure.csprojResolveAssemblyReference.cache
 E:\PEV\LarkBot\DEV\Infrastructure\bin\Debug\netcoreapp2.0\Infrastructure.deps.json
 E:\PEV\LarkBot\DEV\Infrastructure\bin\Debug\netcoreapp2.0\Infrastructure.dll
 E:\PEV\LarkBot\DEV\Infrastructure\bin\Debug\netcoreapp2.0\Infrastructure.pdb

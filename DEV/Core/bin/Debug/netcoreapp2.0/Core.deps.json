@@ -1210,7 +1210,7 @@
     "Microsoft.EntityFrameworkCore/2.0.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-RlwInZHfIUWwFgQJCpUMKrLeE8QJ64MA/GxD881oTMFa9j7iiGKCtI0xK4J1NNgRKvgVDPJbh9CIGJiu0KEdeA==",
+      "sha512": "sha512-3vF049zkcSOKGqrMcjP38GiY+7uAxGznrFTl/9j1ZsMu2Z2wBjfdMlPU1kkYF0GQBKFM3m6DvOIVHIFIlfAoRw==",
       "path": "microsoft.entityframeworkcore/2.0.1",
       "hashPath": "microsoft.entityframeworkcore.2.0.1.nupkg.sha512"
     },
@@ -1224,7 +1224,7 @@
     "Microsoft.EntityFrameworkCore.Design/2.0.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-gEdT/YSI/buO15X/UN+gQY6D7qeozRYU80WuesZCj33jJBw4wCHHn8SYcp38k2BPOBDC4I2AfsOFH6Vaf8CeLQ==",
+      "sha512": "sha512-HRbPVWUhjsVV4EbHHE9lWiMxo2tx95I292dsqVaSUclpz3wjrI/4AZTjTd+7dshbYaYOSpwTDwr2S/LnCMpDfg==",
       "path": "microsoft.entityframeworkcore.design/2.0.1",
       "hashPath": "microsoft.entityframeworkcore.design.2.0.1.nupkg.sha512"
     },

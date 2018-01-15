@@ -21,8 +21,7 @@ namespace Lark.Bot.CQA.Business
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
-                throw e;
+                return null;
             }
         }
 
@@ -43,15 +42,14 @@ namespace Lark.Bot.CQA.Business
 
                 if (market.date != null && market.ticker != null)
                 {
-                    re = key + " 买一:" + market.ticker.buy + " 最高:" + market.ticker.high + " 最新成交:" + market.ticker.last + " 最低:" + market.ticker.low + " 卖一:" + market.ticker.sell + " 24h成交:" + market.ticker.vol;
+                    re = "【"+key + "】买一:" + market.ticker.buy + " 最高:" + market.ticker.high + " 最新成交:" + market.ticker.last + " 最低:" + market.ticker.low + " 卖一:" + market.ticker.sell + " 24h成交:" + market.ticker.vol;
                 }
 
                 return re;
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
-                throw e;
+                return null;
             }
         }
 
@@ -88,7 +86,7 @@ namespace Lark.Bot.CQA.Business
                     MTBit okex = b.data.list.Where(asx => asx.market_name.Equals("OKEx")).FirstOrDefault();
                     MTBit bitstamp = b.data.list.Where(asx => asx.market_name.Equals("Bitstamp")).FirstOrDefault();
 
-                    re = key;
+                    re = "【"+ key+"】";
                     re += "\nBithumb: " + FormartMTBit(bithumb) + " | Coincheck: " + FormartMTBit(coincheck) + " | Bitfinex: " + FormartMTBit(bitfinex);
                     re += "\nGDAX: " + FormartMTBit(gdax) + " | OKEx: " + FormartMTBit(okex) + " | Bitstamp: " + FormartMTBit(bitstamp);
 
@@ -99,8 +97,7 @@ namespace Lark.Bot.CQA.Business
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
-                throw e;
+                return null;
             }
         }
 

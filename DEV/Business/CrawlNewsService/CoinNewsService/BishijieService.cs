@@ -68,7 +68,7 @@ namespace Business.CrawlNewsService.CoinNewsService
                 var unit = _unitOfWork.GetRepository<CrawlNews>();
                 var oldFirst = await unit.GetFirstOrDefaultAsync(x => x, x => x.From.Equals(CrawlNewsFromDef.BishijieFlashFrom), x => x.OrderByDescending(p => p.AddTime));
 
-                if (oldFirst != null && oldFirst.PushTime == result.Result.PushTime)
+                if (oldFirst != null && oldFirst.Title.Substring(0,32) == result.Result.Title.Substring(0, 32))
                 {
                     result.Success = false;
                     result.Msg = "当前条目已经是最新";

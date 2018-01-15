@@ -2,6 +2,8 @@
 using System;
 using Lark.Bot.CQA.Handler;
 using Newbe.Mahua;
+using Lark.Bot.CQA.Handler.GroupMessageHandler;
+using Lark.Bot.CQA.Handler.TimeJobHandler;
 
 namespace Lark.Bot.CQA.MahuaEvents
 {
@@ -12,18 +14,20 @@ namespace Lark.Bot.CQA.MahuaEvents
         : IGroupMessageReceivedMahuaEvent
     {
         private readonly IMahuaApi _mahuaApi;
-        private readonly IHandler _handler;
+        private readonly IGroupMessageHandler _groupMessageHandler;
+        private readonly ITimeJobHandler _timeJobHandler;
 
         public GroupMessageReceivedMahuaEvent1(
-            IMahuaApi mahuaApi, IHandler handler)
+            IMahuaApi mahuaApi, IGroupMessageHandler groupMessageHandler, ITimeJobHandler timeJobHandler)
         {
             _mahuaApi = mahuaApi;
-            _handler = handler;
+            _groupMessageHandler = groupMessageHandler;
+            _timeJobHandler = timeJobHandler;
         }
 
         public void ProcessGroupMessage(GroupMessageReceivedContext context)
         {
-            var result = _handler.CheckKeyWord(context.Message);
+            var result = _groupMessageHandler.CheckKeyWord(context.Message);
 
             if (result.IsHit)
             {

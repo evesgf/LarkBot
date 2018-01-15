@@ -1991,7 +1991,7 @@
       ]
     },
     "Microsoft.EntityFrameworkCore/2.0.1": {
-      "sha512": "RlwInZHfIUWwFgQJCpUMKrLeE8QJ64MA/GxD881oTMFa9j7iiGKCtI0xK4J1NNgRKvgVDPJbh9CIGJiu0KEdeA==",
+      "sha512": "3vF049zkcSOKGqrMcjP38GiY+7uAxGznrFTl/9j1ZsMu2Z2wBjfdMlPU1kkYF0GQBKFM3m6DvOIVHIFIlfAoRw==",
       "type": "package",
       "path": "microsoft.entityframeworkcore/2.0.1",
       "files": [
@@ -2013,7 +2013,7 @@
       ]
     },
     "Microsoft.EntityFrameworkCore.Design/2.0.1": {
-      "sha512": "gEdT/YSI/buO15X/UN+gQY6D7qeozRYU80WuesZCj33jJBw4wCHHn8SYcp38k2BPOBDC4I2AfsOFH6Vaf8CeLQ==",
+      "sha512": "HRbPVWUhjsVV4EbHHE9lWiMxo2tx95I292dsqVaSUclpz3wjrI/4AZTjTd+7dshbYaYOSpwTDwr2S/LnCMpDfg==",
       "type": "package",
       "path": "microsoft.entityframeworkcore.design/2.0.1",
       "files": [
@@ -6122,8 +6122,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\82111\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\": {},
+    "C:\\Users\\Administrator\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
@@ -6132,20 +6131,18 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "E:\\PEV\\LarkBot\\DEV\\Core\\Core.csproj",
+      "projectUniqueName": "E:\\Dev\\LarkBot\\DEV\\Core\\Core.csproj",
       "projectName": "Core",
-      "projectPath": "E:\\PEV\\LarkBot\\DEV\\Core\\Core.csproj",
-      "packagesPath": "C:\\Users\\82111\\.nuget\\packages\\",
-      "outputPath": "E:\\PEV\\LarkBot\\DEV\\Core\\obj\\",
+      "projectPath": "E:\\Dev\\LarkBot\\DEV\\Core\\Core.csproj",
+      "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
+      "outputPath": "E:\\Dev\\LarkBot\\DEV\\Core\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\82111\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.Fallback.config"
+        "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.0"
@@ -6157,14 +6154,14 @@
       "frameworks": {
         "netcoreapp2.0": {
           "projectReferences": {
-            "E:\\PEV\\LarkBot\\DEV\\Infrastructure\\Infrastructure.csproj": {
-              "projectPath": "E:\\PEV\\LarkBot\\DEV\\Infrastructure\\Infrastructure.csproj"
+            "E:\\Dev\\LarkBot\\DEV\\Data\\Data.csproj": {
+              "projectPath": "E:\\Dev\\LarkBot\\DEV\\Data\\Data.csproj"
             },
-            "E:\\PEV\\LarkBot\\DEV\\Data\\Data.csproj": {
-              "projectPath": "E:\\PEV\\LarkBot\\DEV\\Data\\Data.csproj"
+            "E:\\Dev\\LarkBot\\DEV\\Business\\Business.csproj": {
+              "projectPath": "E:\\Dev\\LarkBot\\DEV\\Business\\Business.csproj"
             },
-            "E:\\PEV\\LarkBot\\DEV\\Business\\Business.csproj": {
-              "projectPath": "E:\\PEV\\LarkBot\\DEV\\Business\\Business.csproj"
+            "E:\\Dev\\LarkBot\\DEV\\Infrastructure\\Infrastructure.csproj": {
+              "projectPath": "E:\\Dev\\LarkBot\\DEV\\Infrastructure\\Infrastructure.csproj"
             }
           }
         }
@@ -6181,12 +6178,12 @@
           "Microsoft.NETCore.App": {
             "suppressParent": "All",
             "target": "Package",
-            "version": "[2.0.0, )",
+            "version": "2.0",
             "autoReferenced": true
           },
           "Newtonsoft.Json": {
             "target": "Package",
-            "version": "[11.0.1-beta3, )"
+            "version": "11.0.1-beta3"
           }
         },
         "imports": [

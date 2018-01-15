@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Lark.Bot.CQA.Business;
+using Lark.Bot.CQA.Handler.TimeJobHandler;
 
 namespace Lark.Bot.CQA.Handler.GroupMessageHandler
 {
-    public class GroupMessageHandler : IHandler
+    public class GroupMessageHandler : IGroupMessageHandler
     {
         private readonly ICoinService _iCoinService;
         private readonly ICoinNewsService _iCoinNewsService;
@@ -25,11 +26,16 @@ namespace Lark.Bot.CQA.Handler.GroupMessageHandler
             //场外币价
             if (context.Equals("场外币价"))
             {
-                var re = _iCoinService.OTCPrice();
+                result.Msg = "【场外币价】";
+
+                var re2 = _iCoinService.OTCPrice().Data;
+                foreach (var str in re2)
+                {
+                    result.Msg += str + "\n";
+                }
 
                 //回发
                 result.IsHit = true;
-                result.Msg = "场外币价:" + re.Data[0];
             }
 
             //查币价
@@ -41,7 +47,7 @@ namespace Lark.Bot.CQA.Handler.GroupMessageHandler
 
                 //回发
                 result.IsHit = true;
-                result.Msg = key+":" + re;
+                result.Msg = re;
             }
 
             //看币价
@@ -53,19 +59,40 @@ namespace Lark.Bot.CQA.Handler.GroupMessageHandler
 
                 //回发
                 result.IsHit = true;
-                result.Msg = key + ":" + re;
+                result.Msg =re;
             }
 
             //币圈消息
             if (context.Equals("币圈消息"))
             {
+                var re = _iCoinNewsService.RequestBiQuanApi();
+                foreach (var str in re)
+                {
+                    result.Msg += str + "\n";
+                }
+
+                result.Msg += "【场外币价】";
+                var re2 = _iCoinService.OTCPrice().Data;
+                foreach (var str in re2)
+                {
+                    result.Msg += str + "\n";
+                }
+
                 //查询币圈
-                var re = _iCoinNewsService.RequestBiQuanApi() + "\n" + _iCoinService.OTCPrice() + "\n" + _iCoinService.GetOKEXCoinPrice("btc_usdt");
+                result.Msg += _iCoinService.GetOKEXCoinPrice("btc_usdt");
 
                 //回发
                 result.IsHit = true;
-                result.Msg =re;
             }
+
+            //if (context.Equals("开启币圈消息推送"))
+            //{
+            //    var re=_timeJobHandler.StartPushNews("");
+
+            //    //回发
+            //    result.IsHit = true;
+            //    result.Msg = re.ToString();
+            //}
 
             return result;
         }

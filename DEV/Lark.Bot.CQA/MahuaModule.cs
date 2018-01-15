@@ -5,6 +5,7 @@ using Lark.Bot.CQA.Handler.ExceptionHandler;
 using Lark.Bot.CQA.Handler.GroupMessageHandler;
 using Lark.Bot.CQA.Handler.InitHandler;
 using Lark.Bot.CQA.Handler.PrivateMessageHandler;
+using Lark.Bot.CQA.Handler.TimeJobHandler;
 using Lark.Bot.CQA.MahuaEvents;
 using Newbe.Mahua;
 using Newbe.Mahua.MahuaEvents;
@@ -58,19 +59,19 @@ namespace Lark.Bot.CQA
 
                 //异常处理
                 builder.RegisterType<ExceptionOccuredMahuaEvent1>().As<IExceptionOccuredMahuaEvent>();
-                builder.RegisterType<ExceptionHandler>().As<IHandler>();
+                builder.RegisterType<ExceptionHandler>().As<IExceptionHandler>();
 
                 //初始化
                 builder.RegisterType<InitializationMahuaEvent1>().As<IInitializationMahuaEvent>();
-                builder.RegisterType<InitHandler>().As<IHandler>();
+                builder.RegisterType<InitHandler>().As<IInitHandler>();
 
                 //群消息
                 builder.RegisterType<GroupMessageReceivedMahuaEvent1>().As<IGroupMessageReceivedMahuaEvent>();
-                builder.RegisterType<GroupMessageHandler>().As<IHandler>();
+                builder.RegisterType<GroupMessageHandler>().As<IGroupMessageHandler>();
 
                 //私聊消息
                 builder.RegisterType<PrivateMessageFromFriendReceivedMahuaEvent1>().As<IPrivateMessageFromFriendReceivedMahuaEvent>();
-                builder.RegisterType<PrivateMessageHandler>().As<IHandler>();
+                builder.RegisterType<PrivateMessageHandler>().As<IPrivateMessageHandler>();
             }
         }
 
@@ -89,6 +90,8 @@ namespace Lark.Bot.CQA
 
                 builder.RegisterType<CoinService>()
                     .As<ICoinService>();
+
+                builder.RegisterType<TimeJobHandler>().As<ITimeJobHandler>().SingleInstance();
             }
         }
     }

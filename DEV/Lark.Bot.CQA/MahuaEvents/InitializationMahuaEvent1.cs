@@ -1,6 +1,8 @@
 ﻿using Newbe.Mahua.MahuaEvents;
 using System;
 using Newbe.Mahua;
+using Lark.Bot.CQA.Business;
+using Lark.Bot.CQA.Handler.TimeJobHandler;
 
 namespace Lark.Bot.CQA.MahuaEvents
 {
@@ -11,18 +13,18 @@ namespace Lark.Bot.CQA.MahuaEvents
         : IInitializationMahuaEvent
     {
         private readonly IMahuaApi _mahuaApi;
+        private readonly ITimeJobHandler _timeJobHandler;
 
         public InitializationMahuaEvent1(
-            IMahuaApi mahuaApi)
+            IMahuaApi mahuaApi,ITimeJobHandler timeJobHandler)
         {
             _mahuaApi = mahuaApi;
+            _timeJobHandler = timeJobHandler;
         }
 
         public void Initialized(InitializedContext context)
         {
-            // todo 填充处理逻辑
-
-            // 不要忘记在MahuaModule中注册
+            _timeJobHandler.StartPushNews("693739965");
         }
     }
 }
