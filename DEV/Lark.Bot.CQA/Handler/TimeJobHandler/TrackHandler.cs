@@ -78,25 +78,60 @@ namespace Lark.Bot.CQA.Handler.TimeJobHandler
         {
             for (int i = 0; i < trackList.Count; i++)
             {
-                string url = "https://www.okex.com/api/v1/ticker.do?symbol=" + trackList[i].coin;
-                var market = JsonHelper.DeserializeJsonToObject<Market>(HttpUitls.Get(url));
-
-                if (market == null) return;
-
-                if (trackList[i].isUp)
+                if (trackList[i].exchange.Equals("okex"))
                 {
-                    if (market.ticker.last > trackList[i].price)
+                    var keys = trackList[i].coin.Split('_');
+
+                    var url = "https://www.okex.com/api/v1/ticker.do?symbol=" + trackList[i].coin;
+                    var market = JsonHelper.DeserializeJsonToObject<Market>(HttpUitls.Get(url));
+
+                    var url2 = "https://api.huobi.pro/market/trade?symbol=" + keys[0] + keys[1];
+                    var reModel = JsonHelper.DeserializeJsonToObject<HuobiResult>(HttpUitls.Get(url));
+
+                    if (market == null) return;
+
+                    if (trackList[i].isUp)
                     {
-                        SendTrackMessage(trackList[i], market);
-                        StopTrackCoinPrice(trackList[i]);
+                        if (market.ticker.last > trackList[i].price)
+                        {
+                            SendTrackMessage(trackList[i], market.ticker.last.ToString());
+                            StopTrackCoinPrice(trackList[i]);
+                        }
+                    }
+                    else
+                    {
+                        if (market.ticker.last < trackList[i].price)
+                        {
+                            SendTrackMessage(trackList[i], market.ticker.last.ToString());
+                            StopTrackCoinPrice(trackList[i]);
+                        }
                     }
                 }
-                else
+
+                if (trackList[i].exchange.Equals("火币"))
                 {
-                    if (market.ticker.last < trackList[i].price)
+                    var keys = trackList[i].coin.Split('_');
+
+                    var url2 = "https://api.huobi.pro/market/trade?symbol=" + keys[0] + keys[1];
+                    var reModel = JsonHelper.DeserializeJsonToObject<HuobiResult>(HttpUitls.Get(url2));
+
+                    if (reModel == null) return;
+
+                    if (trackList[i].isUp)
                     {
-                        SendTrackMessage(trackList[i], market);
-                        StopTrackCoinPrice(trackList[i]);
+                        if (reModel.tick.data[0].price > trackList[i].price)
+                        {
+                            SendTrackMessage(trackList[i], reModel.tick.data[0].price.ToString());
+                            StopTrackCoinPrice(trackList[i]);
+                        }
+                    }
+                    else
+                    {
+                        if (reModel.tick.data[0].price < trackList[i].price)
+                        {
+                            SendTrackMessage(trackList[i], reModel.tick.data[0].price.ToString());
+                            StopTrackCoinPrice(trackList[i]);
+                        }
                     }
                 }
             }
@@ -106,19 +141,19 @@ namespace Lark.Bot.CQA.Handler.TimeJobHandler
         /// 回发消息
         /// </summary>
         /// <param name="model"></param>
-        private void SendTrackMessage(TrackPriceModel model, Market market)
+        private void SendTrackMessage(TrackPriceModel model, string price)
         {
             if (model.msgType == Enum_MsgType.PrivateMsg)
             {
-                _mahuaApi.SendPrivateMessage(model.fromQQ,"米娜桑！:"+ model.coin+"当前价格为" + market.ticker.last+"，还在等什么？！");
+                _mahuaApi.SendPrivateMessage(model.fromQQ,"米娜桑！:"+ model.coin+"当前价格为" + price+"，还在等什么？！");
             }
             if (model.msgType == Enum_MsgType.GroupMsg)
             {
-                _mahuaApi.SendGroupMessage(model.fromGroup, "米娜桑！:" + model.coin + "当前价格为" + market.ticker.last + "，还在等什么？！");
+                _mahuaApi.SendGroupMessage(model.fromGroup, "米娜桑！:" + model.coin + "当前价格为" + price+ "，还在等什么？！");
             }
             if (model.msgType == Enum_MsgType.PrivateGroup)
             {
-                _mahuaApi.SendPrivateMessage(model.fromQQ, "米娜桑！:" + model.coin + "当前价格为" + market.ticker.last + "，还在等什么？！");
+                _mahuaApi.SendPrivateMessage(model.fromQQ, "米娜桑！:" + model.coin + "当前价格为" + price + "，还在等什么？！");
             }
         }
         #endregion

@@ -19,8 +19,9 @@ namespace Lark.Bot.CQA.Business
                 var jinseLatestNewsFlash = JsonHelper.DeserializeJsonToObject<ResultModel<NewsModel>>(HttpUitls.Get(url + "/api/News/GetJinseLatestNewsFlash"));
                 var bishijieLatestNewsFlash = JsonHelper.DeserializeJsonToObject<ResultModel<NewsModel>>(HttpUitls.Get(url + "/api/News/GetBishijieLatestNewsFlash"));
                 var bitcoinLatestNewsFlash = JsonHelper.DeserializeJsonToObject<ResultModel<NewsModel>>(HttpUitls.Get(url + "/api/News/GetBitcoinLatestNewsFlash"));
+                var OkexNotice = JsonHelper.DeserializeJsonToObject<ResultModel<NewsModel>>(HttpUitls.Get(url + "/api/News/GetOkexLatestNotice"));
 
-                reStr = new string[] { "【金色财经】"+jinseLatestNewsFlash.Data.Content, "【币世界】"+bishijieLatestNewsFlash.Data.Content, "【Bitcoin】"+bitcoinLatestNewsFlash.Data.Content };
+                reStr = new string[] { "【金色财经】"+jinseLatestNewsFlash.Data.Content, "【币世界】"+bishijieLatestNewsFlash.Data.Content, "【Bitcoin】"+bitcoinLatestNewsFlash.Data.Content,"【OKEX公告】"+OkexNotice.Data.Title+" "+OkexNotice.Data.FromUrl };
 
             }
             catch (Exception e)

@@ -41,6 +41,7 @@ namespace Lark.Bot.CQA.Handler.TimeJobHandler
         private static string lastMsg1 = null;
         private static string lastMsg2 = null;
         private static string lastMsg3 = null;
+        private static string lastMsg4 = null;
         public void SendBiMessage(object source, System.Timers.ElapsedEventArgs e)
         {
             var re = _coinNewsService.RequestBiQuanApi();
@@ -78,9 +79,20 @@ namespace Lark.Bot.CQA.Handler.TimeJobHandler
                 msg3 = null;
             }
 
-            if (msg1 != null || msg2 != null || msg3 != null)
+            string msg4 = null;
+            if (lastMsg4 != re[3])
             {
-                string reMsg = msg1 + msg2 + msg3;
+                lastMsg4 = re[3];
+                msg4 = re[3] + "\n";
+            }
+            else
+            {
+                msg4 = null;
+            }
+
+            if (msg1 != null || msg2 != null || msg3 != null || msg4 != null)
+            {
+                string reMsg = msg1 + msg2 + msg3+msg4;
 
                 reMsg += "【场外币价】";
                 var re2 = _coinService.OTCPrice().Data;
