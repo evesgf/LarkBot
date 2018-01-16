@@ -12,5 +12,7 @@ namespace Business.CrawlNewsService.CoinNewsService
 
         //新闻
         public const string BitcoinNewsFrom = "BitCoinNews";
+        public const string HuobiNoticeFrom = "火币网公告";
+        public const string OkexNoticeFrom = "OKEX公告";
     }
 }

@@ -1,9 +1,15 @@
-﻿using AngleSharp.Parser.Html;
+﻿using AngleSharp.Dom;
+using AngleSharp.Parser.Html;
+using Business.CrawlNewsService;
+using Business.CrawlNewsService.CoinNewsService;
 using Core.Crawler;
+using Data.Entity;
 using Infrastructure;
 using Infrastructure.Common;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Business.Coin
@@ -13,6 +19,13 @@ namespace Business.Coin
     /// </summary>
     public class HuobiService : IhuobiService
     {
+        private readonly IUnitOfWork _unitOfWork;
+
+        public HuobiService(IUnitOfWork unitOfWork)
+        {
+            _unitOfWork = unitOfWork;
+        }
+
         /// <summary>
         /// 法币价格查询
         /// </summary>
@@ -66,5 +79,7 @@ namespace Business.Coin
 
             return result;
         }
+
+        
     }
 }
