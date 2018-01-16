@@ -30,17 +30,22 @@ namespace API.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public async Task<ResultModel<NewsModel>> UpdateAllNews()
+        public async Task<ResultModel<string>> UpdateAllNews()
         {
-            var reModel = new ResultModel<NewsModel>();
+            var reModel = new ResultModel<string>();
 
             var job1 = await _jinseService.UpdatePushNewsFlash();
             var job2 = await _bshijieService.UpdatePushNewsFlash();
             var job3 = await _bitcoinService.UpdatePushNewsFlash();
 
-            reModel.Data.Title += " job1" + job1.Success;
-            reModel.Data.Title += " job2" + job2.Success;
-            reModel.Data.Title += " job3" + job3.Success;
+            reModel.Msg += " job1:" + job1.Success;
+            reModel.Msg += " job2:" + job2.Success;
+            reModel.Msg += " job3:" + job3.Success;
+
+            if (job1.Success || job2.Success || job3.Success)
+            {
+                reModel.Success = true;
+            }
 
             return reModel;
         }

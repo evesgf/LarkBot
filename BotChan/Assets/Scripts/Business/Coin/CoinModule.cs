@@ -17,15 +17,13 @@ namespace BotChan
         {
             Debuger.Log("CoinModule Init");
 
-            webSocket.OnOpen += delegate { Debuger.Log("webSocket OnOpen"); };
+            webSocket.OnOpen += delegate { Debuger.Log("webSocket OnOpen");};
             webSocket.OnClosed += delegate { Debuger.Log("webSocket OnClosed"); };
             webSocket.OnErrorDesc += OnErrorDesc;
             webSocket.OnMessage += OnMessageReceived;
             webSocket.OnBinary += OnBinaryMsgReceived;
 
             webSocket.Open();
-
-            SendMsg();
         }
 
         public void SendMsg()
