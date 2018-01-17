@@ -84,8 +84,9 @@ namespace Business.CrawlNewsService.CoinNewsService
                 var unit = _unitOfWork.GetRepository<CrawlNews>();
                 var oldFirst = await unit.GetFirstOrDefaultAsync(x => x, x => x.From.Equals(CrawlNewsFromDef.BitcoinNewsFrom), x => x.OrderByDescending(p => p.AddTime));
 
-                //页面特殊性质，不能比较抓取时间
-                if (oldFirst != null && oldFirst.Title.Substring(0, 32) == result.Result.Title.Substring(0, 32))
+                var key1 = oldFirst.Title.Length > 32 ? oldFirst.Title.Substring(0, 32) : oldFirst.Title;
+                var key2 = result.Result.Title.Length > 32 ? result.Result.Title.Substring(0, 32) : result.Result.Title;
+                if (oldFirst != null && key1 == key2)
                 {
                     result.Success = false;
                     result.Msg = "当前条目已经是最新";
