@@ -94,6 +94,46 @@ namespace Lark.Bot.CQA.Handler.PrivateMessageHandler
                 }
             }
 
+            //监听列表 okex btc_usdt
+            if (context.Message.Length > 4 && context.Message.Substring(0, 4).Equals("监听列表"))
+            {
+                string[] keys = context.Message.Split(' ');
+                if (keys.Count() != 3)
+                {
+                    result.Msg = "指令输入错误";
+                    return result;
+                }
+
+                var model = new TrackPriceModel
+                {
+                    fromQQ = context.FromQq,
+                    //fromGroup = context.FromGroup,
+                    msgType = Enum_MsgType.PrivateMsg,
+                    exchange = keys[1],
+                    coin = keys[2]
+                };
+
+                var list = _trackHandler.GetTrackList(model);
+                if (list != null)
+                {
+                    var remsg = string.Empty;
+                    foreach (var item in list)
+                    {
+                        remsg += item.coin + " " + item.isUp + " " + item.price + "|";
+                    }
+
+                    //回发
+                    result.IsHit = true;
+                    result.Msg = remsg;
+                }
+                else
+                {
+                    //回发
+                    result.IsHit = true;
+                    result.Msg = "什么都没关注呢~关注一把看看呗";
+                }
+            }
+
             return result;
         }
     }

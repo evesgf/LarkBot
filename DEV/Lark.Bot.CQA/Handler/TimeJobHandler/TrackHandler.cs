@@ -1,6 +1,7 @@
 ﻿using Lark.Bot.CQA.Business;
 using Newbe.Mahua;
 using System.Collections.Generic;
+using System.Linq;
 using System.Timers;
 
 namespace Lark.Bot.CQA.Handler.TimeJobHandler
@@ -18,6 +19,29 @@ namespace Lark.Bot.CQA.Handler.TimeJobHandler
 
         #region 币价监听
         private List<TrackPriceModel> trackList;
+
+        /// <summary>
+        /// 返回监听列表
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public List<TrackPriceModel> GetTrackList(TrackPriceModel model)
+        {
+            if (model.msgType == Enum_MsgType.PrivateMsg)
+            {
+                return trackList.Where(x => x.exchange.Equals(model.exchange) && x.fromQQ.Equals(model.fromQQ)).ToList();
+            }
+            if (model.msgType == Enum_MsgType.GroupMsg)
+            {
+                return trackList.Where(x=>x.exchange.Equals(model.exchange) && x.fromGroup.Equals(model.fromGroup)).ToList();
+            }
+            if (model.msgType == Enum_MsgType.PrivateGroup)
+            {
+                return trackList.Where(x => x.exchange.Equals(model.exchange) && x.fromQQ.Equals(model.fromQQ) && x.fromGroup.Equals(model.fromGroup)).ToList();
+            }
+
+            return null;
+        }
 
         /// <summary>
         /// 开启币价监听追踪

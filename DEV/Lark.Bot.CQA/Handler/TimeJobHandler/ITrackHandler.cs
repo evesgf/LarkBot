@@ -27,5 +27,12 @@ namespace Lark.Bot.CQA.Handler.TimeJobHandler
         /// <param name="fromQQ"></param>
         /// <returns></returns>
         bool StopTrackCoinPrice(TrackPriceModel model);
+
+        /// <summary>
+        /// 返回监听列表
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        List<TrackPriceModel> GetTrackList(TrackPriceModel model);
     }
 }
