@@ -68,16 +68,25 @@ namespace Business.CrawlNewsService.CoinNewsService
                 var unit = _unitOfWork.GetRepository<CrawlNews>();
                 var oldFirst = await unit.GetFirstOrDefaultAsync(x => x, x => x.From.Equals(CrawlNewsFromDef.BishijieFlashFrom), x => x.OrderByDescending(p => p.AddTime));
 
-                if (oldFirst != null && oldFirst.Title.Substring(0,32) == result.Result.Title.Substring(0, 32))
-                {
-                    result.Success = false;
-                    result.Msg = "当前条目已经是最新";
-                }
-                else
+                if (oldFirst == null)
                 {
                     unit.Insert(result.Result);
                     await _unitOfWork.SaveChangesAsync();
                     result.Msg = "数据更新成功";
+                }
+                else
+                {
+                    if (oldFirst != null && oldFirst.Title.Substring(0, 32) == result.Result.Title.Substring(0, 32))
+                    {
+                        result.Success = false;
+                        result.Msg = "当前条目已经是最新";
+                    }
+                    else
+                    {
+                        unit.Insert(result.Result);
+                        await _unitOfWork.SaveChangesAsync();
+                        result.Msg = "数据更新成功";
+                    }
                 }
             }
             catch (Exception ex)

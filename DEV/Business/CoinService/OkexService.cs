@@ -83,18 +83,27 @@ namespace Business.CoinService
                 var oldFirst = await unit.GetFirstOrDefaultAsync(x => x, x => x.From.Equals(CrawlNewsFromDef.OkexNoticeFrom), x => x.OrderByDescending(p => p.AddTime));
 
 
-                var key1 = oldFirst.Title.Length > 32 ? oldFirst.Title.Substring(0, 32) : oldFirst.Title;
-                var key2 = result.Result.Title.Length > 32 ? result.Result.Title.Substring(0, 32) : result.Result.Title;
-                if (oldFirst != null && key1 == key2)
-                {
-                    result.Success = false;
-                    result.Msg = "当前条目已经是最新";
-                }
-                else
+                if (oldFirst == null)
                 {
                     unit.Insert(result.Result);
                     await _unitOfWork.SaveChangesAsync();
                     result.Msg = "数据更新成功";
+                }
+                else
+                {
+                    var key1 = oldFirst.Title.Length > 32 ? oldFirst.Title.Substring(0, 32) : oldFirst.Title;
+                    var key2 = result.Result.Title.Length > 32 ? result.Result.Title.Substring(0, 32) : result.Result.Title;
+                    if (oldFirst != null && key1 == key2)
+                    {
+                        result.Success = false;
+                        result.Msg = "当前条目已经是最新";
+                    }
+                    else
+                    {
+                        unit.Insert(result.Result);
+                        await _unitOfWork.SaveChangesAsync();
+                        result.Msg = "数据更新成功";
+                    }
                 }
             }
             catch (Exception ex)

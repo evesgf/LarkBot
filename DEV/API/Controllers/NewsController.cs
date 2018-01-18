@@ -43,10 +43,10 @@ namespace API.Controllers
             var job3 = await _bitcoinService.UpdatePushNewsFlash();
             var job4 = await _okexService.UpdateNoticeFlash();
 
-            reModel.Msg += " job1:" + job1.Success;
-            reModel.Msg += " job2:" + job2.Success;
-            reModel.Msg += " job3:" + job3.Success;
-            reModel.Msg += " job4:" + job4.Success;
+            reModel.Msg += " job1:" + job1.Msg;
+            reModel.Msg += " job2:" + job2.Msg;
+            reModel.Msg += " job3:" + job3.Msg;
+            reModel.Msg += " job4:" + job4.Msg;
 
             if (job1.Success || job2.Success || job3.Success || job4.Success)
             {
