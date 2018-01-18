@@ -193,6 +193,72 @@ namespace Lark.Bot.CQA.Handler.GroupMessageHandler
                 }
             }
 
+            //okex涨幅
+            if (context.Message.Equals("okex涨幅"))
+            {
+                var model=_iCoinService.GetOkexTracTackers();
+
+                if (model != null)
+                {
+                    //回发
+                    result.IsHit = true;
+                    var list = model.data.OrderByDescending(x => x.changePercentage).Take(10);
+
+                    if (list.Count() != 0)
+                    {
+                        foreach (var p in list)
+                        {
+                            result.Msg += p.symbol + ":" + p.changePercentage + "\n";
+                        }
+                    }
+                    else
+                    {
+
+                        result.Msg = "数据呢？程序猿你的数据丢了！";
+                    }
+
+                }
+                else
+                {
+                    //回发
+                    result.IsHit = true;
+                    result.Msg = "发生了什么？怎么什么都没有？？";
+                }
+            }
+
+            //okex涨幅
+            if (context.Message.Equals("okex跌幅"))
+            {
+                var model = _iCoinService.GetOkexTracTackers();
+
+                if (model != null)
+                {
+                    //回发
+                    result.IsHit = true;
+                    var list = model.data.OrderBy(x => x.changePercentage).Take(10);
+
+                    if (list.Count() != 0)
+                    {
+                        foreach (var p in list)
+                        {
+                            result.Msg += p.symbol + ":" + p.changePercentage + "\n";
+                        }
+                    }
+                    else
+                    {
+
+                        result.Msg = "数据呢？程序猿你的数据丢了！";
+                    }
+
+                }
+                else
+                {
+                    //回发
+                    result.IsHit = true;
+                    result.Msg = "发生了什么？怎么什么都没有？？";
+                }
+            }
+
             return result;
         }
     }

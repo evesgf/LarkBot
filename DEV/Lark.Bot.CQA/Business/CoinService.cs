@@ -121,7 +121,7 @@ namespace Lark.Bot.CQA.Business
 
             if (reModel == null) return "数据为空";
 
-            reStr =reModel.tick.data[0].price.ToString();
+            reStr = reModel.tick.data[0].price.ToString();
             return reStr;
         }
 
@@ -132,6 +132,18 @@ namespace Lark.Bot.CQA.Business
                 return "咱不卖";
             }
             return bit.price_usd.ToString("f4") + "$ ";
+        }
+
+        /// <summary>
+        /// 获取OKEX所有币对的列表
+        /// </summary>
+        /// <returns></returns>
+        public OkexTackers GetOkexTracTackers()
+        {
+            var json = HttpUitls.Get("https://www.okex.com/v2/markets/tickers");
+            var model = JsonHelper.DeserializeJsonToObject<OkexTackers>(json);
+
+            return model;
         }
     }
 
@@ -182,6 +194,39 @@ namespace Lark.Bot.CQA.Business
         /// </summary>
         public decimal vol { get; set; }
     }
+
+
+    public class OkexTackers
+    {
+        public int code { get; set; }
+        public OkexDatum[] data { get; set; }
+        public string detailMsg { get; set; }
+        public string msg { get; set; }
+    }
+
+    public class OkexDatum
+    {
+        public string buy { get; set; }
+        public string change { get; set; }
+        public string changePercentage { get; set; }
+        public string close { get; set; }
+        public long createdDate { get; set; }
+        public int currencyId { get; set; }
+        public string dayHigh { get; set; }
+        public string dayLow { get; set; }
+        public string high { get; set; }
+        public string last { get; set; }
+        public string low { get; set; }
+        public int marketFrom { get; set; }
+        public string name { get; set; }
+        public string open { get; set; }
+        public int orderIndex { get; set; }
+        public int productId { get; set; }
+        public string sell { get; set; }
+        public string symbol { get; set; }
+        public string volume { get; set; }
+    }
+
     #endregion
 
     #region MyTokenModel
@@ -294,4 +339,6 @@ namespace Lark.Bot.CQA.Business
     }
 
     #endregion
+
+
 }

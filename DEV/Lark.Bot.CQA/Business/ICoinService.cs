@@ -1,4 +1,6 @@
-﻿namespace Lark.Bot.CQA.Business
+﻿using System.Collections.Generic;
+
+namespace Lark.Bot.CQA.Business
 {
     public interface ICoinService
     {
@@ -28,5 +30,11 @@
         /// <param name="key">btc</param>
         /// <returns></returns>
         string GetMyTokenPrice(string key);
+
+        /// <summary>
+        /// 获取OKEX所有币对的列表
+        /// </summary>
+        /// <returns></returns>
+        OkexTackers GetOkexTracTackers();
     }
 }
