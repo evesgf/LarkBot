@@ -138,12 +138,52 @@ namespace Lark.Bot.CQA.Business
         /// 获取OKEX所有币对的列表
         /// </summary>
         /// <returns></returns>
-        public OkexTackers GetOkexTracTackers()
+        public OkexTackers GetOkexAllTackers()
         {
             var json = HttpUitls.Get("https://www.okex.com/v2/markets/tickers");
             var model = JsonHelper.DeserializeJsonToObject<OkexTackers>(json);
 
             return model;
+        }
+
+        /// <summary>
+        /// 获取OKEX涨幅前十的币
+        /// </summary>
+        /// <returns></returns>
+        public string GetOkexTopTracks()
+        {
+            var reStr = string.Empty;
+            var list = GetOkexAllTackers().data.OrderBy(x => x.changePercentage).Take(10);
+
+            if (list.Count() != 0)
+            {
+                foreach (var p in list)
+                {
+                    reStr += p.symbol + ":" + p.changePercentage + " | ";
+                }
+            }
+
+            return reStr;
+        }
+
+        /// <summary>
+        /// 获取OKEX跌幅前十的币
+        /// </summary>
+        /// <returns></returns>
+        public string GetOkexBottomTracks()
+        {
+            var reStr = string.Empty;
+            var list = GetOkexAllTackers().data.OrderByDescending(x => x.changePercentage).Take(10);
+
+            if (list.Count() != 0)
+            {
+                foreach (var p in list)
+                {
+                    reStr += p.symbol + ":" + p.changePercentage + " | ";
+                }
+            }
+
+            return reStr;
         }
     }
 

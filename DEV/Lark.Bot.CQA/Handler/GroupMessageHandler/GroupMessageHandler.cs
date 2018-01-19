@@ -23,6 +23,24 @@ namespace Lark.Bot.CQA.Handler.GroupMessageHandler
         {
             var result = new HandlerResult{IsHit = false};
 
+            //查看所有的输入口令
+            if (context.Message.Equals("查看所有指令"))
+            {
+                result.Msg += "【场外币价】 | ";
+                result.Msg += "【查币价 btc_usdt】 | ";
+                result.Msg += "【看币价 btc】 | ";
+                result.Msg += "【币圈消息】 | ";
+                result.Msg += "【开启监听 okex btc_usdt > 1000】 | ";
+                result.Msg += "【关闭监听 okex btc_usdt】 | ";
+                result.Msg += "【监听列表 okex】 | ";
+                result.Msg += "【okex涨幅】 | ";
+                result.Msg += "【okex跌幅】 | ";
+
+                result.IsHit = true;
+                
+            }
+
+
             //场外币价
             if (context.Message.Equals("场外币价"))
             {
@@ -36,6 +54,7 @@ namespace Lark.Bot.CQA.Handler.GroupMessageHandler
 
                 //回发
                 result.IsHit = true;
+                
             }
 
             //查币价
@@ -48,6 +67,7 @@ namespace Lark.Bot.CQA.Handler.GroupMessageHandler
                 //回发
                 result.IsHit = true;
                 result.Msg = re;
+                
             }
 
             //看币价
@@ -60,6 +80,7 @@ namespace Lark.Bot.CQA.Handler.GroupMessageHandler
                 //回发
                 result.IsHit = true;
                 result.Msg =re;
+                
             }
 
             //币圈消息
@@ -83,6 +104,7 @@ namespace Lark.Bot.CQA.Handler.GroupMessageHandler
 
                 //回发
                 result.IsHit = true;
+                
             }
 
             //开启监听 okex btc_usdt > 1000
@@ -91,32 +113,37 @@ namespace Lark.Bot.CQA.Handler.GroupMessageHandler
                 string[] keys = context.Message.Split(' ');
                 if (keys.Count() != 5)
                 {
-                    result.Msg = "指令输入错误";
-                    return result;
-                }
-
-                var model = new TrackPriceModel
-                {
-                    //fromQQ = context.FromQq,
-                    fromGroup = context.FromGroup,
-                    msgType = Enum_MsgType.GroupMsg,
-                    exchange = keys[1],
-                    coin = keys[2],
-                    isUp = keys[3].Equals(">"),
-                    price = Convert.ToDecimal(keys[4])
-                };
-
-                if (_trackHandler.StartTrackCoinPrice( model))
-                {
                     //回发
                     result.IsHit = true;
-                    result.Msg = "监听开启！";
+                    result.Msg = "指令输入错误，指令格式为【开启监听 okex btc_usdt > 1000】";
                 }
                 else
                 {
-                    //回发
-                    result.IsHit = true;
-                    result.Msg = "监听程序BUG了，快召唤程序猿~";
+                    var model = new TrackPriceModel
+                    {
+                        //fromQQ = context.FromQq,
+                        fromGroup = context.FromGroup,
+                        msgType = Enum_MsgType.GroupMsg,
+                        exchange = keys[1],
+                        coin = keys[2],
+                        isUp = keys[3].Equals(">"),
+                        price = Convert.ToDecimal(keys[4])
+                    };
+
+                    if (_trackHandler.StartTrackCoinPrice(model))
+                    {
+                        //回发
+                        result.IsHit = true;
+                        result.Msg = "监听开启！";
+
+                    }
+                    else
+                    {
+                        //回发
+                        result.IsHit = true;
+                        result.Msg = "监听程序BUG了，快召唤程序猿~";
+
+                    }
                 }
             }
 
@@ -126,136 +153,122 @@ namespace Lark.Bot.CQA.Handler.GroupMessageHandler
                 string[] keys = context.Message.Split(' ');
                 if (keys.Count() != 3)
                 {
-                    result.Msg = "指令输入错误";
-                    return result;
-                }
-
-                var model = new TrackPriceModel
-                {
-                    //fromQQ = context.FromQq,
-                    fromGroup = context.FromGroup,
-                    msgType = Enum_MsgType.GroupMsg,
-                    exchange = keys[1],
-                    coin = keys[2]
-                };
-
-                if (_trackHandler.StopTrackCoinPrice( model))
-                {
                     //回发
                     result.IsHit = true;
-                    result.Msg = "好累！终于不用盯着了";
+                    result.Msg = "指令输入错误，指令格式为【关闭监听 okex btc_usdt】";
                 }
                 else
                 {
-                    //回发
-                    result.IsHit = true;
-                    result.Msg = "监听程序BUG了，快召唤程序猿~";
+                    var model = new TrackPriceModel
+                    {
+                        //fromQQ = context.FromQq,
+                        fromGroup = context.FromGroup,
+                        msgType = Enum_MsgType.GroupMsg,
+                        exchange = keys[1],
+                        coin = keys[2]
+                    };
+
+                    if (_trackHandler.StopTrackCoinPrice(model))
+                    {
+                        //回发
+                        result.IsHit = true;
+                        result.Msg = "好累！终于不用盯着了";
+
+                    }
+                    else
+                    {
+                        //回发
+                        result.IsHit = true;
+                        result.Msg = "监听程序BUG了，快召唤程序猿~";
+
+                    }
                 }
             }
 
-            //监听列表 okex btc_usdt
+            //监听列表 okex
             if (context.Message.Length > 4 && context.Message.Substring(0, 4).Equals("监听列表"))
             {
                 string[] keys = context.Message.Split(' ');
                 if (keys.Count() != 3)
                 {
-                    result.Msg = "指令输入错误";
-                    return result;
-                }
-
-                var model = new TrackPriceModel
-                {
-                    //fromQQ = context.FromQq,
-                    fromGroup = context.FromGroup,
-                    msgType = Enum_MsgType.GroupMsg,
-                    exchange = keys[1],
-                    coin = keys[2]
-                };
-
-                var list = _trackHandler.GetTrackList(model);
-                if (list!=null)
-                {
-                    var remsg = string.Empty;
-                    foreach (var item in list)
-                    {
-                        remsg += item.coin + " " + item.isUp + " " + item.price+"|";
-                    }
-
                     //回发
                     result.IsHit = true;
-                    result.Msg = remsg;
+                    result.Msg = "指令输入错误,指令格式为【监听列表 okex】";
                 }
                 else
                 {
-                    //回发
-                    result.IsHit = true;
-                    result.Msg = "什么都没关注呢~关注一把看看呗";
+                    var model = new TrackPriceModel
+                    {
+                        //fromQQ = context.FromQq,
+                        fromGroup = context.FromGroup,
+                        msgType = Enum_MsgType.GroupMsg,
+                        exchange = keys[1],
+                        coin = keys[2]
+                    };
+
+                    var list = _trackHandler.GetTrackList(model);
+                    if (list != null)
+                    {
+                        var remsg = string.Empty;
+                        foreach (var item in list)
+                        {
+                            remsg += item.coin + " " + item.isUp + " " + item.price + "|";
+                        }
+
+                        //回发
+                        result.IsHit = true;
+                        result.Msg = remsg;
+
+                    }
+                    else
+                    {
+                        //回发
+                        result.IsHit = true;
+                        result.Msg = "什么都没关注呢~关注一把看看呗";
+
+                    }
                 }
             }
 
             //okex涨幅
             if (context.Message.Equals("okex涨幅"))
             {
-                var model=_iCoinService.GetOkexTracTackers();
+                var str=_iCoinService.GetOkexTopTracks();
 
-                if (model != null)
+                if (!string.IsNullOrEmpty(str))
                 {
                     //回发
                     result.IsHit = true;
-                    var list = model.data.OrderByDescending(x => x.changePercentage).Take(10);
-
-                    if (list.Count() != 0)
-                    {
-                        foreach (var p in list)
-                        {
-                            result.Msg += p.symbol + ":" + p.changePercentage + "\n";
-                        }
-                    }
-                    else
-                    {
-
-                        result.Msg = "数据呢？程序猿你的数据丢了！";
-                    }
-
+                    result.Msg = str;
+                    
                 }
                 else
                 {
                     //回发
                     result.IsHit = true;
                     result.Msg = "发生了什么？怎么什么都没有？？";
+                    
                 }
             }
 
             //okex涨幅
             if (context.Message.Equals("okex跌幅"))
             {
-                var model = _iCoinService.GetOkexTracTackers();
+                var str = _iCoinService.GetOkexTopTracks();
 
-                if (model != null)
+                if (!string.IsNullOrEmpty(str))
                 {
                     //回发
                     result.IsHit = true;
-                    var list = model.data.OrderBy(x => x.changePercentage).Take(10);
-
-                    if (list.Count() != 0)
-                    {
-                        foreach (var p in list)
-                        {
-                            result.Msg += p.symbol + ":" + p.changePercentage + "\n";
-                        }
-                    }
-                    else
-                    {
-
-                        result.Msg = "数据呢？程序猿你的数据丢了！";
-                    }
-
+                    result.Msg = str;
+                    
                 }
                 else
                 {
                     //回发
                     result.IsHit = true;
                     result.Msg = "发生了什么？怎么什么都没有？？";
+                    
                 }
             }
 

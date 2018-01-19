@@ -104,6 +104,10 @@ namespace Lark.Bot.CQA.Handler.TimeJobHandler
                 //查询币圈
                 reMsg += _coinService.GetOKEXCoinPrice("btc_usdt");
 
+                //涨跌幅排名
+                reMsg += "\n【OK涨幅排名】"+_coinService.GetOkexTopTracks();
+                reMsg += "\n【OK跌幅排名】" + _coinService.GetOkexBottomTracks();
+
                 _mahuaApi.SendGroupMessage(fromQQ, reMsg + "\n第" + sendCount + "次主动推送消息");
                 sendCount++;
             }

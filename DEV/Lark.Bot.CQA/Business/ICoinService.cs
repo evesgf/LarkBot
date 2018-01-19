@@ -35,6 +35,18 @@ namespace Lark.Bot.CQA.Business
         /// 获取OKEX所有币对的列表
         /// </summary>
         /// <returns></returns>
-        OkexTackers GetOkexTracTackers();
+        OkexTackers GetOkexAllTackers();
+
+        /// <summary>
+        /// 获取OKEX涨幅前十的币
+        /// </summary>
+        /// <returns></returns>
+        string GetOkexTopTracks();
+
+        /// <summary>
+        /// 获取OKEX跌幅前十的币
+        /// </summary>
+        /// <returns></returns>
+        string GetOkexBottomTracks();
     }
 }
