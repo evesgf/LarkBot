@@ -1,0 +1,5 @@
+Note
+
+	• GUI Animator for Unity UI 1.0.0 or higher does not require "GSuiEditor" script. Upgraded users might find it in "Scripts/Editor" folder. You should delete this file if you found it.
+
+	• "Editor.zip" file is backup of "Editor" folder. Just in case, if you did anything wrong with "Editor" folder, you can fix it by extract the "Editor.zip" file.

@@ -153,18 +153,39 @@ namespace Lark.Bot.CQA.Business
         public string GetOkexTopTracks()
         {
             var reStr = string.Empty;
-            var list = GetOkexAllTackers().data.OrderBy(x => x.changePercentage).Take(10);
+
+            var li = GetOkexAllTackers().data;
+            Dictionary<string, decimal> dict = new Dictionary<string, decimal>();
+
+            foreach (var item in li)
+            {
+                dict.Add(item.symbol, PerctangleToDecimal(item.changePercentage));
+            }
+
+            var list = dict.OrderByDescending(x=>x.Value).Take(10);
 
             if (list.Count() != 0)
             {
                 foreach (var p in list)
                 {
-                    reStr += p.symbol + ":" + p.changePercentage + " | ";
+                    reStr += p.Key + ":" + p.Value + "% | ";
                 }
             }
 
             return reStr;
         }
+
+        /// <summary>
+        /// 将百分比转换成小数
+        /// </summary>
+        /// <param name="perc">百分比值:+100.88%，
+        /// 如：65%</param>
+        /// <returns></returns>
+        public static decimal PerctangleToDecimal(string perc)
+        {
+            return Convert.ToDecimal(perc.Split('%')[0]);
+        }
+
 
         /// <summary>
         /// 获取OKEX跌幅前十的币
@@ -173,13 +194,22 @@ namespace Lark.Bot.CQA.Business
         public string GetOkexBottomTracks()
         {
             var reStr = string.Empty;
-            var list = GetOkexAllTackers().data.OrderByDescending(x => x.changePercentage).Take(10);
+
+            var li = GetOkexAllTackers().data;
+            Dictionary<string, decimal> dict = new Dictionary<string, decimal>();
+
+            foreach (var item in li)
+            {
+                dict.Add(item.symbol, PerctangleToDecimal(item.changePercentage));
+            }
+
+            var list = dict.OrderBy(x => x.Value).Take(10);
 
             if (list.Count() != 0)
             {
                 foreach (var p in list)
                 {
-                    reStr += p.symbol + ":" + p.changePercentage + " | ";
+                    reStr += p.Key + ":" + p.Value + "% | ";
                 }
             }
 

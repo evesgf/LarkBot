@@ -102,7 +102,7 @@ namespace Business.CrawlNewsService.CoinNewsService
                     else
                     {
                         unit.Insert(result.Result);
-                        await _unitOfWork.SaveChangesAsync();
+                        _unitOfWork.SaveChanges();
                         result.Msg = "数据更新成功";
                     }
                 }

@@ -254,7 +254,7 @@ namespace Lark.Bot.CQA.Handler.GroupMessageHandler
             //okex涨幅
             if (context.Message.Equals("okex跌幅"))
             {
-                var str = _iCoinService.GetOkexTopTracks();
+                var str = _iCoinService.GetOkexBottomTracks();
 
                 if (!string.IsNullOrEmpty(str))
                 {

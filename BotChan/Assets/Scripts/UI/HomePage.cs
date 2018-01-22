@@ -2,20 +2,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Project
 {
     public class HomePage : UIPage
     {
+        public Button btn_Setting;
 
         protected override void OnOpen(object arg = null)
         {
             base.OnOpen(arg);
+
+            GUIAniOpen();
+
+            btn_Setting.onClick.AddListener(OnSetting);
         }
 
-        public void OnBtnOpenPage2()
+        private void OnSetting()
         {
-            UIManager.Instance.OpenPage("UIPage2");
+            UIManager.Instance.OpenWindow(UIDef.SettingWindow);
         }
     }
 }

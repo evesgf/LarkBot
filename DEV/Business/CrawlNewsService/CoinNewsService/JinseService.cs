@@ -96,7 +96,8 @@ namespace Business.CrawlNewsService.CoinNewsService
                     else
                     {
                         unit.Insert(result.Result);
-                        await _unitOfWork.SaveChangesAsync();
+                        //await _unitOfWork.SaveChangesAsync();
+                        _unitOfWork.SaveChanges();
                         result.Msg = "数据更新成功";
                     }
                 }
@@ -119,7 +120,7 @@ namespace Business.CrawlNewsService.CoinNewsService
             if (element == null) return null;
 
             //标题
-            var title = element.QuerySelector(".live-info").TextContent;
+            var title = element.QuerySelector(".live-info").TextContent.Replace("\n", "").Replace(" ", "").Replace("\t", "").Replace("\r", "");
 
             //重要等级
             var importantLevel = EnumImportantLevel.Level0;
@@ -140,7 +141,7 @@ namespace Business.CrawlNewsService.CoinNewsService
             pushTime += " " + element.QuerySelector(".live-time").TextContent+":00";
 
             //标题长度不够，内容再存一遍
-            var content = element.QuerySelector(".live-info").TextContent; ;
+            var content = element.QuerySelector(".live-info").TextContent.Replace("\n", "").Replace(" ", "").Replace("\t", "").Replace("\r", "");
 
             //标签，暂时不填
             var tag = "";

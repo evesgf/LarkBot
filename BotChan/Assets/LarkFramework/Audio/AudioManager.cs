@@ -1,4 +1,7 @@
-﻿using LarkFramework.Module;
+﻿using LarkFramework.Config;
+using LarkFramework.Module;
+using Project;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,6 +22,19 @@ namespace LarkFramework.Audio
 
             audioComponent.dic_Music = new Dictionary<string, AudioSource>();
             audioComponent.dic_SoundEffect = new Dictionary<string, AudioSource>();
+
+            RefreshSetting(AppConfig.Value);
+        }
+
+        /// <summary>
+        /// 刷新用户配置
+        /// </summary>
+        /// <param name="cfg"></param>
+        public void RefreshSetting(AppConfig cfg)
+        {
+            EnableBGM(cfg.enableBGM);
+            EnableMusic(cfg.enableMusic);
+            EnableSoundEffect(cfg.enableSoundEffect);
         }
 
         #region PlayBGM

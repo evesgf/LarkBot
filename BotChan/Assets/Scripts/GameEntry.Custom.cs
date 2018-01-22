@@ -8,11 +8,8 @@ namespace LarkFramework.GameEntry
     {
         public static void InitCustomComponents()
         {
-            ModuleManager.Instance.Init("BotChan");
-
             //实例化币圈消息模块
-            Singleton<CoinModule>.Create().Init();
-
+            //Singleton<CoinModule>.Create().Init();
         }
     }
 }

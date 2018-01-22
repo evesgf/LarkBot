@@ -84,7 +84,7 @@ namespace Business.CrawlNewsService.CoinNewsService
                     else
                     {
                         unit.Insert(result.Result);
-                        await _unitOfWork.SaveChangesAsync();
+                        _unitOfWork.SaveChanges();
                         result.Msg = "数据更新成功";
                     }
                 }
@@ -107,7 +107,7 @@ namespace Business.CrawlNewsService.CoinNewsService
             if (str == null) return null;
 
             //标题
-            var title = str.Split(new string[] { "\"content\":\"", ",\"source" }, StringSplitOptions.RemoveEmptyEntries)[1];
+            var title = str.Split(new string[] { "\"content\":\"", ",\"source" }, StringSplitOptions.RemoveEmptyEntries)[1].Replace("\n", "").Replace(" ", "").Replace("\t", "").Replace("\r", "");
 
             //重要等级,Rank值
             var importantLevel = EnumImportantLevel.Level0;
@@ -128,7 +128,7 @@ namespace Business.CrawlNewsService.CoinNewsService
             pushTime += " " + TimeHelper.GetTime(long.Parse(longTime)).ToString("T");
 
             //标题长度不够，内容再存一遍
-            var content = str.Split(new string[] { "\"content\":\"", ",\"source" }, StringSplitOptions.RemoveEmptyEntries)[1];
+            var content = str.Split(new string[] { "\"content\":\"", ",\"source" }, StringSplitOptions.RemoveEmptyEntries)[1].Replace("\n", "").Replace(" ", "").Replace("\t", "").Replace("\r", ""); 
             var link = str.Split(new string[] { "\"link\":\"", "\",\"issue_time\"" }, StringSplitOptions.RemoveEmptyEntries)[1];
             if (string.IsNullOrEmpty(link))
             {

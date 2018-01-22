@@ -6,9 +6,13 @@ namespace LarkFramework.GameEntry
     [AddComponentMenu("LarkFramework/GameEntry")]
     public partial class GameEntry : MonoBehaviour
     {
+        [SerializeField]
         public static LaunchType lanuchType = LaunchType.Debug;
+        [SerializeField]
         public static string startScene;
+        [SerializeField]
         public static string startUI;
+        [SerializeField]
         public static string startAudio;
 
         public enum LaunchType
@@ -37,7 +41,7 @@ namespace LarkFramework.GameEntry
             }
 
             InitBuiltinComponents();
-            InitCustomComponents();
+            //InitCustomComponents();
 
             DontDestroyOnLoad(gameObject);
         }
