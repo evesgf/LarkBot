@@ -34,7 +34,7 @@ namespace Infrastructure.Common
         /// <returns></returns>
         public static string ToMysqlTime(this DateTime time)
         {
-            return time.ToString("yyyy-MM-dd hh:mm:ss");
+            return time.ToString("yyyy-MM-dd HH:mm:ss");
         }
     }
 }
