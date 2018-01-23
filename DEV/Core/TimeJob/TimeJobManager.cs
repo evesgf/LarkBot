@@ -33,7 +33,10 @@ namespace Core.TimeJob
 
         public void UpdateNews(object source, System.Timers.ElapsedEventArgs e)
         {
-            var a=HttpGet("http://larkbot.evesgf.com/api/News/UpdateAllNews", null);
+            var a=HttpGet("http://larkbot.evesgf.com/api/News/UpdateJinseNews", null);
+            var b= HttpGet("http://larkbot.evesgf.com/api/News/UpdateBishijieNews", null);
+            var c= HttpGet("http://larkbot.evesgf.com/api/News/UpdateBitcoinNews", null);
+            var d= HttpGet("http://larkbot.evesgf.com/api/News/UpdateOkexNoticeFlash", null);
         }
 
         public string HttpGet(string Url, string postDataStr)

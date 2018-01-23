@@ -83,8 +83,8 @@ namespace Business.CrawlNewsService.CoinNewsService
                     }
                     else
                     {
-                        unit.Insert(result.Result);
-                        _unitOfWork.SaveChanges();
+                        await unit.InsertAsync(result.Result);
+                        await _unitOfWork.SaveChangesAsync();
                         result.Msg = "数据更新成功";
                     }
                 }
