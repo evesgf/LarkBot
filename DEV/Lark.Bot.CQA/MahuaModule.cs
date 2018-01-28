@@ -96,8 +96,12 @@ namespace Lark.Bot.CQA
                 builder.RegisterType<CoinService>()
                     .As<ICoinService>();
 
+                builder.RegisterType<CtripService>()
+                    .As<ICtripService>();
+
                 builder.RegisterType<TimeJobHandler>().As<ITimeJobHandler>().SingleInstance();
                 builder.RegisterType<TrackHandler>().As<ITrackHandler>().SingleInstance();
+                builder.RegisterType<NewsJobHandler>().As<INewsJobHandler>().SingleInstance();
             }
         }
     }

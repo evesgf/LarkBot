@@ -37,6 +37,7 @@ namespace Core.TimeJob
             var b= HttpGet("http://larkbot.evesgf.com/api/News/UpdateBishijieNews", null);
             var c= HttpGet("http://larkbot.evesgf.com/api/News/UpdateBitcoinNews", null);
             var d= HttpGet("http://larkbot.evesgf.com/api/News/UpdateOkexNoticeFlash", null);
+            var job5 = HttpGet("http://larkbot.evesgf.com/api/News/UpdatePaomianNews", null);
         }
 
         public string HttpGet(string Url, string postDataStr)

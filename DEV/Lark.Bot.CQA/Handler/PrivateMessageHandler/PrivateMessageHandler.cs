@@ -14,12 +14,14 @@ namespace Lark.Bot.CQA.Handler.PrivateMessageHandler
         private readonly ICoinService _iCoinService;
         private readonly ICoinNewsService _iCoinNewsService;
         private readonly ITrackHandler _trackHandler;
+        private readonly ICtripService _ctripService;
 
-        public PrivateMessageHandler(ICoinService iCoinService, ICoinNewsService iCoinNewsService, ITrackHandler trackHandler)
+        public PrivateMessageHandler(ICoinService iCoinService, ICoinNewsService iCoinNewsService, ITrackHandler trackHandler, ICtripService ctripService)
         {
             _iCoinService = iCoinService;
             _iCoinNewsService = iCoinNewsService;
             _trackHandler = trackHandler;
+            _ctripService = ctripService;
         }
 
         public HandlerResult CheckKeyWord(PrivateMessageFromFriendReceivedContext context)
@@ -131,6 +133,35 @@ namespace Lark.Bot.CQA.Handler.PrivateMessageHandler
                     //回发
                     result.IsHit = true;
                     result.Msg = "什么都没关注呢~关注一把看看呗";
+                }
+            }
+
+            //机票价格 携程 上海-云南 2018-02-08
+            if (context.Message.Length > 4 && context.Message.Substring(0, 4).Equals("机票价格"))
+            {
+                string[] keys = context.Message.Split(' ');
+                if (keys.Count() != 4)
+                {
+                    result.Msg = "指令输入错误";
+                    return result;
+                }
+
+                var key2 = keys[2].Split('-');
+                var a = _ctripService.GetCtripAirPrice(key2[0],key2[1],keys[3]);
+
+                //回发
+                result.IsHit = true;
+                result.Msg = a.ToString();
+            }
+
+            //机票监听 携程 上海-云南 < 1000
+            if (context.Message.Length > 4 && context.Message.Substring(0, 4).Equals("机票监听"))
+            {
+                string[] keys = context.Message.Split(' ');
+                if (keys.Count() != 5)
+                {
+                    result.Msg = "指令输入错误";
+                    return result;
                 }
             }
 

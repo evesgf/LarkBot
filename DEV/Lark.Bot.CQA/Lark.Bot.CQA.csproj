@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AngleSharp, Version=0.9.9.0, Culture=neutral, PublicKeyToken=e83494dcdc6d31ea, processorArchitecture=MSIL">
+      <HintPath>..\packages\AngleSharp.0.9.9.1\lib\net45\AngleSharp.dll</HintPath>
+    </Reference>
     <Reference Include="Autofac, Version=4.6.2.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <HintPath>..\packages\Autofac.4.6.2\lib\net45\Autofac.dll</HintPath>
     </Reference>
@@ -75,9 +78,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Business\CoinNewsService.cs" />
+    <Compile Include="Business\CtripService.cs" />
     <Compile Include="Business\ICoinNewsService.cs" />
     <Compile Include="Business\ICoinService.cs" />
     <Compile Include="Business\CoinService.cs" />
+    <Compile Include="Business\ICtripService.cs" />
     <Compile Include="Common\HttpUitls.cs" />
     <Compile Include="Common\JsonHelper.cs" />
     <Compile Include="Common\Singleton.cs" />
@@ -94,8 +99,10 @@
     <Compile Include="Handler\InitHandler\InitHandler.cs" />
     <Compile Include="Handler\PrivateMessageHandler\IPrivateMessageHandler.cs" />
     <Compile Include="Handler\PrivateMessageHandler\PrivateMessageHandler.cs" />
+    <Compile Include="Handler\TimeJobHandler\INewsJobHandler.cs" />
     <Compile Include="Handler\TimeJobHandler\ITimeJobHandler.cs" />
     <Compile Include="Handler\TimeJobHandler\ITrackHandler.cs" />
+    <Compile Include="Handler\TimeJobHandler\NewsJobHandler.cs" />
     <Compile Include="Handler\TimeJobHandler\TimeJobHandler.cs" />
     <Compile Include="Handler\TimeJobHandler\TrackHandler.cs" />
     <Compile Include="MahuaEvents\ExceptionOccuredMahuaEvent1.cs" />

@@ -120,6 +120,10 @@ namespace Business.CrawlNewsService.CoinNewsService
 
             //标题
             var title = element.QuerySelector(".live-info").TextContent.Replace("\n", "").Replace(" ", "").Replace("\t", "").Replace("\r", "");
+            //利好利空
+            var bull = element.QuerySelector(".live-index-pull-bear").TextContent.Replace("\n", "").Replace(" ", "").Replace("\t", "").Replace("\r", "").Replace("+1", "");
+
+            title += bull;
 
             //重要等级
             var importantLevel = EnumImportantLevel.Level0;
@@ -141,6 +145,7 @@ namespace Business.CrawlNewsService.CoinNewsService
 
             //标题长度不够，内容再存一遍
             var content = element.QuerySelector(".live-info").TextContent.Replace("\n", "").Replace(" ", "").Replace("\t", "").Replace("\r", "");
+            content += bull;
 
             //标签，暂时不填
             var tag = "";

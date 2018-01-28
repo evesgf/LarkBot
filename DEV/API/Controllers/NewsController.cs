@@ -1,5 +1,6 @@
 ﻿using Business.CoinService;
 using Business.CrawlNewsService.CoinNewsService;
+using Business.CrawlNewsService.NewsService;
 using DTO;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
@@ -16,16 +17,19 @@ namespace API.Controllers
         private readonly IBshijieService _bshijieService;
         private readonly IBitcoinService _bitcoinService;
         private readonly IOkexService _okexService;
+        private readonly IPaomianService _paomianService;
 
         public NewsController(IJinseService jinseService,
             IBshijieService bshijieService,
             IBitcoinService bitcoinService,
-            IOkexService okexService)
+            IOkexService okexService,
+            IPaomianService paomianService)
         {
             _jinseService = jinseService;
             _bshijieService = bshijieService;
             _bitcoinService = bitcoinService;
             _okexService = okexService;
+            _paomianService = paomianService;
         }
 
         #region Common
@@ -320,6 +324,78 @@ namespace API.Controllers
             var reModel = new ResultModel<NewsModel>();
 
             var news = await _okexService.UpdateNoticeFlash();
+
+            if (!news.Success)
+            {
+                reModel.Success = false;
+                reModel.Msg = news.Msg;
+
+                return reModel;
+            }
+
+            var data = new NewsModel();
+
+            data.Title = news.Result.Title;
+            data.Content = news.Result.Content;
+            data.PushTime = news.Result.PushTime;
+            data.Tag = news.Result.Tag;
+            data.From = news.Result.From;
+            data.ImportantLevel = news.Result.ImportantLevel;
+            data.PushLevel = news.Result.PushLevel;
+            data.AddTime = news.Result.AddTime;
+
+            reModel.Success = true;
+            reModel.Data = data;
+
+            return reModel;
+        }
+        #endregion
+
+        #region 泡面小镇
+        /// <summary>
+        /// 获取泡面小镇最新一条信息
+        /// </summary>
+        /// <returns></returns>
+        public async Task<ResultModel<NewsModel>> GetPaomianLatestNews()
+        {
+            var reModel = new ResultModel<NewsModel>();
+
+            var news = await _paomianService.GetLatestNews();
+
+            if (news == null)
+            {
+                reModel.Success = false;
+                reModel.Msg = "查询结果为空";
+
+                return reModel;
+            }
+
+            var data = new NewsModel();
+            data.Title = news.Title;
+            data.Content = news.Content;
+            data.PushTime = news.PushTime;
+            data.Tag = news.Tag;
+            data.From = news.From;
+            data.ImportantLevel = news.ImportantLevel;
+            data.PushLevel = news.PushLevel;
+            data.AddTime = news.AddTime;
+
+            reModel.Success = true;
+            reModel.Data = data;
+
+            return reModel;
+        }
+
+        /// <summary>
+        /// 更新泡面小镇消息
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public async Task<ResultModel<NewsModel>> UpdatePaomianNews()
+        {
+            var reModel = new ResultModel<NewsModel>();
+
+            var news = await _paomianService.UpdateNews();
 
             if (!news.Success)
             {

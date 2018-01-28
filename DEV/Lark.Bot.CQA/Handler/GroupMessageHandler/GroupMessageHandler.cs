@@ -35,6 +35,7 @@ namespace Lark.Bot.CQA.Handler.GroupMessageHandler
                 result.Msg += "【监听列表 okex】 | ";
                 result.Msg += "【okex涨幅】 | ";
                 result.Msg += "【okex跌幅】 | ";
+                result.Msg += "【早报】 | ";
 
                 result.IsHit = true;
                 

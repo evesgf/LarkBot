@@ -10,11 +10,13 @@ namespace Lark.Bot.CQA.Handler.TimeJobHandler
     {
         private readonly IMahuaApi _mahuaApi;
         private readonly ICoinService _coinService;
+        private readonly ICtripService _ctripService;
 
-        public TrackHandler(IMahuaApi mahuaApi,ICoinService coinService)
+        public TrackHandler(IMahuaApi mahuaApi,ICoinService coinService, ICtripService ctripService)
         {
             _mahuaApi = mahuaApi;
             _coinService = coinService;
+            _ctripService = ctripService;
         }
 
         #region 币价监听
@@ -159,6 +161,12 @@ namespace Lark.Bot.CQA.Handler.TimeJobHandler
                     }
                 }
             }
+
+            //var a = _ctripService.GetCtripAirPrice("SHA","KMG","2018-02-08");
+            //if (a < 1000)
+            //{
+            //    _mahuaApi.SendPrivateMessage("821113542", "欧尼酱醒醒，抢机票了！");
+            //}
         }
 
         /// <summary>

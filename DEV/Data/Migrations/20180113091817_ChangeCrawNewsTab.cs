@@ -27,10 +27,10 @@ namespace Data.Migrations
             migrationBuilder.AlterColumn<string>(
                 name: "Content",
                 table: "CrawlNews",
-                maxLength: 512,
+                maxLength: 4096,
                 nullable: true,
                 oldClrType: typeof(string),
-                oldMaxLength: 512);
+                oldMaxLength: 4096);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

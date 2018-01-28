@@ -30,7 +30,7 @@ namespace Data.Migrations
                         .HasMaxLength(50);
 
                     b.Property<string>("Content")
-                        .HasMaxLength(512);
+                        .HasMaxLength(4096);
 
                     b.Property<string>("From")
                         .IsRequired()
