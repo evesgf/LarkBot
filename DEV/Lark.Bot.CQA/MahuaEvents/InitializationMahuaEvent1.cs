@@ -32,7 +32,7 @@ namespace Lark.Bot.CQA.MahuaEvents
             _timeJobHandler.StartPushNews("693739965");
 
             //早报推送
-            _newsJobHandler.StartPushNews(new string[] { "376624308", "562033725", "417955323" , "345620129" });
+            _newsJobHandler.StartPushNews(new string[] { "376624308" });
 
             _trackHandler.StartLoop();
         }
