@@ -28,13 +28,20 @@ namespace Lark.Bot.CQA.Business
         /// <summary>
         /// 获取okex币价
         /// </summary>
-        /// <param name="key">btc_usdt</param>
+        /// <param name="key">btc usdt</param>
         /// <returns></returns>
         public string GetOKEXCoinPrice(string key)
         {
             try
             {
-                string url = "https://www.okex.com/api/v1/ticker.do?symbol=" + key;
+                //okex形式为btc_usdt
+                var newKey = key.Split(' ');
+
+                if (newKey.Length != 2) return "key 错误，形式为btc usdt";
+
+                var symbol = newKey[0] +"_"+ newKey[1];
+
+                string url = "https://www.okex.com/api/v1/ticker.do?symbol=" + symbol;
 
                 var market = JsonHelper.DeserializeJsonToObject<Market>(HttpUitls.Get(url));
 
@@ -104,24 +111,25 @@ namespace Lark.Bot.CQA.Business
         /// <summary>
         /// 获取火币币价
         /// </summary>
-        /// <param name="key">btc_usdt</param>
+        /// <param name="key">btc usdt</param>
         /// <returns></returns>
         public string GetHuobiPrice(string key)
         {
             var reStr = string.Empty;
 
             //火币形式为btcusdt
-            var newKey = key.Split('_');
+            var newKey = key.Split(' ');
 
-            if (newKey.Length != 2) return "key 错误，形式为btc_usdt";
+            if (newKey.Length != 2) return "key 错误，形式为btc usdt";
 
             var symbol = newKey[0] + newKey[1];
             var url = "https://api.huobi.pro/market/trade?symbol=" + symbol;
-            var reModel = JsonHelper.DeserializeJsonToObject<HuobiResult>(HttpUitls.Get(url));
+            var pageSorce = HttpUitls.Get(url);
+            var reModel = JsonHelper.DeserializeJsonToObject<HuobiResult>(pageSorce);
 
             if (reModel == null) return "数据为空";
 
-            reStr = reModel.tick.data[0].price.ToString();
+            reStr = "【" + key + "】价格:" + reModel.tick.data[0].price + " 方向:" + reModel.tick.data[0].direction + " 成交量:" + reModel.tick.data[0].amount;
             return reStr;
         }
 
@@ -376,7 +384,7 @@ namespace Lark.Bot.CQA.Business
         /// <summary>
         /// 消息id
         /// </summary>
-        public int id { get; set; }
+        public string id { get; set; }
         /// <summary>
         /// 最新成交时间
         /// </summary>
@@ -397,7 +405,7 @@ namespace Lark.Bot.CQA.Business
         /// <summary>
         /// 成交id
         /// </summary>
-        public long id { get; set; }
+        public string id { get; set; }
         /// <summary>
         /// 成交价钱,
         /// </summary>

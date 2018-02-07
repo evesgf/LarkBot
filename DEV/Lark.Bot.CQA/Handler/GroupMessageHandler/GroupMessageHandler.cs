@@ -27,7 +27,7 @@ namespace Lark.Bot.CQA.Handler.GroupMessageHandler
             if (context.Message.Equals("查看所有指令"))
             {
                 result.Msg += "【场外币价】 | ";
-                result.Msg += "【查币价 btc_usdt】 | ";
+                result.Msg += "【查币价 btc usdt】 | ";
                 result.Msg += "【看币价 btc】 | ";
                 result.Msg += "【币圈消息】 | ";
                 result.Msg += "【开启监听 okex btc_usdt > 1000】 | ";
@@ -64,10 +64,11 @@ namespace Lark.Bot.CQA.Handler.GroupMessageHandler
                 string key = context.Message.Remove(0, 4);
 
                 var re = _iCoinService.GetOKEXCoinPrice(key);
+                var re2 = _iCoinService.GetHuobiPrice(key);
 
                 //回发
                 result.IsHit = true;
-                result.Msg = re;
+                result.Msg = "【okex】"+re+"\n【火币】"+re2;
                 
             }
 
@@ -101,7 +102,7 @@ namespace Lark.Bot.CQA.Handler.GroupMessageHandler
                 }
 
                 //查询币圈
-                result.Msg += _iCoinService.GetOKEXCoinPrice("btc_usdt");
+                result.Msg += _iCoinService.GetOKEXCoinPrice("btc usdt");
 
                 //回发
                 result.IsHit = true;
