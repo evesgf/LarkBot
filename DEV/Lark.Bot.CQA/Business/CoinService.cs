@@ -117,20 +117,28 @@ namespace Lark.Bot.CQA.Business
         {
             var reStr = string.Empty;
 
-            //火币形式为btcusdt
-            var newKey = key.Split(' ');
+            try
+            {
+                //火币形式为btcusdt
+                var newKey = key.Split(' ');
 
-            if (newKey.Length != 2) return "key 错误，形式为btc usdt";
+                if (newKey.Length != 2) return "key 错误，形式为btc usdt";
 
-            var symbol = newKey[0] + newKey[1];
-            var url = "https://api.huobi.pro/market/trade?symbol=" + symbol;
-            var pageSorce = HttpUitls.Get(url);
-            var reModel = JsonHelper.DeserializeJsonToObject<HuobiResult>(pageSorce);
+                var symbol = newKey[0] + newKey[1];
+                var url = "https://api.huobi.pro/market/trade?symbol=" + symbol;
+                var pageSorce = HttpUitls.Get(url);
+                var reModel = JsonHelper.DeserializeJsonToObject<HuobiResult>(pageSorce);
 
-            if (reModel == null) return "数据为空";
+                if (reModel == null) return "数据为空";
 
-            reStr = "【" + key + "】价格:" + reModel.tick.data[0].price + " 方向:" + reModel.tick.data[0].direction + " 成交量:" + reModel.tick.data[0].amount;
-            return reStr;
+                reStr = "【" + key + "】价格:" + reModel.tick.data[0].price + " 方向:" + reModel.tick.data[0].direction + " 成交量:" + reModel.tick.data[0].amount;
+                return reStr;
+            }
+            catch (Exception)
+            {
+                reStr = "哎哟？这是什么稀奇玩意？老铁们快来看看能炒一波不";
+                return reStr;
+            }
         }
 
         public string FormartMTBit(MTBit bit)
