@@ -94,19 +94,19 @@ namespace Lark.Bot.CQA.Handler.TimeJobHandler
             {
                 string reMsg = msg1 + msg2 + msg3+msg4;
 
-                reMsg += "【场外币价】";
-                var re2 = _coinService.OTCPrice().Data;
-                foreach (var str in re2)
-                {
-                    reMsg += str + "\n";
-                }
+                //reMsg += "【场外币价】";
+                //var re2 = _coinService.OTCPrice().Data;
+                //foreach (var str in re2)
+                //{
+                //    reMsg += str + "\n";
+                //}
 
                 //查询币圈
                 reMsg += _coinService.GetMyTokenPrice("btc");
 
                 //涨跌幅排名
-                reMsg += "\n【OK涨幅排名】"+_coinService.GetOkexTopTracks();
-                reMsg += "\n【OK跌幅排名】" + _coinService.GetOkexBottomTracks();
+                //reMsg += "\n【OK涨幅排名】"+_coinService.GetOkexTopTracks();
+                //reMsg += "\n【OK跌幅排名】" + _coinService.GetOkexBottomTracks();
 
                 _mahuaApi.SendGroupMessage(fromQQ, reMsg + "\n第" + sendCount + "次主动推送消息");
                 sendCount++;
