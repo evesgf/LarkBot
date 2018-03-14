@@ -5,4 +5,8 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Lark.Bot.CQA\Lark.Bot.CQA.csproj" />
+  </ItemGroup>
+
 </Project>
