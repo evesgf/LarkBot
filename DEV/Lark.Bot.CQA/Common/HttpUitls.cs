@@ -1,22 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
 using System.Net;
+using System.Net.Security;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
-using System.Threading.Tasks;
 
 public class HttpUitls
 {
-    public static string Get(string Url)
+    public static string Get(string Url,string contentType= "application/json; charset=UTF-8")
     {
+
+        ServicePointManager.ServerCertificateValidationCallback = new RemoteCertificateValidationCallback(CheckValidationResult);
+
         //System.GC.Collect();
         HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);
         request.Proxy = null;
         request.KeepAlive = false;
         request.Method = "GET";
-        request.ContentType = "application/json; charset=UTF-8";
+        request.ContentType = contentType;
         request.AutomaticDecompression = DecompressionMethods.GZip;
+
+        request.ProtocolVersion = HttpVersion.Version10;
 
         HttpWebResponse response = (HttpWebResponse)request.GetResponse();
         Stream myResponseStream = response.GetResponseStream();
@@ -36,6 +39,11 @@ public class HttpUitls
         }
 
         return retString;
+    }
+
+    private static bool CheckValidationResult(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors errors)
+    {
+        return true; //总是接受  
     }
 
     public static string Post(string Url, string Data, string Referer)

@@ -63,7 +63,7 @@ namespace Lark.Bot.CQA.Business
         /// <summary>
         /// 获取MyToken币价
         /// </summary>
-        /// <param name="key">btc</param>
+        /// <param name="key">btc_cny</param>
         /// <returns></returns>
         public string GetMyTokenPrice(string key)
         {
@@ -71,15 +71,17 @@ namespace Lark.Bot.CQA.Business
 
             try
             {
-                string typeBcURL = "http://api.lb.mytoken.org/currency/filterlist";
+                //string typeBcURL = "http://api.lb.mytoken.org/currency/filterlist";
 
-                string data = "keyword=" + key + "&market_id=1303&timestamp=1514259573450&code=7c976da9f6797a8a85a73bf30562c6f6&platform=m&";
+                //string data = "keyword=" + key + "&market_id=1303&timestamp=1514259573450&code=7c976da9f6797a8a85a73bf30562c6f6&platform=m&";
 
-                var r = HttpUitls.Post(typeBcURL, data, "http://app.mytoken.io/");
-                var a = JsonHelper.DeserializeJsonToObject<MTSelectBit>(r);
-                var x = a.data.list.FirstOrDefault();
+                //var r = HttpUitls.Post(typeBcURL, data, "http://app.mytoken.io/");
+                //var a = JsonHelper.DeserializeJsonToObject<MTSelectBit>(r);
+                //var x = a.data.list.FirstOrDefault();
 
-                string listUrl = "http://api.lb.mytoken.org/ticker/currencyexchangelist?currency_id=" + x.currency_id + "&page=1&timestamp=1514266516737&code=d690c07d97539898d1387f7cf112d172&platform=m&";
+                //string listUrl = "http://api.lb.mytoken.org/ticker/currencyexchangelist?currency_id=" + x.currency_id + "&page=1&timestamp=1514266516737&code=d690c07d97539898d1387f7cf112d172&platform=m&";
+
+                string listUrl = "http://app.mytoken.io/currency/?com_id="+ key + "&market_id=1303&market_name=cmc&symbol=BTC&anchor=CNY&";
 
                 var rex = HttpUitls.Get(listUrl);
                 var b = JsonHelper.DeserializeJsonToObject<MTSelectBit>(rex);
@@ -104,7 +106,7 @@ namespace Lark.Bot.CQA.Business
             }
             catch (Exception e)
             {
-                return null;
+                return e.ToString();
             }
         }
 
@@ -125,8 +127,8 @@ namespace Lark.Bot.CQA.Business
                 if (newKey.Length != 2) return "key 错误，形式为btc usdt";
 
                 var symbol = newKey[0] + newKey[1];
-                var url = "https://api.huobi.pro/market/trade?symbol=" + symbol;
-                var pageSorce = HttpUitls.Get(url);
+                var url = "https://api.huobi.pro/market/detail/merged?symbol=" + symbol;
+                var pageSorce = HttpUitls.Get(url, "application/x-www-form-urlencoded");
                 var reModel = JsonHelper.DeserializeJsonToObject<HuobiResult>(pageSorce);
 
                 if (reModel == null) return "数据为空";
@@ -134,7 +136,7 @@ namespace Lark.Bot.CQA.Business
                 reStr = "【" + key + "】价格:" + reModel.tick.data[0].price + " 方向:" + reModel.tick.data[0].direction + " 成交量:" + reModel.tick.data[0].amount;
                 return reStr;
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 reStr = "哎哟？这是什么稀奇玩意？老铁们快来看看能炒一波不";
                 return reStr;
@@ -147,7 +149,7 @@ namespace Lark.Bot.CQA.Business
             {
                 return "咱不卖";
             }
-            return bit.price_usd.ToString("f4") + "$ ";
+            return bit.price_usd+ "$ ";
         }
 
         /// <summary>
@@ -330,29 +332,29 @@ namespace Lark.Bot.CQA.Business
 
     public class MTBit
     {
-        public int id { get; set; }
-        public int currency_id { get; set; }
+        public string id { get; set; }
+        public string currency_id { get; set; }
         public string name { get; set; }
         public string symbol { get; set; }
         public string alias { get; set; }
-        public int rank { get; set; }
+        public string rank { get; set; }
         public string alphabet { get; set; }
         public string mytoken_id { get; set; }
         public string cmc_id { get; set; }
         public string cmc_url { get; set; }
         public string logo { get; set; }
-        public int market_id { get; set; }
+        public string market_id { get; set; }
         public string market_name { get; set; }
         public string market_alias { get; set; }
         public string pair { get; set; }
         public string com_id { get; set; }
         public string currency { get; set; }
         public string anchor { get; set; }
-        public decimal price { get; set; }
-        public decimal price_usd { get; set; }
-        public decimal volume_24h { get; set; }
-        public decimal volume_24h_cny { get; set; }
-        public decimal volume_24h_usd { get; set; }
+        public string price { get; set; }
+        public string price_usd { get; set; }
+        public string volume_24h { get; set; }
+        public string volume_24h_cny { get; set; }
+        public string volume_24h_usd { get; set; }
         public string volume_24h_from { get; set; }
         public string volume_24h_to { get; set; }
         public string percent_change_today { get; set; }
@@ -364,7 +366,7 @@ namespace Lark.Bot.CQA.Business
         public string last_change { get; set; }
         public string review_status { get; set; }
         public string price_updated_at { get; set; }
-        public decimal market_cap_usd { get; set; }
+        public string market_cap_usd { get; set; }
         public string cc_kline { get; set; }
         public string kline_enabled { get; set; }
         public string search_field { get; set; }
@@ -373,7 +375,7 @@ namespace Lark.Bot.CQA.Business
         public string price_display_cny { get; set; }
         public string percent_change_display { get; set; }
         public string percent_change_range { get; set; }
-        public bool is_favorite { get; set; }
+        public string is_favorite { get; set; }
     }
     #endregion
 
