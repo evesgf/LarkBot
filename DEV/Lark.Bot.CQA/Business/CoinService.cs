@@ -126,12 +126,20 @@ namespace Lark.Bot.CQA.Business
 
             if (newKey.Length != 2) return "key 错误，形式为btc usdt";
 
-            var symbol = newKey[0] + newKey[1];
-            var url = "https://api.huobi.pro/market/trade?symbol=" + symbol;
-            var pageSorce = HttpUitls.HttpsGet(url);
-            var reModel = JsonHelper.DeserializeJsonToObject<HuobiResult>(pageSorce);
+            HuobiResult reModel = null;
+            try
+            {
+                var symbol = newKey[0] + newKey[1];
+                var url = "https://api.huobi.pro/market/trade?symbol=" + symbol;
+                var pageSorce = HttpUitls.HttpsGet(url);
+                reModel = JsonHelper.DeserializeJsonToObject<HuobiResult>(pageSorce);
+            }
+            catch (Exception e)
+            {
+                reModel = null;
+            }
 
-            if (reModel == null) return "数据为空";
+            if (reModel == null) return "数据为空？这个币是瓦特了吧";
 
             reStr = "【" + key + "】价格:" + reModel.tick.data[0].price + " 方向:" + reModel.tick.data[0].direction + " 成交量:" + reModel.tick.data[0].amount;
             return reStr;
