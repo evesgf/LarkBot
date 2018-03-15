@@ -2,7 +2,7 @@
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <StartAction>Program</StartAction>
-    <StartProgram>E:\Dev\LarkBot\coolQ_Bot\CQA.exe</StartProgram>
+    <StartProgram>E:\PEV\LarkBot\coolQ_Bot\CQA.exe</StartProgram>
   </PropertyGroup>
   <PropertyGroup>
     <ProjectView>ProjectFiles</ProjectView>

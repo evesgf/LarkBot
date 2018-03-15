@@ -1,29 +1,56 @@
-﻿using System.IO;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Net;
-using System.Net.Security;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using System.Threading.Tasks;
 
 public class HttpUitls
 {
-    public static string Get(string Url,string contentType= "application/json; charset=UTF-8")
+    public static string Get(string Url)
     {
+        HttpWebRequest myRequest = (HttpWebRequest)WebRequest.Create(Url);
+        myRequest.Method = "GET";
 
-        ServicePointManager.ServerCertificateValidationCallback = new RemoteCertificateValidationCallback(CheckValidationResult);
+        HttpWebResponse myResponse = null;
+        try
+        {
+            myResponse = (HttpWebResponse)myRequest.GetResponse();
+            StreamReader reader = new StreamReader(myResponse.GetResponseStream(), Encoding.UTF8);
+            string content = reader.ReadToEnd();
+            return content;
+        }
+        //异常请求  
+        catch (WebException e)
+        {
+            return e.ToString();
+            //myResponse = (HttpWebResponse)e.Response;
+            //using (Stream errData = myResponse.GetResponseStream())
+            //{
+            //    using (StreamReader reader = new StreamReader(errData))
+            //    {
+            //        string text = reader.ReadToEnd();
 
-        //System.GC.Collect();
+            //        return text;
+            //    }
+            //}
+        }
+    }
+
+    public static string Post(string Url, string Data, string Referer)
+    {
         HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);
-        request.Proxy = null;
-        request.KeepAlive = false;
-        request.Method = "GET";
-        request.ContentType = contentType;
-        request.AutomaticDecompression = DecompressionMethods.GZip;
-
-        request.ProtocolVersion = HttpVersion.Version10;
+        request.Method = "POST";
+        request.Referer = Referer;
+        byte[] bytes = Encoding.UTF8.GetBytes(Data);
+        request.ContentType = "application/x-www-form-urlencoded";
+        request.ContentLength = bytes.Length;
+        Stream myResponseStream = request.GetRequestStream();
+        myResponseStream.Write(bytes, 0, bytes.Length);
 
         HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-        Stream myResponseStream = response.GetResponseStream();
-        StreamReader myStreamReader = new StreamReader(myResponseStream, Encoding.UTF8);
+        StreamReader myStreamReader = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
         string retString = myStreamReader.ReadToEnd();
 
         myStreamReader.Close();
@@ -37,17 +64,46 @@ public class HttpUitls
         {
             request.Abort();
         }
-
         return retString;
     }
 
-    private static bool CheckValidationResult(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors errors)
+    public static string HttpsGet(string Url)
     {
-        return true; //总是接受  
+        System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+
+        HttpWebRequest myRequest = (HttpWebRequest)WebRequest.Create(Url);
+        myRequest.Method = "Get";
+        myRequest.ContentType = "application/x-www-form-urlencoded";
+
+        HttpWebResponse myResponse = null;
+        try
+        {
+            myResponse = (HttpWebResponse)myRequest.GetResponse();
+            StreamReader reader = new StreamReader(myResponse.GetResponseStream(), Encoding.UTF8);
+            string content = reader.ReadToEnd();
+            return content;
+        }
+        //异常请求  
+        catch (WebException e)
+        {
+            return e.ToString();
+            //myResponse = (HttpWebResponse)e.Response;
+            //using (Stream errData = myResponse.GetResponseStream())
+            //{
+            //    using (StreamReader reader = new StreamReader(errData))
+            //    {
+            //        string text = reader.ReadToEnd();
+
+            //        return text;
+            //    }
+            //}
+        }
     }
 
-    public static string Post(string Url, string Data, string Referer)
+    public static string HttpsPost(string Url, string Data, string Referer)
     {
+        System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+
         HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);
         request.Method = "POST";
         request.Referer = Referer;
@@ -56,6 +112,7 @@ public class HttpUitls
         request.ContentLength = bytes.Length;
         Stream myResponseStream = request.GetRequestStream();
         myResponseStream.Write(bytes, 0, bytes.Length);
+        request.ProtocolVersion = HttpVersion.Version10;
 
         HttpWebResponse response = (HttpWebResponse)request.GetResponse();
         StreamReader myStreamReader = new StreamReader(response.GetResponseStream(), Encoding.UTF8);

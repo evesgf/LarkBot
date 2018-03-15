@@ -39,11 +39,13 @@ namespace Lark.Bot.CQA.Business
 
                 if (newKey.Length != 2) return "key 错误，形式为btc usdt";
 
-                var symbol = newKey[0] +"_"+ newKey[1];
+                var symbol = newKey[0] + "_" + newKey[1];
 
                 string url = "https://www.okex.com/api/v1/ticker.do?symbol=" + symbol;
 
-                var market = JsonHelper.DeserializeJsonToObject<Market>(HttpUitls.Get(url));
+                var res = HttpUitls.Get(url);
+
+                var market = JsonHelper.DeserializeJsonToObject<Market>(res);
 
                 var re = "哎哟？这是什么稀奇玩意？老铁们快来看看能炒一波不";
 
@@ -63,7 +65,7 @@ namespace Lark.Bot.CQA.Business
         /// <summary>
         /// 获取MyToken币价
         /// </summary>
-        /// <param name="key">btc_cny</param>
+        /// <param name="key">btc</param>
         /// <returns></returns>
         public string GetMyTokenPrice(string key)
         {
@@ -71,19 +73,19 @@ namespace Lark.Bot.CQA.Business
 
             try
             {
-                //string typeBcURL = "http://api.lb.mytoken.org/currency/filterlist";
+                string typeBcURL = "http://api.lb.mytoken.org/currency/filterlist";
 
-                //string data = "keyword=" + key + "&market_id=1303&timestamp=1514259573450&code=7c976da9f6797a8a85a73bf30562c6f6&platform=m&";
+                string data = "keyword=" + key + "&market_id=1303&timestamp=1514259573450&code=7c976da9f6797a8a85a73bf30562c6f6&platform=m&";
 
-                //var r = HttpUitls.Post(typeBcURL, data, "http://app.mytoken.io/");
-                //var a = JsonHelper.DeserializeJsonToObject<MTSelectBit>(r);
-                //var x = a.data.list.FirstOrDefault();
+                var r = HttpUitls.Post(typeBcURL, data, "http://app.mytoken.io/");
+                var a = JsonHelper.DeserializeJsonToObject<MTSelectBit>(r);
+                var x = a.data.list.FirstOrDefault();
 
                 //string listUrl = "http://api.lb.mytoken.org/ticker/currencyexchangelist?currency_id=" + x.currency_id + "&page=1&timestamp=1514266516737&code=d690c07d97539898d1387f7cf112d172&platform=m&";
 
-                string listUrl = "http://app.mytoken.io/currency/?com_id="+ key + "&market_id=1303&market_name=cmc&symbol=BTC&anchor=CNY&";
+                string listUrl = "https://api2.mytoken.org/ticker/currencyexchangelist?currency_id=" + 1 + "&page=1&size=500&timestamp=1520691110878&code=0f3f94848c27362d726b22858dd3e957&v=1.4.0&platform=m&language=zh_CN&";
 
-                var rex = HttpUitls.Get(listUrl);
+                var rex = HttpUitls.HttpsGet(listUrl);
                 var b = JsonHelper.DeserializeJsonToObject<MTSelectBit>(rex);
                 if (b != null && b.data.list != null)
                 {
@@ -119,28 +121,20 @@ namespace Lark.Bot.CQA.Business
         {
             var reStr = string.Empty;
 
-            try
-            {
-                //火币形式为btcusdt
-                var newKey = key.Split(' ');
+            //火币形式为btcusdt
+            var newKey = key.Split(' ');
 
-                if (newKey.Length != 2) return "key 错误，形式为btc usdt";
+            if (newKey.Length != 2) return "key 错误，形式为btc usdt";
 
-                var symbol = newKey[0] + newKey[1];
-                var url = "https://api.huobi.pro/market/detail/merged?symbol=" + symbol;
-                var pageSorce = HttpUitls.Get(url, "application/x-www-form-urlencoded");
-                var reModel = JsonHelper.DeserializeJsonToObject<HuobiResult>(pageSorce);
+            var symbol = newKey[0] + newKey[1];
+            var url = "https://api.huobi.pro/market/trade?symbol=" + symbol;
+            var pageSorce = HttpUitls.HttpsGet(url);
+            var reModel = JsonHelper.DeserializeJsonToObject<HuobiResult>(pageSorce);
 
-                if (reModel == null) return "数据为空";
+            if (reModel == null) return "数据为空";
 
-                reStr = "【" + key + "】价格:" + reModel.tick.data[0].price + " 方向:" + reModel.tick.data[0].direction + " 成交量:" + reModel.tick.data[0].amount;
-                return reStr;
-            }
-            catch (Exception e)
-            {
-                reStr = "哎哟？这是什么稀奇玩意？老铁们快来看看能炒一波不";
-                return reStr;
-            }
+            reStr = "【" + key + "】价格:" + reModel.tick.data[0].price + " 方向:" + reModel.tick.data[0].direction + " 成交量:" + reModel.tick.data[0].amount;
+            return reStr;
         }
 
         public string FormartMTBit(MTBit bit)
@@ -149,7 +143,7 @@ namespace Lark.Bot.CQA.Business
             {
                 return "咱不卖";
             }
-            return bit.price_usd+ "$ ";
+            return bit.price_usd + "$ ";
         }
 
         /// <summary>
@@ -180,7 +174,7 @@ namespace Lark.Bot.CQA.Business
                 dict.Add(item.symbol, PerctangleToDecimal(item.changePercentage));
             }
 
-            var list = dict.OrderByDescending(x=>x.Value).Take(10);
+            var list = dict.OrderByDescending(x => x.Value).Take(10);
 
             if (list.Count() != 0)
             {
@@ -318,14 +312,16 @@ namespace Lark.Bot.CQA.Business
     #endregion
 
     #region MyTokenModel
+
     public class MTSelectBit
     {
         public int code { get; set; }
         public string message { get; set; }
-        public MTBitList data { get; set; }
+        public Data data { get; set; }
+        public int timestamp { get; set; }
     }
 
-    public class MTBitList
+    public class Data
     {
         public MTBit[] list { get; set; }
     }
@@ -336,7 +332,6 @@ namespace Lark.Bot.CQA.Business
         public string currency_id { get; set; }
         public string name { get; set; }
         public string symbol { get; set; }
-        public string alias { get; set; }
         public string rank { get; set; }
         public string alphabet { get; set; }
         public string mytoken_id { get; set; }
@@ -345,7 +340,6 @@ namespace Lark.Bot.CQA.Business
         public string logo { get; set; }
         public string market_id { get; set; }
         public string market_name { get; set; }
-        public string market_alias { get; set; }
         public string pair { get; set; }
         public string com_id { get; set; }
         public string currency { get; set; }
@@ -371,12 +365,16 @@ namespace Lark.Bot.CQA.Business
         public string kline_enabled { get; set; }
         public string search_field { get; set; }
         public string kline_source { get; set; }
+        public string alias { get; set; }
+        public string market_alias { get; set; }
+        public string is_new { get; set; }
         public string price_display { get; set; }
+        public string hr_price_display { get; set; }
         public string price_display_cny { get; set; }
         public string percent_change_display { get; set; }
         public string percent_change_range { get; set; }
-        public string is_favorite { get; set; }
     }
+
     #endregion
 
     #region 火币

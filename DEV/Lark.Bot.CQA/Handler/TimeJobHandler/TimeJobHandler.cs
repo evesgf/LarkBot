@@ -102,7 +102,7 @@ namespace Lark.Bot.CQA.Handler.TimeJobHandler
                 //}
 
                 //查询币圈
-                reMsg += _coinService.GetMyTokenPrice("btc");
+                reMsg += _coinService.GetOKEXCoinPrice("btc usdt");
 
                 //涨跌幅排名
                 //reMsg += "\n【OK涨幅排名】"+_coinService.GetOkexTopTracks();
