@@ -285,16 +285,17 @@ namespace Lark.Bot.CQA.Business
         public decimal vol { get; set; }
     }
 
+    #region OkexTackers
 
     public class OkexTackers
     {
         public int code { get; set; }
-        public OkexDatum[] data { get; set; }
+        public OkexTackersDatum[] data { get; set; }
         public string detailMsg { get; set; }
         public string msg { get; set; }
     }
 
-    public class OkexDatum
+    public class OkexTackersDatum
     {
         public string buy { get; set; }
         public string change { get; set; }
@@ -308,14 +309,20 @@ namespace Lark.Bot.CQA.Business
         public string last { get; set; }
         public string low { get; set; }
         public int marketFrom { get; set; }
-        public string name { get; set; }
+        public Name name { get; set; }
         public string open { get; set; }
-        public int orderIndex { get; set; }
+        public string orderIndex { get; set; }
         public int productId { get; set; }
         public string sell { get; set; }
         public string symbol { get; set; }
         public string volume { get; set; }
     }
+
+    public class Name
+    {
+    }
+
+    #endregion
 
     #endregion
 

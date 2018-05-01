@@ -17,6 +17,6 @@ namespace Business.Coin
         /// <param name="coinId">coin值1为btc,2为usdt</param>
         /// <param name="tradeType">tradeType值1为买0为卖</param>
         /// <returns></returns>
-        Task<CrawlerResult<string>> LegalTender(int coinId, int tradeType);
+        CrawlerResult<string> LegalTender(int coinId, int tradeType);
     }
 }

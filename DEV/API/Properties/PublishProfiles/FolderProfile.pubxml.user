@@ -6,7 +6,7 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>E:\Dev\LarkBot\DEV\API\bin\Debug\PublishOutput</_PublishTargetUrl>
+    <_PublishTargetUrl>E:\PEV\LarkBot\DEV\API\bin\Debug\PublishOutput</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <DestinationConnectionStrings Include="MySqlConnection">

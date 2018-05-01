@@ -32,7 +32,7 @@ namespace Business.Coin
         /// <param name="coinId">coin值1为btc,2为usdt</param>
         /// <param name="tradeType">tradeType值1为买0为卖</param>
         /// <returns></returns>
-        public async Task<CrawlerResult<string>> LegalTender(int coinId,int tradeType)
+        public CrawlerResult<string> LegalTender(int coinId,int tradeType)
         {
             var result = new CrawlerResult<string>();
 
@@ -48,10 +48,13 @@ namespace Business.Coin
                 result.Msg = "爬虫抓取失败:" + ex;
             };
 
-            //启动爬虫
-            var reJson =await crawler.StartAsync(new Uri("https://api-otc.huobi.pro/v1/otc/trade/list/public?coinId="+ coinId + "&tradeType="+ tradeType + "&currentPage=1&payWay=&country=&merchant=0&online=1&range=0"), null);
+            //coinId=1，tradeType=1是BTC
+            //coinId=2，tradeType=1是USDT
+            //coinId=3，tradeType=1是ETH
+            var url = "https://otc-api.huobipro.com/v1/otc/trade/list/public?coinId=" + coinId + "&tradeType=" + tradeType + "&currentPage=1&payWay=&country=&merchant=1&online=1&range=0&currPage=1";
 
-            if (!result.Success) return result;
+            //启动爬虫
+            var reJson = HttpUitls.Get(url, "https://otc.huobipro.com/","https://otc.huobipro.com");
 
             try
             {

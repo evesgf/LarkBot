@@ -35,6 +35,7 @@ namespace Lark.Bot.CQA.Handler.GroupMessageHandler
                 result.Msg += "【监听列表 okex】 | ";
                 result.Msg += "【okex涨幅】 | ";
                 result.Msg += "【okex跌幅】 | ";
+                result.Msg += "【okex涨跌幅】 | ";
                 result.Msg += "【早报】 | ";
 
                 result.IsHit = true;
@@ -271,6 +272,28 @@ namespace Lark.Bot.CQA.Handler.GroupMessageHandler
                     result.IsHit = true;
                     result.Msg = "发生了什么？怎么什么都没有？？";
                     
+                }
+            }
+
+            //okex涨跌幅
+            if (context.Message.Equals("okex涨跌幅"))
+            {
+                var str = _iCoinService.GetOkexTopTracks();
+                var str2= _iCoinService.GetOkexBottomTracks();
+
+                if (!string.IsNullOrEmpty(str) && !string.IsNullOrEmpty(str2))
+                {
+                    //回发
+                    result.IsHit = true;
+                    result.Msg = "【okex涨幅】\n"+str + "\n【okex跌幅】\n" + str2;
+
+                }
+                else
+                {
+                    //回发
+                    result.IsHit = true;
+                    result.Msg = "发生了什么？怎么什么都没有？？";
+
                 }
             }
 
