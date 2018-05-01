@@ -1,9 +1,11 @@
-﻿using Lark.Bot.CQA.Commons;
+﻿using Lark.Bot.CQA.Uitls;
+using Lark.Bot.CQA.Uitls.Config;
 using Newbe.Mahua.MahuaEvents;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,28 +15,45 @@ namespace Lark.Bot.CQA.Services
     {
         public const string api = "https://api.coinmarketcap.com/v1/ticker/";
 
-       
+        public CoinmarketcapTicker[] GetTickerList()
+        {
+            var reStr = HttpUitls.Get(api);
+            var models = JsonConvert.DeserializeObject<CoinmarketcapTicker[]>(reStr);
+            return models;
+        }
 
         /// <summary>
         /// 形式为：https://api.coinmarketcap.com/v1/ticker/bitcoin/
         /// </summary>
         /// <param name="key">bitcoin</param>
         /// <returns></returns>
-        public string GetTicker(string key)
+        public async Task<string> GetTicker(string key)
         {
-            var reStr = HttpUitls.Get(api + key + "/");
+            key = ConfigManager.CheckSymbol(key);
 
-            if (reStr.Substring(7, 12).Equals("error"))
+            HttpResult httpResult =await HttpUitls.HttpGetRequestAsync(api + key + "/");
+
+            if (httpResult.Success)
             {
-                return JsonConvert.DeserializeObject<CoinmarketcapError>(reStr).error;
+                if (httpResult.StrResponse.Substring(7, 12).Equals("error"))
+                {
+                    return "这啥玩意啊？我咋没见过咧？";
+                }
+                else
+                {
+                    var model = JsonConvert.DeserializeObject<CoinmarketcapTicker[]>(httpResult.StrResponse);
+
+                    var reMessage = "【" + key + "】" + model[0].price_btc + "btc/" + model[0].price_usd + "usdt";
+                    reMessage += " " + model[0].percent_change_1h + "%/" + model[0].percent_change_24h + "%/" + model[0].percent_change_7d + "% " + TimeUitls.Unix2Datetime(Convert.ToInt64(model[0].last_updated)).ToShortTimeString();
+                    return reMessage;
+                }
             }
             else
             {
-                var model = JsonConvert.DeserializeObject<CoinmarketcapTicker[]>(reStr);
-
-                var reMessage ="【"+ key+"】" + model[0].price_btc+"btc/"+ model[0].price_usd+"usdt";
-                return reMessage;
+                var re = httpResult.StrResponse.Length < 48 ? httpResult.StrResponse : httpResult.StrResponse.Substring(0, 48);
+                return re + "oh~锅咩锅咩~程序跪了~";
             }
+            
         }
 
         #region POJO

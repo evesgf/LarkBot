@@ -1,4 +1,4 @@
-﻿using Lark.Bot.CQA.Commons.Config;
+﻿using Lark.Bot.CQA.Uitls.Config;
 using Newbe.Mahua;
 using Newbe.Mahua.MahuaEvents;
 using System;

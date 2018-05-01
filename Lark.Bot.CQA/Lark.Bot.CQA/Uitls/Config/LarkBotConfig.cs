@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lark.Bot.CQA.Commons.Config
+namespace Lark.Bot.CQA.Uitls.Config
 {
     public class LarkBotConfig: ConfigBase
     {

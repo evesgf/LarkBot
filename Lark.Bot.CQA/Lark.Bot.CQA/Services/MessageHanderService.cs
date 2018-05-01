@@ -1,4 +1,6 @@
-﻿using Newbe.Mahua.MahuaEvents;
+﻿using Lark.Bot.CQA.Uitls.Config;
+using Newbe.Mahua.MahuaEvents;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Lark.Bot.CQA.Services
@@ -24,13 +26,14 @@ namespace Lark.Bot.CQA.Services
         /// <returns></returns>
         public string CheckKeyWordAsync(GroupMessageReceivedContext context)
         {
-            //看币价 btc
-            if (context.Message.Length > 5 && context.Message.Substring(0, 4).Equals("看币价 "))
+            //btc
+            Regex regEnglish = new Regex("^[a-z]");
+            if (context.Message.Length < 5 && context.Message.Length >=3 && regEnglish.IsMatch(context.Message))
             {
-                //var key = context.Message.Remove(0, 4);
-                //var re = _coinmarketcapService.GetTicker(key);
+                var key = ConfigManager.CheckSymbol(context.Message);
+                string re = _coinmarketcapService.GetTicker(key).Result;
 
-                //return re;
+                return re;
             }
 
             //查币价 eos btc
@@ -38,12 +41,12 @@ namespace Lark.Bot.CQA.Services
             {
                 string key = context.Message.Remove(0, 4);
 
-                var reOkex = _okexService.Ticker(key);
-                var reHuobi = _huobiService.Ticker(key);
+                string reOkex = _okexService.Ticker(key).Result;
+                string reHuobi = _huobiService.Ticker(key).Result;
 
                 string[] keys = context.Message.Split(' ');
                 //eos
-                var reCM =_coinmarketcapService.GetTicker(keys[1]);
+                string reCM =_coinmarketcapService.GetTicker(keys[1]).Result;
 
                 return "【okex】" + reOkex +"\n【火币】"+ reHuobi+"\n【cm】"+ reCM;
             }

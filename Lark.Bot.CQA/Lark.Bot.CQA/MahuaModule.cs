@@ -1,8 +1,11 @@
 ﻿using Autofac;
+using Autofac.Extras.Quartz;
 using Lark.Bot.CQA.MahuaEvents;
 using Lark.Bot.CQA.Services;
+using Lark.Bot.CQA.TimeJobs;
 using Newbe.Mahua;
 using Newbe.Mahua.MahuaEvents;
+using Quartz;
 
 namespace Lark.Bot.CQA
 {
@@ -49,11 +52,16 @@ namespace Lark.Bot.CQA
             {
                 base.Load(builder);
                 // 将需要监听的事件注册，若缺少此注册，则不会调用相关的实现类
-
                 #region Init
                 builder.RegisterType<InitEvent>().As<IInitializationMahuaEvent>();
 
                 builder.RegisterType<ExceptionEvent>().As<IExceptionOccuredMahuaEvent>();
+
+                //注册定时任务模块
+                builder.RegisterModule(new QuartzAutofacFactoryModule());
+                builder.RegisterModule(new QuartzAutofacJobsModule(typeof(GetNewsJob).Assembly));
+
+                builder.RegisterType<CoinNewsTimeJob>().As<ICoinNewsTimeJob>().SingleInstance();
                 #endregion
 
                 #region Evennts
@@ -67,6 +75,9 @@ namespace Lark.Bot.CQA
                 builder.RegisterType<CoinmarketcapService>().As<ICoinmarketcapService>();
                 builder.RegisterType<OkexService>().As<IOkexService>();
                 builder.RegisterType<HuobiService>().As<IHuobiService>();
+
+                //新闻
+                builder.RegisterType<NewsService>().As<INewsService>();
                 #endregion
             }
         }

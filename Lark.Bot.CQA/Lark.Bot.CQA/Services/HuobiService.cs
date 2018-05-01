@@ -1,4 +1,4 @@
-﻿using Lark.Bot.CQA.Commons;
+﻿using Lark.Bot.CQA.Uitls;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -17,7 +17,7 @@ namespace Lark.Bot.CQA.Services
             return null;
         }
 
-        public string Ticker(string key)
+        public async Task<string> Ticker(string key)
         {
             //火币形式为btcusdt
             var newKey = key.Split(' ');
@@ -26,13 +26,22 @@ namespace Lark.Bot.CQA.Services
 
             var symbol = newKey[0] + newKey[1];
             var url = "https://api.huobi.pro/market/trade?symbol=" + symbol;
-            var pageSorce = HttpUitls.HttpsGet(url);
-            var reModel = JsonConvert.DeserializeObject<HuobiResult>(pageSorce);
+            HttpResult httpResult =await HttpUitls.HttpsGetRequestAsync(url);
 
-            if (reModel == null) return "数据为空？这个币是瓦特了吧";
+            if (httpResult.Success)
+            {
+                var reModel = JsonConvert.DeserializeObject<HuobiResult>(httpResult.StrResponse);
 
-            var reStr = "【" + key + "】价格:" + reModel.tick.data[0].price + " 方向:" + reModel.tick.data[0].direction + " 成交量:" + reModel.tick.data[0].amount;
-            return reStr;
+                if (reModel == null) return "数据为空？这个币是瓦特了吧";
+
+                var reStr = "【" + key + "】价格:" + reModel.tick.data[0].price + " 方向:" + reModel.tick.data[0].direction + " 成交量:" + reModel.tick.data[0].amount;
+                return reStr;
+            }
+            else
+            {
+                var re = httpResult.StrResponse.Length < 48 ? httpResult.StrResponse : httpResult.StrResponse.Substring(0, 48);
+                return re + "oh~锅咩锅咩~程序跪了~";
+            }
         }
 
         #region Huobi Pojo

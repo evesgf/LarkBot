@@ -10,6 +10,6 @@ namespace Lark.Bot.CQA.Services
     {
         string LegalTender(string key);
 
-        string Ticker(string key);
+        Task<string> Ticker(string key);
     }
 }

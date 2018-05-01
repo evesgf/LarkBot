@@ -1,4 +1,4 @@
-﻿using Lark.Bot.CQA.Commons;
+﻿using Lark.Bot.CQA.Uitls;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -28,7 +28,7 @@ namespace Lark.Bot.CQA.Services
         /// </summary>
         /// <param name="key">ltc_btc</param>
         /// <returns></returns>
-        public string Ticker(string key)
+        public async Task<string> Ticker(string key)
         {
             //okex形式为btc_usdt
             var newKey = key.Split(' ');
@@ -39,20 +39,25 @@ namespace Lark.Bot.CQA.Services
 
             string url = api+"?symbol=" + symbol;
 
-            var res = HttpUitls.Get(url);
+            HttpResult httpResult =await HttpUitls.HttpsGetRequestAsync(url);
 
-            var market = JsonConvert.DeserializeObject<Market>(res);
-
-            var re = "哎哟？这是什么稀奇玩意？老铁们快来看看能炒一波不";
-
-            if (market.date != null && market.ticker != null)
+            if (httpResult.Success)
             {
-                re = "【" + key + "】买一:" + market.ticker.buy + " 最高:" + market.ticker.high + " 最新成交:" + market.ticker.last + " 最低:" + market.ticker.low + " 卖一:" + market.ticker.sell + " 24h成交:" + market.ticker.vol;
+                var market = JsonConvert.DeserializeObject<Market>(httpResult.StrResponse);
 
+                var re = "哎哟？这是什么稀奇玩意？老铁们快来看看能炒一波不";
+
+                if (market.date != null && market.ticker != null)
+                {
+                    re = "【" + key + "】买一:" + market.ticker.buy + " 最高:" + market.ticker.high + " 最新成交:" + market.ticker.last + " 最低:" + market.ticker.low + " 卖一:" + market.ticker.sell + " 24h成交:" + market.ticker.vol;
+                }
                 return re;
             }
-
-            return null;
+            else
+            {
+                var re = httpResult.StrResponse.Length < 48 ? httpResult.StrResponse : httpResult.StrResponse.Substring(0, 48);
+                return re + "oh~锅咩锅咩~程序跪了~";
+            }
         }
 
 

@@ -6,48 +6,72 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lark.Bot.CQA.Commons
+namespace Lark.Bot.CQA.Uitls
 {
+    /// <summary>
+    /// https://www.cnblogs.com/DamonCoding/p/8475466.html
+    /// </summary>
     public static class HttpUitls
     {
-        public static string Get(string Url, string Referer = null, string cross = null)
+        public static async Task<HttpResult> HttpGetRequestAsync(string url)
         {
-            HttpWebRequest myRequest = (HttpWebRequest)WebRequest.Create(Url);
-            myRequest.Method = "GET";
+            return await Task.Run(()=> {
+                HttpResult httpResult = new HttpResult();
 
-            if (Referer != null)
-            {
-                myRequest.Referer = Referer;
-            }
+                var getRequest = HttpWebRequest.Create(url) as HttpWebRequest;
+                getRequest.Method = "GET";
+                getRequest.Timeout = 10000;
+                getRequest.ContentType = "text/html;charset=UTF-8";
+                getRequest.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
 
-            HttpWebResponse myResponse = null;
-            try
-            {
-                myResponse = (HttpWebResponse)myRequest.GetResponse();
-                if (cross != null)
+                try
                 {
-                    myResponse.Headers.Add("Access-Control-Allow-Origin", cross);
+                    var myResponse = (HttpWebResponse)getRequest.GetResponse();
+
+                    using (StreamReader reader = new StreamReader(myResponse.GetResponseStream(), Encoding.UTF8))
+                    {
+                        httpResult.StrResponse = reader.ReadToEnd();
+                        httpResult.Success = true;
+                    }
+
+                }
+                //异常请求  
+                catch (WebException e)
+                {
+                    httpResult.StrResponse = e.Message;
+                    httpResult.Success = false;
                 }
 
-                StreamReader reader = new StreamReader(myResponse.GetResponseStream(), Encoding.UTF8);
-                string content = reader.ReadToEnd();
-                return content;
+                return httpResult;
+            });
+        }
+
+        public static string Get(string url)
+        {
+            string responseResult = string.Empty;
+            var getRequest = HttpWebRequest.Create(url) as HttpWebRequest;
+            getRequest.Method = "GET";
+            getRequest.Timeout = 10000;
+            getRequest.ContentType = "text/html;charset=UTF-8";
+            getRequest.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
+
+            try
+            {
+                var myResponse = (HttpWebResponse)getRequest.GetResponse();
+
+                using (StreamReader reader = new StreamReader(myResponse.GetResponseStream(), Encoding.UTF8))
+                {
+                    responseResult = reader.ReadToEnd();
+                }
+
             }
             //异常请求  
             catch (WebException e)
             {
-                return e.ToString();
-                //myResponse = (HttpWebResponse)e.Response;
-                //using (Stream errData = myResponse.GetResponseStream())
-                //{
-                //    using (StreamReader reader = new StreamReader(errData))
-                //    {
-                //        string text = reader.ReadToEnd();
-
-                //        return text;
-                //    }
-                //}
+                responseResult = e.Message;
             }
+
+            return responseResult;
         }
 
         public static string Post(string Url, string Data, string Referer)
@@ -143,5 +167,57 @@ namespace Lark.Bot.CQA.Commons
             }
             return retString;
         }
+
+        public static async Task<HttpResult> HttpsGetRequestAsync(string url)
+        {
+            return await Task.Run(() =>
+            {
+                HttpResult httpResult = new HttpResult();
+
+                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+
+                HttpWebRequest myRequest = (HttpWebRequest)WebRequest.Create(url);
+                myRequest.Method = "Get";
+                myRequest.ContentType = "application/x-www-form-urlencoded";
+
+                try
+                {
+                    var myResponse = (HttpWebResponse)myRequest.GetResponse();
+
+                    using (StreamReader reader = new StreamReader(myResponse.GetResponseStream(), Encoding.UTF8))
+                    {
+                        httpResult.StrResponse = reader.ReadToEnd();
+                        httpResult.Success = true;
+                    }
+
+                }
+                //异常请求  
+                catch (WebException e)
+                {
+                    httpResult.StrResponse = e.Message;
+                    httpResult.Success = false;
+                }
+
+                return httpResult;
+
+                return httpResult;
+            });
+        }
+    }
+
+    /// <summary>
+    /// Http请求的返回结果
+    /// </summary>
+    public class HttpResult
+    {
+        /// <summary>
+        /// 请求状态
+        /// </summary>
+        public bool Success { get; set; }
+
+        /// <summary>
+        /// 详细报文
+        /// </summary>
+        public string StrResponse { get; set; }
     }
 }
