@@ -1,12 +1,11 @@
 ﻿using Autofac;
-using Lark.Bot.CQA.Common;
+using Autofac.Extras.Quartz;
 using Lark.Bot.CQA.MahuaEvents;
-using Lark.Bot.CQA.Modules;
-using Lark.Bot.CQA.Modules.Coin;
+using Lark.Bot.CQA.Services;
+using Lark.Bot.CQA.TimeJobs;
 using Newbe.Mahua;
 using Newbe.Mahua.MahuaEvents;
-using System;
-using System.Linq;
+using Quartz;
 
 namespace Lark.Bot.CQA
 {
@@ -53,23 +52,33 @@ namespace Lark.Bot.CQA
             {
                 base.Load(builder);
                 // 将需要监听的事件注册，若缺少此注册，则不会调用相关的实现类
+                #region Init
+                builder.RegisterType<InitEvent>().As<IInitializationMahuaEvent>();
 
-                //Lark Register
-                builder.RegisterType<PrivateMessageFromFriendReceivedMahuaEvent1>().As<IPrivateMessageFromFriendReceivedMahuaEvent>();
-                builder.RegisterType<GroupMessageReceivedMahuaEvent1>().As<IGroupMessageReceivedMahuaEvent>();
-                builder.RegisterType<DiscussMessageReceivedMahuaEvent1>().As<IDiscussMessageReceivedMahuaEvent>();
+                builder.RegisterType<ExceptionEvent>().As<IExceptionOccuredMahuaEvent>();
 
-                //主动推艹币群
-                builder.RegisterType<InitializationMahuaEvent1>().As<IInitializationMahuaEvent>();
+                //注册定时任务模块
+                builder.RegisterModule(new QuartzAutofacFactoryModule());
+                builder.RegisterModule(new QuartzAutofacJobsModule(typeof(GetNewsJob).Assembly));
 
-                //builder.RegisterType<CoinHandler>().As<IMsgHandler>();
-                //builder.RegisterType<CoinService>().As<ICoinService>();
+                builder.RegisterType<CoinNewsTimeJob>().As<ICoinNewsTimeJob>().SingleInstance();
+                #endregion
 
-                ////自动注入
-                var baseType = typeof(IDependency);
-                var assemblys = AppDomain.CurrentDomain.GetAssemblies().ToList();
-                var allService = assemblys.SelectMany(s => s.GetTypes()).Where(p => baseType.IsAssignableFrom(p) && p != baseType);
-                builder.RegisterAssemblyTypes(assemblys.ToArray()).Where(t => baseType.IsAssignableFrom(t) && t != baseType).AsImplementedInterfaces().InstancePerLifetimeScope();
+                #region Evennts
+                builder.RegisterType<GMRMEvent>().As<IGroupMessageReceivedMahuaEvent>();
+
+                #endregion
+
+                #region Services
+                builder.RegisterType<MessageHanderService>().As<IMessageHanderService>();
+
+                builder.RegisterType<CoinmarketcapService>().As<ICoinmarketcapService>();
+                builder.RegisterType<OkexService>().As<IOkexService>();
+                builder.RegisterType<HuobiService>().As<IHuobiService>();
+
+                //新闻
+                builder.RegisterType<NewsService>().As<INewsService>();
+                #endregion
             }
         }
     }
