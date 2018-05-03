@@ -113,7 +113,7 @@ namespace Lark.Bot.CQA.Uitls.Config
             }
             else
             {
-                return key;
+                return null;
             }
         }
     }

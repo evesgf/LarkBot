@@ -66,6 +66,7 @@ namespace Lark.Bot.CQA
 
                 #region Evennts
                 builder.RegisterType<GMRMEvent>().As<IGroupMessageReceivedMahuaEvent>();
+                builder.RegisterType<PMRMEvent>().As<IPrivateMessageReceivedMahuaEvent>();
 
                 #endregion
 

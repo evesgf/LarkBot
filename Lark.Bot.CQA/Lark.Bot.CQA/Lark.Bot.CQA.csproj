@@ -89,6 +89,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MahuaEvents\PMRMEvent.cs" />
     <Compile Include="Uitls\Config\ConfigManager.cs" />
     <Compile Include="Uitls\Config\LarkBotConfig.cs" />
     <Compile Include="Uitls\Config\PushNewsConfig.cs" />

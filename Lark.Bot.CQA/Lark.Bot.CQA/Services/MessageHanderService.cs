@@ -28,12 +28,14 @@ namespace Lark.Bot.CQA.Services
         {
             //btc
             Regex regEnglish = new Regex("^[a-z]");
-            if (context.Message.Length < 5 && context.Message.Length >=3 && regEnglish.IsMatch(context.Message))
+            if (context.Message.Length < 5  && regEnglish.IsMatch(context.Message))
             {
-                var key = ConfigManager.CheckSymbol(context.Message);
-                string re = _coinmarketcapService.GetTicker(key).Result;
-
-                return re;
+                string key = ConfigManager.CheckSymbol(context.Message);
+                if (!string.IsNullOrEmpty(key))
+                {
+                    string re = _coinmarketcapService.GetTicker(context.Message).Result;
+                    return re;
+                }
             }
 
             //查币价 eos btc
