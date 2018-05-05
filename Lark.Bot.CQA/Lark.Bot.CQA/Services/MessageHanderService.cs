@@ -53,6 +53,14 @@ namespace Lark.Bot.CQA.Services
                 return "【okex】" + reOkex +"\n【火币】"+ reHuobi+"\n【cm】"+ reCM;
             }
 
+            //场外币价
+            if (context.Message.Equals("场外币价"))
+            {
+                string huobiOTC = _huobiService.LegalTender().Result;
+
+                return huobiOTC;
+            }
+
             return null;
         }
     }

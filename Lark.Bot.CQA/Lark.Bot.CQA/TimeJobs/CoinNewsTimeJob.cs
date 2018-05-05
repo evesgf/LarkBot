@@ -23,12 +23,14 @@ namespace Lark.Bot.CQA.TimeJobs
 
         private readonly INewsService _newsService;
         private readonly ICoinmarketcapService _coinmarketcapService;
+        private readonly IHuobiService _huobiService;
 
         public CoinNewsTimeJob(
             IMahuaApi mahuaApi,
             IScheduler scheduler, 
             INewsService newsService, 
-            ICoinmarketcapService coinmarketcapService
+            ICoinmarketcapService coinmarketcapService,
+            IHuobiService huobiService
             )
         {
             _mahuaApi = mahuaApi;
@@ -37,6 +39,7 @@ namespace Lark.Bot.CQA.TimeJobs
 
             _newsService = newsService;
             _coinmarketcapService = coinmarketcapService;
+            _huobiService = huobiService;
         }
 
         public void StartPushNews()
@@ -134,6 +137,7 @@ namespace Lark.Bot.CQA.TimeJobs
 
                 //查询币圈
                 reMsg += _coinmarketcapService.GetTicker("bitcoin").Result;
+                reMsg += "\n"+ _huobiService.LegalTender();
 
                 //涨跌幅排名
                 //reMsg += "\n【OK涨幅排名】"+_coinService.GetOkexTopTracks();

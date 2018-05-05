@@ -8,7 +8,7 @@ namespace Lark.Bot.CQA.Services
 {
     public interface IHuobiService
     {
-        string LegalTender(string key);
+        Task<string> LegalTender();
 
         Task<string> Ticker(string key);
     }
