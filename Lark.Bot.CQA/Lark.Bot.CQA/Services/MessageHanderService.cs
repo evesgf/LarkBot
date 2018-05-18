@@ -10,13 +10,15 @@ namespace Lark.Bot.CQA.Services
         private readonly ICoinmarketcapService _coinmarketcapService;
         private readonly IOkexService _okexService;
         private readonly IHuobiService _huobiService;
+        private readonly INewsService _newsService;
 
         public MessageHanderService(ICoinmarketcapService coinmarketcapService,
-            IOkexService okexService, IHuobiService huobiService)
+            IOkexService okexService, IHuobiService huobiService, INewsService newsService)
         {
             _coinmarketcapService = coinmarketcapService;
             _okexService = okexService;
             _huobiService = huobiService;
+            _newsService = newsService;
         }
 
         /// <summary>
@@ -59,6 +61,18 @@ namespace Lark.Bot.CQA.Services
                 string huobiOTC = _huobiService.LegalTender().Result;
 
                 return huobiOTC;
+            }
+
+            //币圈消息
+            if (context.Message.Equals("币圈消息"))
+            {
+                string[] re = _newsService.RequestBiQuanApi();
+                string reNews = re[0];
+                for (int i = 1; i < re.Length; i++)
+                {
+                    reNews += "\n"+re[i];
+                }
+                return reNews;
             }
 
             return null;

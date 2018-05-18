@@ -2,6 +2,7 @@
 using Autofac.Extras.Quartz;
 using Lark.Bot.CQA.MahuaEvents;
 using Lark.Bot.CQA.Services;
+using Lark.Bot.CQA.Services.News;
 using Lark.Bot.CQA.TimeJobs;
 using Newbe.Mahua;
 using Newbe.Mahua.MahuaEvents;
@@ -79,6 +80,9 @@ namespace Lark.Bot.CQA
 
                 //新闻
                 builder.RegisterType<NewsService>().As<INewsService>();
+
+                builder.RegisterType<JinseService>().As<IJinseService>();
+                builder.RegisterType<BishijieService>().As<IBishijieService>();
                 #endregion
             }
         }

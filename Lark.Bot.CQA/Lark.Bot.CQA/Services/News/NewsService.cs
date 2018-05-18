@@ -1,4 +1,5 @@
-﻿using Lark.Bot.CQA.Uitls;
+﻿using Lark.Bot.CQA.Services.News;
+using Lark.Bot.CQA.Uitls;
 using Lark.Bot.CQA.Uitls.Config;
 using Newtonsoft.Json;
 using System;
@@ -11,18 +12,30 @@ namespace Lark.Bot.CQA.Services
 {
     public class NewsService:INewsService
     {
+        private readonly IBishijieService _bishijieService;
+        private readonly IJinseService _jinseService;
+
+        public NewsService(
+            IBishijieService bishijieService, 
+            IJinseService jinseService
+            )
+        {
+            _bishijieService = bishijieService;
+            _jinseService = jinseService;
+        }
+
         public string[] RequestBiQuanApi()
         {
             string[] reStr;
 
             try
             {
-                var jinseLatestNewsFlash = JsonConvert.DeserializeObject<CoinNewsResultModel<CoinNewsModel>>(HttpUitls.Get(ConfigManager.pushNewsConfig.NewsServerURL + "/News/GetJinseLatestNewsFlash"));
-                var bishijieLatestNewsFlash = JsonConvert.DeserializeObject<CoinNewsResultModel<CoinNewsModel>>(HttpUitls.Get(ConfigManager.pushNewsConfig.NewsServerURL + "/News/GetBishijieLatestNewsFlash"));
+                var jinseLatestNewsFlash = _jinseService.GetLatestNewsFlash().Result;
+                var bishijieLatestNewsFlash = _bishijieService.GetLatestNewsFlash().Result;
                 var bitcoinLatestNewsFlash = JsonConvert.DeserializeObject<CoinNewsResultModel<CoinNewsModel>>(HttpUitls.Get(ConfigManager.pushNewsConfig.NewsServerURL + "/News/GetBitcoinLatestNewsFlash"));
                 var OkexNotice = JsonConvert.DeserializeObject<CoinNewsResultModel<CoinNewsModel>>(HttpUitls.Get(ConfigManager.pushNewsConfig.NewsServerURL + "/News/GetOkexLatestNotice"));
 
-                reStr = new string[] { "【金色财经】" + jinseLatestNewsFlash.Data.Content, "【币世界】" + bishijieLatestNewsFlash.Data.Content, "【Bitcoin】" + bitcoinLatestNewsFlash.Data.Content, "【OKEX公告】" + OkexNotice.Data.Title + " " + OkexNotice.Data.FromUrl };
+                reStr = new string[] { "【金色财经】" + jinseLatestNewsFlash, "【币世界】" + bishijieLatestNewsFlash, "【Bitcoin】" + bitcoinLatestNewsFlash.Data.Content, "【OKEX公告】" + OkexNotice.Data.Title + " " + OkexNotice.Data.FromUrl };
 
             }
             catch (Exception e)

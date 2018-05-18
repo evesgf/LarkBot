@@ -143,7 +143,7 @@ namespace Lark.Bot.CQA.TimeJobs
                 //reMsg += "\n【OK涨幅排名】"+_coinService.GetOkexTopTracks();
                 //reMsg += "\n【OK跌幅排名】" + _coinService.GetOkexBottomTracks();
 
-                SendNews(reMsg + "\n第" + sendCount + "次主动推送消息");
+                 SendNews(reMsg + "\n第" + sendCount + "次主动推送消息");
                 sendCount++;
             }
         }
