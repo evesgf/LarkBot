@@ -5,7 +5,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B008B949-722A-4AA3-AC45-1FC94D726083}</ProjectGuid>
+    <ProjectGuid>{9EE9A244-1EB7-42D6-AA0E-FDD1BAB66E10}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Lark.Bot.CQA</RootNamespace>
@@ -36,28 +36,43 @@
     <Reference Include="Autofac, Version=4.6.2.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <HintPath>..\packages\Autofac.4.6.2\lib\net45\Autofac.dll</HintPath>
     </Reference>
+    <Reference Include="Autofac.Extras.Quartz, Version=3.5.0.0, Culture=neutral, PublicKeyToken=595f708ada5feacc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.Extras.Quartz.3.5.0\lib\net45\Autofac.Extras.Quartz.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Logging, Version=3.3.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Common.Logging.3.3.1\lib\net40\Common.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Logging.Core, Version=3.3.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Common.Logging.Core.3.3.1\lib\net40\Common.Logging.Core.dll</HintPath>
+    </Reference>
     <Reference Include="MediatR, Version=3.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MediatR.3.0.1\lib\net45\MediatR.dll</HintPath>
     </Reference>
-    <Reference Include="MessagePack, Version=1.7.3.0, Culture=neutral, PublicKeyToken=b4a0369545f0a1be, processorArchitecture=MSIL">
-      <HintPath>..\packages\MessagePack.1.7.3\lib\net45\MessagePack.dll</HintPath>
+    <Reference Include="MessagePack, Version=1.7.3.2, Culture=neutral, PublicKeyToken=b4a0369545f0a1be, processorArchitecture=MSIL">
+      <HintPath>..\packages\MessagePack.1.7.3.2\lib\net45\MessagePack.dll</HintPath>
     </Reference>
-    <Reference Include="Newbe.Mahua, Version=1.5.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newbe.Mahua.1.5.2\lib\net452\Newbe.Mahua.dll</HintPath>
+    <Reference Include="Newbe.Mahua, Version=1.7.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newbe.Mahua.1.7.1\lib\net452\Newbe.Mahua.dll</HintPath>
     </Reference>
-    <Reference Include="Newbe.Mahua.PluginLoader, Version=1.5.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newbe.Mahua.PluginLoader.1.5.2\lib\net452\Newbe.Mahua.PluginLoader.dll</HintPath>
+    <Reference Include="Newbe.Mahua.PluginLoader, Version=1.7.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newbe.Mahua.PluginLoader.1.7.1\lib\net452\Newbe.Mahua.PluginLoader.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="Quartz, Version=2.6.1.0, Culture=neutral, PublicKeyToken=f6b8c98a402cc8a4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Quartz.2.6.1\lib\net40\Quartz.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Numerics" />
+    <Reference Include="System.Runtime.Remoting" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Threading.Tasks.Extensions, Version=4.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Threading.Tasks.Extensions.4.3.0\lib\portable-net45+win8+wp8+wpa81\System.Threading.Tasks.Extensions.dll</HintPath>
@@ -71,45 +86,45 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
-    <Reference Include="Tungsten.Domains, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Tungsten.Domains.1.0.0\lib\net45\Tungsten.Domains.dll</HintPath>
-    </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common\IDependency.cs" />
-    <Compile Include="MahuaEvents\DiscussMessageReceivedMahuaEvent1.cs" />
-    <Compile Include="MahuaEvents\GroupMessageReceivedMahuaEvent1.cs" />
-    <Compile Include="MahuaEvents\InitializationMahuaEvent1.cs" />
-    <Compile Include="MahuaEvents\PrivateMessageFromFriendReceivedMahuaEvent1.cs" />
+    <Compile Include="MahuaEvents\PMRMEvent.cs" />
+    <Compile Include="Uitls\Config\ConfigManager.cs" />
+    <Compile Include="Uitls\Config\LarkBotConfig.cs" />
+    <Compile Include="Uitls\Config\PushNewsConfig.cs" />
+    <Compile Include="Uitls\HttpUitls.cs" />
+    <Compile Include="Uitls\TimeUitls.cs" />
+    <Compile Include="MahuaEvents\ExceptionEvent.cs" />
+    <Compile Include="MahuaEvents\GMRMEvent.cs" />
+    <Compile Include="MahuaEvents\InitEvent.cs" />
     <Compile Include="MahuaModule.cs" />
-    <Compile Include="Modules\Coin\CoinService.cs" />
-    <Compile Include="Modules\Coin\ICoinService.cs" />
-    <Compile Include="Modules\Coin\Market.cs" />
-    <Compile Include="Models\MyTokenModel.cs" />
-    <Compile Include="Models\NewsList.cs" />
-    <Compile Include="Models\OKEXReMsg.cs" />
-    <Compile Include="Modules\Coin\CoinHandler.cs" />
-    <Compile Include="Modules\Coin\CoinModel.cs" />
-    <Compile Include="Modules\HnadlerResult.cs" />
-    <Compile Include="Modules\IMsgHandler.cs" />
-    <Compile Include="Modules\News\NewsModel.cs" />
-    <Compile Include="Modules\News\ResultModel.cs" />
-    <Compile Include="Modules\TrackCoin\OKTrickModel.cs" />
-    <Compile Include="Modules\TrackCoin\Singleton.cs" />
-    <Compile Include="Modules\TrackCoin\TrackInfoModel.cs" />
-    <Compile Include="Modules\TrackCoin\TrackManager.cs" />
     <Compile Include="MyMenuProvider.cs" />
     <Compile Include="PluginInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utils\HttpUitls.cs" />
-    <Compile Include="Utils\JsonHelper.cs" />
-    <Compile Include="Utils\RequestHandler.cs" />
+    <Compile Include="Services\CoinmarketcapService.cs" />
+    <Compile Include="Services\HuobiService.cs" />
+    <Compile Include="Services\ICoinmarketcapService.cs" />
+    <Compile Include="Services\IHuobiService.cs" />
+    <Compile Include="Services\IMessageHanderService.cs" />
+    <Compile Include="Services\INewsService.cs" />
+    <Compile Include="Services\IOkexService.cs" />
+    <Compile Include="Services\MessageHanderService.cs" />
+    <Compile Include="Services\NewsService.cs" />
+    <Compile Include="Services\OkexService.cs" />
+    <Compile Include="TimeJobs\CoinNewsTimeJob.cs" />
+    <Compile Include="TimeJobs\ICoinNewsTimeJob.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="build.bat" />
     <None Include="build.ps1" />
     <None Include="buildTools\packages.config" />
+    <None Include="job_scheduling_data_2_0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="MahuaApis\readme.md" />
+    <None Include="MahuaEvents\readme.md" />
     <None Include="NewbeLibs\Framework\NLog.config" />
     <None Include="NewbeLibs\Platform\CQP\Content\Newbe.Mahua.CQP.json" />
     <None Include="packages.config" />
@@ -129,7 +144,6 @@
     <Content Include="NewbeLibs\Framework\NLog.dll" />
     <Content Include="NewbeLibs\Framework\System.Threading.Tasks.Extensions.dll" />
     <Content Include="NewbeLibs\Framework\System.ValueTuple.dll" />
-    <Content Include="NewbeLibs\Framework\Tungsten.Domains.dll" />
     <Content Include="NewbeLibs\Platform\CQP\CLR\Newbe.Mahua.CQP.dll" />
     <Content Include="NewbeLibs\Platform\CQP\CLR\Newbe.Mahua.CQP.Native.dll" />
     <Content Include="NewbeLibs\Platform\CQP\CLR\Newbe.Mahua.CQP.Native.pdb" />
@@ -144,4 +158,8 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.2.6.1\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.2.6.1\build\Microsoft.Net.Compilers.props'))" />
   </Target>
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
 </Project>

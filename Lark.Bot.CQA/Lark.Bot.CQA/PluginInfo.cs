@@ -10,7 +10,7 @@ namespace Lark.Bot.CQA
         /// <summary>
         /// 版本号，建议采用 主版本.次版本.修订号 的形式
         /// </summary>
-        public string Version { get; set; } = "0.0.1";
+        public string Version { get; set; } = "1.0.0";
 
         /// <summary>
         /// 插件名称
@@ -31,6 +31,6 @@ namespace Lark.Bot.CQA
         /// <summary>
         /// 插件描述
         /// </summary>
-        public string Description { get; set; } = "自嗨用机器人";
+        public string Description { get; set; } = "Q群炒币机器人";
     }
 }
