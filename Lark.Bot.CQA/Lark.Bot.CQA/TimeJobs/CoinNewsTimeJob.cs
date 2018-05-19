@@ -76,7 +76,7 @@ namespace Lark.Bot.CQA.TimeJobs
         private static string lastMsg2 = null;
         private static string lastMsg3 = null;
         private static string lastMsg4 = null;
-        private static string morningPaper = null;
+        private static string lastMorningPaper = null;
 
         /// <summary>
         /// 检查是否有新的新闻
@@ -95,7 +95,11 @@ namespace Lark.Bot.CQA.TimeJobs
             var re = _newsService.RequestBiQuanApi();
 
             string msg1 = null;
-            if (!lastMsg1.Equals(re[0]))
+            string msg2 = null;
+            string msg3 = null;
+            string msg4 = null;
+
+            if (!re[0].Equals(lastMsg1))
             {
                 lastMsg1 = re[0];
                 msg1 = re[0] + "\n";
@@ -105,8 +109,7 @@ namespace Lark.Bot.CQA.TimeJobs
                 msg1 = null;
             }
 
-            string msg2 = null;
-            if (!lastMsg2.Equals(re[1]))
+            if (!re[1].Equals(lastMsg2))
             {
                 lastMsg2 = re[1];
                 msg2 = re[1] + "\n";
@@ -116,8 +119,7 @@ namespace Lark.Bot.CQA.TimeJobs
                 msg2 = null;
             }
 
-            string msg3 = null;
-            if (!lastMsg3.Equals(re[2]))
+            if (!re[2].Equals(lastMsg3))
             {
                 lastMsg3 = re[2];
                 msg3 = re[2] + "\n";
@@ -127,8 +129,7 @@ namespace Lark.Bot.CQA.TimeJobs
                 msg3 = null;
             }
 
-            string msg4 = null;
-            if (!lastMsg4.Equals(re[3]))
+            if (!re[3].Equals(lastMsg4))
             {
                 lastMsg4 = re[3];
                 msg4 = re[3] + "\n";
@@ -202,25 +203,29 @@ namespace Lark.Bot.CQA.TimeJobs
 
         private void CheckMorningPaper()
         {
-            var re = _pmtownService.GetMorningPapaer().Result;
-            if (!morningPaper.Equals(re))
+            var reMesg = _pmtownService.GetMorningPapaer().Result;
+            if (lastMorningPaper == null)
             {
-                morningPaper = re;
+                lastMorningPaper = reMesg;
+            }
+            else if (!reMesg.Substring(0, 24).Equals(lastMorningPaper.Substring(0, 24)))
+            {
+                lastMorningPaper = reMesg;
             }
             else
             {
-                morningPaper = null;
+                reMesg = null;
             }
 
-            if ( morningPaper!=null)
+            if (reMesg != null)
             {
                 foreach (var group in ConfigManager.pushNewsConfig.MorningPaperPushGroupList)
                 {
-                    _mahuaApi.SendGroupMessage(group, morningPaper + "\n第" + morningPaperSendCount + "天推送消息");
+                    _mahuaApi.SendGroupMessage(group, reMesg + "\n第" + morningPaperSendCount + "天推送消息");
                 }
                 foreach (var group in ConfigManager.pushNewsConfig.MorningPaperPushPrivateList)
                 {
-                    _mahuaApi.SendPrivateMessage(group, morningPaper + "\n第" + morningPaperSendCount + "天推送消息");
+                    _mahuaApi.SendPrivateMessage(group, reMesg + "\n第" + morningPaperSendCount + "天推送消息");
                 }
             }
             morningPaperSendCount++;
