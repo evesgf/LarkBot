@@ -12,7 +12,5 @@ namespace Lark.Bot.CQA.TimeJobs
         void StartPushNews();
 
         void CheckNews();
-
-        void SendNews(string msg);
     }
 }

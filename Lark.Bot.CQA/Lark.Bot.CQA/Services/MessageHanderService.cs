@@ -1,4 +1,5 @@
-﻿using Lark.Bot.CQA.Uitls.Config;
+﻿using Lark.Bot.CQA.Services.News;
+using Lark.Bot.CQA.Uitls.Config;
 using Newbe.Mahua.MahuaEvents;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -11,14 +12,16 @@ namespace Lark.Bot.CQA.Services
         private readonly IOkexService _okexService;
         private readonly IHuobiService _huobiService;
         private readonly INewsService _newsService;
+        private readonly IPmtownService _pmtownService;
 
         public MessageHanderService(ICoinmarketcapService coinmarketcapService,
-            IOkexService okexService, IHuobiService huobiService, INewsService newsService)
+            IOkexService okexService, IHuobiService huobiService, INewsService newsService, IPmtownService pmtownService)
         {
             _coinmarketcapService = coinmarketcapService;
             _okexService = okexService;
             _huobiService = huobiService;
             _newsService = newsService;
+            _pmtownService = pmtownService;
         }
 
         /// <summary>
@@ -72,6 +75,13 @@ namespace Lark.Bot.CQA.Services
                 {
                     reNews += "\n"+re[i];
                 }
+                return reNews;
+            }
+
+            //早报
+            if (context.Message.Equals("早报"))
+            {
+                string reNews = _pmtownService.GetMorningPapaer().Result;
                 return reNews;
             }
 
