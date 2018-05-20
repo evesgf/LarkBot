@@ -24,23 +24,45 @@ namespace Lark.Bot.CQA.Services
             _jinseService = jinseService;
         }
 
-        public string[] RequestBiQuanApi()
+        public NewsResult[] RequestBiQuanApi()
         {
-            string[] reStr;
+            NewsResult[] reStr;
 
             try
             {
-                var jinseLatestNewsFlash = _jinseService.GetLatestNewsFlash().Result;
-                var bishijieLatestNewsFlash = _bishijieService.GetLatestNewsFlash().Result;
-                var bitcoinLatestNewsFlash = JsonConvert.DeserializeObject<CoinNewsResultModel<CoinNewsModel>>(HttpUitls.Get(ConfigManager.pushNewsConfig.NewsServerURL + "/News/GetBitcoinLatestNewsFlash"));
-                var OkexNotice = JsonConvert.DeserializeObject<CoinNewsResultModel<CoinNewsModel>>(HttpUitls.Get(ConfigManager.pushNewsConfig.NewsServerURL + "/News/GetOkexLatestNotice"));
+                NewsResult jinseLatestNewsFlash = _jinseService.GetLatestNewsFlash().Result;
+                NewsResult bishijieLatestNewsFlash = _bishijieService.GetLatestNewsFlash().Result;
+                CoinNewsModel bitcoinLatestNewsFlash  = JsonConvert.DeserializeObject<CoinNewsResultModel<CoinNewsModel>>(HttpUitls.Get(ConfigManager.pushNewsConfig.NewsServerURL + "/News/GetBitcoinLatestNewsFlash")).Data;
 
-                reStr = new string[] { "【金色财经】" + jinseLatestNewsFlash, "【币世界】" + bishijieLatestNewsFlash, "【Bitcoin】" + bitcoinLatestNewsFlash.Data.Content, "【OKEX公告】" + OkexNotice.Data.Title + " " + OkexNotice.Data.FromUrl };
+                CoinNewsModel OkexNotice = JsonConvert.DeserializeObject<CoinNewsResultModel<CoinNewsModel>>(HttpUitls.Get(ConfigManager.pushNewsConfig.NewsServerURL + "/News/GetOkexLatestNotice")).Data;
 
+                reStr = new NewsResult[] {
+                    jinseLatestNewsFlash,
+                    bishijieLatestNewsFlash,
+                    new NewsResult{
+                        Success=true,
+                        From = "【bitcoin】",
+                        Content =bitcoinLatestNewsFlash.Content,
+                        NewsLevel=NewsLevel.Importent
+                    },
+                    new NewsResult{
+                        Success =true,
+                        From = "【Okex】",
+                        Content=OkexNotice.Title+" "+OkexNotice.FromUrl,
+                        NewsLevel=NewsLevel.Importent
+                    }
+                };
             }
+
             catch (Exception e)
             {
-                reStr = new string[] { e.ToString() + "\n席马达！程序BUG了，快召唤老铁来维修!" };
+                reStr = new NewsResult[] {
+                    new NewsResult
+                    {
+                        Success=false,
+                        Content=e.ToString() + "\n席马达！程序BUG了，快召唤老铁来维修!"
+                    }
+                };
             }
 
             return reStr;

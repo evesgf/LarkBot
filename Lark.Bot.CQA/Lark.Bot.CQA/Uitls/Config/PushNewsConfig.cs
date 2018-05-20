@@ -29,6 +29,11 @@ namespace Lark.Bot.CQA.Uitls.Config
         /// </summary>
         public string[] CoinNewsPushGroupList { get; set; }
         /// <summary>
+        /// normal类新闻间隔推送次数
+        /// </summary>
+        public int NormalNewsPushIntervalCount { get; set; }
+
+        /// <summary>
         /// 早报推送群组
         /// </summary>
         public string[] MorningPaperPushGroupList { get; set; }

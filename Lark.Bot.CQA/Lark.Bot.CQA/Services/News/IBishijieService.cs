@@ -8,6 +8,6 @@ namespace Lark.Bot.CQA.Services.News
 {
     public interface IBishijieService
     {
-        Task<string> GetLatestNewsFlash();
+        Task<NewsResult> GetLatestNewsFlash();
     }
 }

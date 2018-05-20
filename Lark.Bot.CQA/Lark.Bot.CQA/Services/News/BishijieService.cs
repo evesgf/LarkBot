@@ -11,9 +11,9 @@ namespace Lark.Bot.CQA.Services.News
 {
     public class BishijieService : IBishijieService
     {
-        public async Task<string> GetLatestNewsFlash()
+        public async Task<NewsResult> GetLatestNewsFlash()
         {
-            var reNews = string.Empty;
+            var reNews = new NewsResult();
 
             var url = "http://www.bishijie.com/kuaixun/";
             HttpResult httpResult = await HttpUitls.HttpsGetRequestAsync(url);
@@ -29,12 +29,26 @@ namespace Lark.Bot.CQA.Services.News
                 var title = firstNew.QuerySelector("a").GetAttribute("title");
                 var content = firstNew.QuerySelector("a").QuerySelector("div");
 
-                reNews = "【"+title+"】"+content.TextContent;
+                reNews.Success = true;
+                reNews.From = "【币世界】";
+                reNews.Title = title;
+                reNews.Content = "【"+title+"】"+content.TextContent;
+
+                //重要性判断
+                if (firstNew.QuerySelector("a").GetAttribute("style")!=null && firstNew.QuerySelector("a").GetAttribute("style") == "color:#ff0000;")
+                {
+                    reNews.NewsLevel = NewsLevel.Importent;
+                }
+                else
+                {
+                    reNews.NewsLevel = NewsLevel.Normal;
+                }
             }
             else
             {
-                reNews = httpResult.StrResponse.Length < 48 ? httpResult.StrResponse : httpResult.StrResponse.Substring(0, 48);
-                reNews = "oh~锅咩锅咩~程序跪了~";
+                reNews.Success = false;
+                reNews.Content = httpResult.StrResponse.Length < 48 ? httpResult.StrResponse : httpResult.StrResponse.Substring(0, 48);
+                reNews.Content += "oh~锅咩锅咩~程序跪了~";
             }
 
             return reNews;

@@ -69,11 +69,11 @@ namespace Lark.Bot.CQA.Services
             //币圈消息
             if (context.Message.Equals("币圈消息"))
             {
-                string[] re = _newsService.RequestBiQuanApi();
-                string reNews = re[0];
+                NewsResult[] re = _newsService.RequestBiQuanApi();
+                string reNews = re[0].From+re[0].Content;
                 for (int i = 1; i < re.Length; i++)
                 {
-                    reNews += "\n"+re[i];
+                    reNews += "\n"+ re[i].From+re[i].Content;
                 }
                 return reNews;
             }

@@ -98,6 +98,7 @@
     <Compile Include="Services\News\IJinseService.cs" />
     <Compile Include="Services\News\IPmtownService.cs" />
     <Compile Include="Services\News\JinseService.cs" />
+    <Compile Include="Services\News\NewsResult.cs" />
     <Compile Include="Services\News\PmtownService.cs" />
     <Compile Include="Uitls\Config\ConfigManager.cs" />
     <Compile Include="Uitls\Config\LarkBotConfig.cs" />

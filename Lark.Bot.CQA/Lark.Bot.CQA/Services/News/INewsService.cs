@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lark.Bot.CQA.Services.News;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,6 @@ namespace Lark.Bot.CQA.Services
         /// 查询币圈消息
         /// </summary>
         /// <returns></returns>
-        string[] RequestBiQuanApi();
+        NewsResult[] RequestBiQuanApi();
     }
 }
