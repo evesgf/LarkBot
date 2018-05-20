@@ -254,9 +254,18 @@ namespace Lark.Bot.CQA.TimeJobs
                         normalMsg += item;
                     }
                     normalMsgList.Clear();
-                    foreach (var group in ConfigManager.pushNewsConfig.CoinNewsPushGroupList)
+
+
+                    if (!string.IsNullOrEmpty(normalMsg))
                     {
-                        _mahuaApi.SendGroupMessage(group, normalMsg + "\n第" + sendCount + "次主动推送消息");
+                        //查询币圈
+                        normalMsg += _coinmarketcapService.GetTicker("btc").Result;
+                        normalMsg += "\n" + _huobiService.LegalTender().Result;
+
+                        foreach (var group in ConfigManager.pushNewsConfig.CoinNewsPushGroupList)
+                        {
+                            _mahuaApi.SendGroupMessage(group, normalMsg + "\n第" + sendCount + "次主动推送消息");
+                        }
                     }
                 }
                 sendCount++;
