@@ -13,7 +13,7 @@ namespace Test
 
         static void Main(string[] args)
         {
-            var a = new JinseService();
+            var a = new BishijieService();
 
             var str = a.GetLatestNewsFlash().Result;
             Console.WriteLine(str.Title);

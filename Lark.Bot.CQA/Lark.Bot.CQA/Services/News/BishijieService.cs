@@ -32,7 +32,7 @@ namespace Lark.Bot.CQA.Services.News
                 reNews.Success = true;
                 reNews.From = "【币世界】";
                 reNews.Title = title;
-                reNews.Content = "【"+title+"】"+content.TextContent;
+                reNews.Content =content.TextContent.Replace(title, "").Replace(" ", "").Trim();
 
                 //重要性判断
                 if (firstNew.QuerySelector("a").GetAttribute("style")!=null && firstNew.QuerySelector("a").GetAttribute("style") == "color:#ff0000;")
