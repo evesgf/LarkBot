@@ -23,20 +23,18 @@ namespace Lark.Bot.CQA.Services.News
                 var htmlParser = new HtmlParser();
                 var dom = htmlParser.Parse(httpResult.StrResponse);
                 //解析页面
-                var listRoot = dom.QuerySelector("#list");
-                var firstNewURL = listRoot.QuerySelector("a").GetAttribute("href");
+                var listRoot = dom.QuerySelector(".article-list");
+                var firstNewURL = listRoot.QuerySelector(".item-title").QuerySelector("a").GetAttribute("href");
                 if (!string.IsNullOrEmpty(firstNewURL))
                 {
                     HttpResult httpDetialResult = await HttpUitls.HttpsGetRequestAsync(firstNewURL);
                     var domDetial = htmlParser.Parse(httpDetialResult.StrResponse);
-                    var title = domDetial.QuerySelector(".uk-article-title").TextContent;
-                    var content = domDetial.QuerySelector("#article");
+                    var title = domDetial.QuerySelector(".entry-title").TextContent;
+                    var content = domDetial.QuerySelector(".entry-content");
                     //掐头去尾
-                    content.QuerySelector("h1").Remove();
-                    content.QuerySelector("ul").Remove();
                     var contentTxt = content.TextContent.Trim();
 
-                    reNews =title + "\n"+ contentTxt.Substring(0, contentTxt.Length-23);
+                    reNews =title + "\n"+ contentTxt.Substring(0, contentTxt.Length- 97);
                 }
                 else
                 {

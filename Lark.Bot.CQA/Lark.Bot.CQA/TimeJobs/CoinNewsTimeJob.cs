@@ -179,11 +179,11 @@ namespace Lark.Bot.CQA.TimeJobs
             {
                 if (msg1.NewsLevel == NewsLevel.Normal)
                 {
-                    normalMsgList.Add(msg1.From+msg1.Content + "\n");
+                    normalMsgList.Add(msg1.From+msg1.Title + "\n");
                 }
                 else
                 {
-                    reMsg += msg1.From + msg1.Content + "\n";
+                    reMsg += msg1.From + msg1.Title + "\n";
                 }
             }
             if (msg2 != null)
@@ -194,29 +194,29 @@ namespace Lark.Bot.CQA.TimeJobs
                 }
                 else
                 {
-                    reMsg += msg2.From + msg2.Content + "\n";
+                    reMsg += msg2.From + msg2.Title + "\n";
                 }
             }
             if (msg3 != null)
             {
                 if (msg3.NewsLevel == NewsLevel.Normal)
                 {
-                    normalMsgList.Add(msg3.From + msg3.Content + "\n");
+                    normalMsgList.Add(msg3.From + msg3.Title + "\n");
                 }
                 else
                 {
-                    reMsg += msg3.From + msg3.Content + "\n";
+                    reMsg += msg3.From + msg3.Title + "\n";
                 }
             }
             if (msg4 != null)
             {
                 if (msg4.NewsLevel == NewsLevel.Normal)
                 {
-                    normalMsgList.Add(msg4.From + msg4.Content + "\n");
+                    normalMsgList.Add(msg4.From + msg4.Title + "\n");
                 }
                 else
                 {
-                    reMsg += msg4.From + msg4.Content + "\n";
+                    reMsg += msg4.From + msg4.Title + "\n";
                 }
             }
 

@@ -13,10 +13,10 @@ namespace Test
 
         static void Main(string[] args)
         {
-            var a = new BishijieService();
+            var a = new JinseService();
 
             var str = a.GetLatestNewsFlash().Result;
-            Console.WriteLine(str);
+            Console.WriteLine(str.Title);
 
             //var str1= "币世界】【GitHub 90天提交排名：EOS为第一，其次是TRX】据CryptoMiso数据显示，在过去三个月GitHub提交代码更新第一为EOS，其次为TRX。具体如下：EOS（1927）、TRX（1834）、NULS（1611）、ZSC（1032）、RHOC（1006）、MOT（968）、AION（914）、ZIL（887）、LSK（869）和TRAC（858）。在统计的327种加密货币中，BTC排名25（提交423次）；BCH排名71（提交129次）；ETH排名61（提交161次）；ETC排名52（提交188次）；XRP排名116（提交43次）；LTC排名274（提交2次）。";
             //var str2 = "【金色财经】【GitHub 90天提交排名：EOS为第一，其次是TRX】据CryptoMiso数据显示，在过去三个月GitHub提交代码更新第一为EOS，其次为TRX。具体如下：EOS（1927）、TRX（1834）、NULS（1611）、ZSC（1032）、RHOC（1006）、MOT（968）、AION（914）、ZIL（887）、LSK（869）和TRAC（858）。 在统计的327种加密货币中，BTC排名25（提交423次）；BCH排名71（提交129次）；ETH排名61（提交161次）；ETC排名52（提交188次）；XRP排名116（提交43次）；LTC排名274（提交2次）。";

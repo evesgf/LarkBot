@@ -27,7 +27,7 @@ namespace Lark.Bot.CQA.Services.News
                 var listRoot = dom.QuerySelector(".kuaixun_list");
                 var firstNew = listRoot.QuerySelector("ul");
                 var title = firstNew.QuerySelector("a").GetAttribute("title");
-                var content = firstNew.QuerySelector("a").QuerySelector("div");
+                var content = firstNew.QuerySelector(".lh32");
 
                 reNews.Success = true;
                 reNews.From = "【币世界】";

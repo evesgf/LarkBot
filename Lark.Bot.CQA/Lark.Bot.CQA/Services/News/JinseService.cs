@@ -31,6 +31,9 @@ namespace Lark.Bot.CQA.Services.News
                 reNews.From = "【金色财经】";
                 reNews.Success = true;
                 reNews.Content = reModel.list.FirstOrDefault().lives.FirstOrDefault().content;
+                int i = reNews.Content.IndexOf("【") + 1;
+                int j = reNews.Content.IndexOf("】");
+                reNews.Title = reNews.Content.Substring(i-1, j - i + 2);
                 if (!string.IsNullOrEmpty(reModel.list.FirstOrDefault().lives.FirstOrDefault().highlight_color))
                 {
                     reNews.NewsLevel = NewsLevel.Importent;
