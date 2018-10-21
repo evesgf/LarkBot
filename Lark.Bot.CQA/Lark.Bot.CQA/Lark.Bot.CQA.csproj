@@ -93,6 +93,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MahuaEvents\PMRMEvent.cs" />
+    <Compile Include="Services\IProblemService.cs" />
     <Compile Include="Services\News\BishijieService.cs" />
     <Compile Include="Services\News\IBishijieService.cs" />
     <Compile Include="Services\News\IJinseService.cs" />
@@ -100,6 +101,7 @@
     <Compile Include="Services\News\JinseService.cs" />
     <Compile Include="Services\News\NewsResult.cs" />
     <Compile Include="Services\News\PmtownService.cs" />
+    <Compile Include="Services\ProblemService.cs" />
     <Compile Include="Uitls\Config\ConfigManager.cs" />
     <Compile Include="Uitls\Config\LarkBotConfig.cs" />
     <Compile Include="Uitls\Config\PushNewsConfig.cs" />

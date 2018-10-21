@@ -84,6 +84,8 @@ namespace Lark.Bot.CQA
                 builder.RegisterType<JinseService>().As<IJinseService>();
                 builder.RegisterType<BishijieService>().As<IBishijieService>();
                 builder.RegisterType<PmtownService>().As<IPmtownService>();
+
+                builder.RegisterType<ProblemService>().As<IProblemService>();
                 #endregion
             }
         }

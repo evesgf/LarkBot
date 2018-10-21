@@ -97,6 +97,8 @@ namespace Lark.Bot.CQA.TimeJobs
         {
             var re = _newsService.RequestBiQuanApi();
 
+            if (re.Count() < 4) return;
+
             NewsResult msg1 = null;
             NewsResult msg2 = null;
             NewsResult msg3 = null;

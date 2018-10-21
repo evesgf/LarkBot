@@ -5,6 +5,6 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <StartAction>Program</StartAction>
-    <StartProgram>..\CQA\CQA.exe</StartProgram>
+    <StartProgram>F:\coding\LarkBot\CQA\CQA.exe</StartProgram>
   </PropertyGroup>
 </Project>

@@ -13,15 +13,17 @@ namespace Lark.Bot.CQA.Services
         private readonly IHuobiService _huobiService;
         private readonly INewsService _newsService;
         private readonly IPmtownService _pmtownService;
+        private readonly IProblemService _problemService;
 
         public MessageHanderService(ICoinmarketcapService coinmarketcapService,
-            IOkexService okexService, IHuobiService huobiService, INewsService newsService, IPmtownService pmtownService)
+            IOkexService okexService, IHuobiService huobiService, INewsService newsService, IPmtownService pmtownService, IProblemService problemService)
         {
             _coinmarketcapService = coinmarketcapService;
             _okexService = okexService;
             _huobiService = huobiService;
             _newsService = newsService;
             _pmtownService = pmtownService;
+            _problemService = problemService;
         }
 
         /// <summary>
@@ -82,6 +84,13 @@ namespace Lark.Bot.CQA.Services
             if (context.Message.Equals("早报"))
             {
                 string reNews = _pmtownService.GetMorningPapaer().Result;
+                return reNews;
+            }
+
+            //早报
+            if (context.Message.Equals("每日一题"))
+            {
+                string reNews = _problemService.GetRundomProblem();
                 return reNews;
             }
 
