@@ -97,14 +97,12 @@ namespace Lark.Bot.CQA.TimeJobs
         {
             var re = _newsService.RequestBiQuanApi();
 
-            if (re.Count() < 4) return;
-
             NewsResult msg1 = null;
             NewsResult msg2 = null;
             NewsResult msg3 = null;
             NewsResult msg4 = null;
 
-            if (!re[0].Content.Equals(lastMsg1))
+            if (re[0] != null && !re[0].Content.Equals(lastMsg1))
             {
                 lastMsg1 = re[0].Content;
                 msg1 = re[0];
@@ -114,7 +112,7 @@ namespace Lark.Bot.CQA.TimeJobs
                 msg1 = null;
             }
 
-            if (!re[1].Content.Equals(lastMsg2))
+            if (re[1] != null && !re[1].Content.Equals(lastMsg2))
             {
                 lastMsg2 = re[1].Content;
                 msg2 = re[1];
@@ -124,7 +122,7 @@ namespace Lark.Bot.CQA.TimeJobs
                 msg2 = null;
             }
 
-            if (!re[2].Content.Equals(lastMsg3))
+            if (re[2] != null && !re[2].Content.Equals(lastMsg3))
             {
                 lastMsg3 = re[2].Content;
                 msg3 = re[2];
@@ -134,7 +132,7 @@ namespace Lark.Bot.CQA.TimeJobs
                 msg3 = null;
             }
 
-            if (!re[3].Content.Equals(lastMsg4))
+            if (re[3]!=null && !re[3].Content.Equals(lastMsg4))
             {
                 lastMsg4 = re[3].Content;
                 msg4 = re[3];

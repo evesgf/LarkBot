@@ -30,28 +30,39 @@ namespace Lark.Bot.CQA.Services
 
             try
             {
+                reStr = new NewsResult[4];
+
                 NewsResult jinseLatestNewsFlash = _jinseService.GetLatestNewsFlash().Result;
+                if (jinseLatestNewsFlash != null) reStr[0] = jinseLatestNewsFlash;
+
                 NewsResult bishijieLatestNewsFlash = _bishijieService.GetLatestNewsFlash().Result;
+                if (bishijieLatestNewsFlash != null) reStr[1] = bishijieLatestNewsFlash;
+
                 CoinNewsModel bitcoinLatestNewsFlash  = JsonConvert.DeserializeObject<CoinNewsResultModel<CoinNewsModel>>(HttpUitls.Get(ConfigManager.pushNewsConfig.NewsServerURL + "/News/GetBitcoinLatestNewsFlash")).Data;
+                if (bitcoinLatestNewsFlash!=null)
+                {
+                    var model=new NewsResult
+                    {
+                        Success = true,
+                        From = "【bitcoin】",
+                        Content = bitcoinLatestNewsFlash.Content,
+                        NewsLevel = NewsLevel.Importent
+                    };
+                    reStr[2] = model;
+                }
 
                 CoinNewsModel OkexNotice = JsonConvert.DeserializeObject<CoinNewsResultModel<CoinNewsModel>>(HttpUitls.Get(ConfigManager.pushNewsConfig.NewsServerURL + "/News/GetOkexLatestNotice")).Data;
-
-                reStr = new NewsResult[] {
-                    jinseLatestNewsFlash,
-                    bishijieLatestNewsFlash,
-                    new NewsResult{
-                        Success=true,
-                        From = "【bitcoin】",
-                        Content =bitcoinLatestNewsFlash.Content,
-                        NewsLevel=NewsLevel.Importent
-                    },
-                    new NewsResult{
-                        Success =true,
+                if (OkexNotice != null)
+                {
+                    var model = new NewsResult
+                    {
+                        Success = true,
                         From = "【Okex】",
-                        Content=OkexNotice.Title+" "+OkexNotice.FromUrl,
-                        NewsLevel=NewsLevel.Importent
-                    }
-                };
+                        Content = OkexNotice.Title + " " + OkexNotice.FromUrl,
+                        NewsLevel = NewsLevel.Importent
+                    };
+                    reStr[3] = model;
+                }
             }
 
             catch (Exception e)

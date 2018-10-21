@@ -75,7 +75,10 @@ namespace Lark.Bot.CQA.Services
                 string reNews = re[0].From+re[0].Content;
                 for (int i = 1; i < re.Length; i++)
                 {
-                    reNews += "\n"+ re[i].From+re[i].Content;
+                    if (re[i] != null)
+                    {
+                        reNews += "\n" + re[i].From + re[i].Content;
+                    }
                 }
                 return reNews;
             }
