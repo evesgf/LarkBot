@@ -9,5 +9,6 @@ namespace Lark.Bot.CQA.Services
     public interface IProblemService
     {
         string GetRundomProblem();
+        string GetRundomRoblemToTag(string key);
     }
 }

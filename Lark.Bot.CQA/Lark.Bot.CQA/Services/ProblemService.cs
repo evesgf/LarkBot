@@ -21,6 +21,14 @@ namespace Lark.Bot.CQA.Services
 
             return "[提问]"+model.Title+"\n"+"[说明]"+model.Detail;
         }
+
+        public string GetRundomRoblemToTag(string key)
+        {
+            var reStr = HttpUitls.Get(api+"/"+key);
+            var model = JsonConvert.DeserializeObject<QuestionModel>(reStr);
+
+            return "[提问]" + model.Title + "\n" + "[说明]" + model.Detail;
+        }
     }
 
     public class QuestionModel

@@ -97,6 +97,15 @@ namespace Lark.Bot.CQA.Services
                 return reNews;
             }
 
+            //搜题 unity
+            if (context.Message.Length > 3 && context.Message.Substring(0, 3).Equals("搜题 "))
+            {
+                string key = context.Message.Remove(0, 3);
+
+                string reNews = _problemService.GetRundomRoblemToTag(key);
+                return reNews;
+            }
+
             return null;
         }
     }
