@@ -1,6 +1,7 @@
 ﻿using Lark.Bot.CQA.Services.News;
 using Lark.Bot.CQA.Uitls.Config;
 using Newbe.Mahua.MahuaEvents;
+using System;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
@@ -104,6 +105,40 @@ namespace Lark.Bot.CQA.Services
 
                 string reNews = _problemService.GetRundomRoblemToTag(key);
                 return reNews;
+            }
+
+            //Roll
+            if (context.Message.Length ==4 && context.Message.Equals("roll"))
+            {
+                var coin = new Random().Next(0, 100);
+                if (coin == 100)
+                {
+                    return coin.ToString() + " 金色传说!";
+                }
+                if (coin >= 90)
+                {
+                    return coin.ToString() + " 金色传说!";
+                }
+                else if (coin >= 80)
+                {
+                    return coin.ToString() + " 传说!";
+                }
+                else if (coin >= 70)
+                {
+                    return coin.ToString() + " 史诗!";
+                }
+                else if (coin >= 60)
+                {
+                    return coin.ToString() + " 稀有!";
+                }
+                else if (coin < 60 && coin > 10)
+                {
+                    return coin.ToString() + " 非酋预定~";
+                }
+                else
+                {
+                    return coin.ToString() + " 真·非酋~";
+                }
             }
 
             return null;
