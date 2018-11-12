@@ -43,7 +43,7 @@ namespace Lark.Bot.CQA.Services
                 {
                     var model = JsonConvert.DeserializeObject<CoinmarketcapTicker[]>(httpResult.StrResponse);
 
-                    var reMessage = "【" + key + "】" + model[0].price_btc + "btc/" + model[0].price_usd + "usdt";
+                    var reMessage = "【" + key + "】" + model[0].price_btc + "btc/" + model[0].price_usd + "usdt/"+ (Convert.ToDecimal(model[0].price_usd) * 6.9m).ToString("f4")+"￥";
                     reMessage += " " + model[0].percent_change_1h + "%/" + model[0].percent_change_24h + "%/" + model[0].percent_change_7d + "% " + TimeUitls.Unix2Datetime(Convert.ToInt64(model[0].last_updated)).ToShortTimeString();
                     return reMessage;
                 }

@@ -113,7 +113,7 @@ namespace Lark.Bot.CQA.Services
                 var coin = new Random().Next(0, 100);
                 if (coin == 100)
                 {
-                    return coin.ToString() + " 金色传说!";
+                    return coin.ToString() + " 欧皇在世!";
                 }
                 if (coin >= 90)
                 {
@@ -140,6 +140,23 @@ namespace Lark.Bot.CQA.Services
                     return coin.ToString() + " 真·非酋~";
                 }
             }
+
+            //复读机
+            if (new Random().Next(0, 100) > 95)
+            {
+                return context.Message;
+            }
+
+            //检测复读
+            if (context.Message.Equals(ConfigManager.lastMessage) && ConfigManager.lastMessage.Equals(ConfigManager.lastLastMessage))
+            {
+                ConfigManager.lastMessage = "";
+                ConfigManager.lastLastMessage = "";
+                return context.Message;
+            }
+
+            ConfigManager.lastMessage = context.Message;
+            ConfigManager.lastLastMessage = ConfigManager.lastMessage;
 
             return null;
         }

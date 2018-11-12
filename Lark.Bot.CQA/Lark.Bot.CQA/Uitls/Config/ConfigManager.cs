@@ -41,6 +41,10 @@ namespace Lark.Bot.CQA.Uitls.Config
         public static LarkBotConfig larkBotConfig;
         public static PushNewsConfig pushNewsConfig;
 
+        //用于检测复读机
+        public static string lastMessage = "";
+        public static string lastLastMessage = "";
+
         private static Dictionary<string, string> dict_CoinSymbol;
 
         private static void InitConfig()
