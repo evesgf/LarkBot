@@ -53,6 +53,7 @@ namespace Lark.Bot.CQA.Uitls
             getRequest.Method = "GET";
             getRequest.Timeout = 10000;
             getRequest.ContentType = "text/html;charset=UTF-8";
+            getRequest.Headers.Add("Accept-Language", "zh-CN,zh;q=0.9");
             getRequest.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
 
             try

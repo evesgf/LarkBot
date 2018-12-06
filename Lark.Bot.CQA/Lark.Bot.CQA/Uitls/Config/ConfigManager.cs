@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Lark.Bot.CQA.Services.Problem;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -40,10 +41,17 @@ namespace Lark.Bot.CQA.Uitls.Config
 
         public static LarkBotConfig larkBotConfig;
         public static PushNewsConfig pushNewsConfig;
+        public static DateTime reReadTime;
 
         //用于检测复读机
         public static string lastMessage = "";
         public static string lastLastMessage = "";
+        public static string lastLastLastMessage = "";
+
+        //问题机
+        public ProblemDetial problem;
+        public DateTime refshProblemDateTime;
+        public int pushProblemCount;
 
         private static Dictionary<string, string> dict_CoinSymbol;
 

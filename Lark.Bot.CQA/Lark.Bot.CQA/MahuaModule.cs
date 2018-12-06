@@ -3,6 +3,7 @@ using Autofac.Extras.Quartz;
 using Lark.Bot.CQA.MahuaEvents;
 using Lark.Bot.CQA.Services;
 using Lark.Bot.CQA.Services.News;
+using Lark.Bot.CQA.Services.Problem;
 using Lark.Bot.CQA.TimeJobs;
 using Newbe.Mahua;
 using Newbe.Mahua.MahuaEvents;
@@ -86,6 +87,7 @@ namespace Lark.Bot.CQA
                 builder.RegisterType<PmtownService>().As<IPmtownService>();
 
                 builder.RegisterType<ProblemService>().As<IProblemService>();
+                builder.RegisterType<LintCodeService>().As<ILintCodeService>();
                 #endregion
             }
         }

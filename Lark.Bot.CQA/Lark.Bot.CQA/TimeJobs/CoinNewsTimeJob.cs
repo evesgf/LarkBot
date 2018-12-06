@@ -95,6 +95,13 @@ namespace Lark.Bot.CQA.TimeJobs
 
         private void CheckCoinNews()
         {
+            ConfigManager.Instance().pushProblemCount += 1;
+            if (ConfigManager.Instance().pushProblemCount > (60 * 4 / ConfigManager.pushNewsConfig.LoopCheckTime))
+            {
+                var msg = ConfigManager.Instance().problem.description + "\n" + ConfigManager.Instance().problem.example;
+                _mahuaApi.SendGroupMessage("417955323", msg);
+            }
+
             var re = _newsService.RequestBiQuanApi();
 
             NewsResult msg1 = null;

@@ -102,6 +102,8 @@
     <Compile Include="Services\News\NewsResult.cs" />
     <Compile Include="Services\News\PmtownService.cs" />
     <Compile Include="Services\ProblemService.cs" />
+    <Compile Include="Services\Problem\ILintCodeService.cs" />
+    <Compile Include="Services\Problem\LintCodeService.cs" />
     <Compile Include="Uitls\Config\ConfigManager.cs" />
     <Compile Include="Uitls\Config\LarkBotConfig.cs" />
     <Compile Include="Uitls\Config\PushNewsConfig.cs" />
